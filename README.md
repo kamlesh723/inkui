@@ -8,6 +8,8 @@
 [![pnpm workspace](https://img.shields.io/badge/pnpm-workspace-f69220?logo=pnpm&logoColor=white)](https://pnpm.io/workspaces)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+![InkUI component showcase](./demo.gif)
+
 ---
 
 ## What is InkUI?
