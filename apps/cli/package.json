@@ -1,0 +1,30 @@
+{
+  "name": "@inkui/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "shadcn-style CLI installer for InkUI terminal components",
+  "bin": {
+    "inkui": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "demo": "tsx src/cli.tsx list",
+    "demo:add": "tsx src/cli.tsx add spinner",
+    "test": "echo 'no tests for CLI app'"
+  },
+  "dependencies": {
+    "@inkui/core": "workspace:*",
+    "@inkui/spinner": "workspace:*",
+    "@inkui/badge": "workspace:*",
+    "@inkui/table": "workspace:*",
+    "ink": "^6.0.0",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.4.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.0.0"
+  }
+}

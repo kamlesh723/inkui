@@ -1,0 +1,21 @@
+node_modules
+dist
+.turbo
+.DS_Store
+*.js.map
+
+# Next.js
+.next
+out
+
+# env files
+.env
+.env.local
+.env*.local
+
+# Editor
+.vscode
+.idea
+
+# OS
+Thumbs.db
