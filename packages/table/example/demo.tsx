@@ -2,7 +2,7 @@ import React from 'react';
 import { render, Box, Text } from 'ink';
 import { Table } from '../src/index.js';
 import type { TableColumn } from '../src/index.js';
-import { darkTheme, lightTheme } from '@inkui/core';
+import { darkTheme, lightTheme } from '@inkui-cli/core';
 
 // ── dataset 1: contributors ───────────────────────────────────────────────────
 
@@ -37,14 +37,14 @@ type Package = {
 };
 
 const packages: Package[] = [
-  { pkg: '@inkui/core',         version: '0.1.0', size: '2.6 KB' },
-  { pkg: '@inkui/spinner',      version: '0.1.0', size: '837 B'  },
-  { pkg: '@inkui/badge',        version: '0.1.0', size: '743 B'  },
-  { pkg: '@inkui/progress-bar', version: '0.1.0', size: '1.3 KB' },
-  { pkg: '@inkui/text-input',   version: '0.1.0', size: '3.3 KB' },
-  { pkg: '@inkui/select',       version: '0.1.0', size: '2.6 KB' },
-  { pkg: '@inkui/multi-select', version: '0.1.0', size: '3.8 KB' },
-  { pkg: '@inkui/table',        version: '0.1.0', size: 'TBD'    },
+  { pkg: '@inkui-cli/core',         version: '0.1.0', size: '2.6 KB' },
+  { pkg: '@inkui-cli/spinner',      version: '0.1.0', size: '837 B'  },
+  { pkg: '@inkui-cli/badge',        version: '0.1.0', size: '743 B'  },
+  { pkg: '@inkui-cli/progress-bar', version: '0.1.0', size: '1.3 KB' },
+  { pkg: '@inkui-cli/text-input',   version: '0.1.0', size: '3.3 KB' },
+  { pkg: '@inkui-cli/select',       version: '0.1.0', size: '2.6 KB' },
+  { pkg: '@inkui-cli/multi-select', version: '0.1.0', size: '3.8 KB' },
+  { pkg: '@inkui-cli/table',        version: '0.1.0', size: 'TBD'    },
 ];
 
 const pkgCols: TableColumn<Package>[] = [
@@ -57,7 +57,7 @@ const pkgCols: TableColumn<Package>[] = [
 
 const Demo = () => (
   <Box flexDirection="column" gap={1}>
-    <Text bold>@inkui/table — live demo</Text>
+    <Text bold>@inkui-cli/table — live demo</Text>
 
     <Box flexDirection="column">
       <Text dimColor>── single border · dark theme · overflow truncation ─</Text>

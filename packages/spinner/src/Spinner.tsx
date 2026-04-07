@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, Box } from 'ink';
-import { spinnerFrames, darkTheme } from '@inkui/core';
-import type { SpinnerType, InkUITheme } from '@inkui/core';
+import { spinnerFrames, darkTheme } from '@inkui-cli/core';
+import type { SpinnerType, InkUITheme } from '@inkui-cli/core';
 
 export interface SpinnerProps {
   /** Text shown after the spinner frame */

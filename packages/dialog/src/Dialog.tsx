@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Text, useInput, useApp, useStdin } from 'ink';
-import { borderStyles, darkTheme } from '@inkui/core';
-import type { BorderStyle, InkUITheme } from '@inkui/core';
+import { borderStyles, darkTheme } from '@inkui-cli/core';
+import type { BorderStyle, InkUITheme } from '@inkui-cli/core';
 
 export interface DialogAction {
   label: string;

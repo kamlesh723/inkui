@@ -26,7 +26,7 @@ export const COMPONENTS: ComponentData[] = [
       { name: 'label',    type: 'string',       default: "''",          description: 'Text shown after the spinner frame' },
       { name: 'type',     type: 'SpinnerType',  default: "'dots'",      description: 'Animation style: dots | line | arc | bounce' },
       { name: 'interval', type: 'number',       default: '80',          description: 'Frame interval in milliseconds' },
-      { name: 'theme',    type: 'InkUITheme',   default: 'darkTheme',   description: 'Color theme — import darkTheme or lightTheme from @inkui/core' },
+      { name: 'theme',    type: 'InkUITheme',   default: 'darkTheme',   description: 'Color theme — import darkTheme or lightTheme from @inkui-cli/core' },
     ],
     usage: `import { Spinner } from './components/ui/spinner';
 
@@ -207,8 +207,8 @@ const columns = [
       `╭──────────────────────┬─────────┬──────────╮\n` +
       `│ Package              │ Version │     Size │\n` +
       `├──────────────────────┼─────────┼──────────┤\n` +
-      `│ @inkui/spinner       │  0.1.0  │    837 B │\n` +
-      `│ @inkui/table         │  0.1.0  │   3.9 KB │\n` +
+      `│ @inkui-cli/spinner       │  0.1.0  │    837 B │\n` +
+      `│ @inkui-cli/table         │  0.1.0  │   3.9 KB │\n` +
       `╰──────────────────────┴─────────┴──────────╯`,
   },
 
@@ -225,7 +225,7 @@ const columns = [
       { name: 'onDismiss',   type: '() => void',    default: 'undefined', description: 'Called when user presses Escape' },
       { name: 'title',       type: 'string',        default: 'undefined', description: 'Bold title at the top of the dialog' },
       { name: 'focus',       type: 'boolean',       default: 'true',      description: 'Whether this dialog captures keyboard input' },
-      { name: 'borderStyle', type: 'BorderStyle',   default: "'rounded'", description: 'Border style key from @inkui/core' },
+      { name: 'borderStyle', type: 'BorderStyle',   default: "'rounded'", description: 'Border style key from @inkui-cli/core' },
       { name: 'theme',       type: 'InkUITheme',    default: 'darkTheme', description: 'Color theme' },
     ],
     usage: `import { Dialog } from './components/ui/dialog';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { render, Box, Text } from 'ink';
 import { MultiSelect } from '../src/index.js';
 import type { MultiSelectItem } from '../src/index.js';
-import { darkTheme, lightTheme } from '@inkui/core';
+import { darkTheme, lightTheme } from '@inkui-cli/core';
 
 type Feature = 'ts' | 'eslint' | 'prettier' | 'vitest' | 'husky' | 'ci';
 
@@ -27,7 +27,7 @@ const Demo = () => {
 
   return (
     <Box flexDirection="column" gap={1}>
-      <Text bold>@inkui/multi-select — live demo</Text>
+      <Text bold>@inkui-cli/multi-select — live demo</Text>
 
       <Box flexDirection="column">
         <Text dimColor>── dark theme · generic MultiSelect{'<Feature>'} ─</Text>

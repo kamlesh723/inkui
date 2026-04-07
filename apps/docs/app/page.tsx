@@ -35,7 +35,7 @@ export default function Home() {
           and the source lands in <code style={{ color: 'var(--accent)' }}>./components/ui/</code>.
           You own the code — customise colours, layout, and behaviour freely.
           Every component accepts a <code style={{ color: 'var(--accent)' }}>theme</code> prop
-          backed by <code style={{ color: 'var(--accent)' }}>@inkui/core</code> design tokens,
+          backed by <code style={{ color: 'var(--accent)' }}>@inkui-cli/core</code> design tokens,
           so your CLI app is visually consistent out of the box.
         </p>
       </section>

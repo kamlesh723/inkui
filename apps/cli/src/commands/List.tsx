@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Box, Text, useApp } from 'ink';
-import { Table } from '@inkui/table';
-import { Badge } from '@inkui/badge';
-import { darkTheme } from '@inkui/core';
+import { Table } from '@inkui-cli/table';
+import { Badge } from '@inkui-cli/badge';
+import { darkTheme } from '@inkui-cli/core';
 import { REGISTRY, componentNames } from '../registry.js';
 
 type Row = { component: string; description: string };

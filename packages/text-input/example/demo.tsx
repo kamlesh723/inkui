@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { render, Box, Text } from 'ink';
 import { TextInput } from '../src/index.js';
-import { darkTheme, lightTheme } from '@inkui/core';
+import { darkTheme, lightTheme } from '@inkui-cli/core';
 
 const Demo = () => {
   const [name, setName]         = useState('Kamlesh');
@@ -12,7 +12,7 @@ const Demo = () => {
 
   return (
     <Box flexDirection="column" gap={1}>
-      <Text bold>@inkui/text-input — live demo</Text>
+      <Text bold>@inkui-cli/text-input — live demo</Text>
       <Text dimColor>Tab not wired in demo — fields shown with pre-filled states</Text>
 
       <Box flexDirection="column" gap={1}>

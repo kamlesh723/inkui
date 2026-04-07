@@ -1,5 +1,5 @@
 {
-  "name": "@inkui/docs",
+  "name": "@inkui-cli/docs",
   "version": "0.1.0",
   "private": true,
   "scripts": {

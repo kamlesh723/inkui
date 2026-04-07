@@ -5,14 +5,14 @@
 import React, { useState, useEffect } from 'react';
 import { render, Box, Text } from 'ink';
 
-import { Spinner }     from '@inkui/spinner';
-import { Badge }       from '@inkui/badge';
-import { ProgressBar } from '@inkui/progress-bar';
-import { Table }       from '@inkui/table';
-import type { TableColumn } from '@inkui/table';
+import { Spinner }     from '@inkui-cli/spinner';
+import { Badge }       from '@inkui-cli/badge';
+import { ProgressBar } from '@inkui-cli/progress-bar';
+import { Table }       from '@inkui-cli/table';
+import type { TableColumn } from '@inkui-cli/table';
 
-import { darkTheme, borderStyles } from '@inkui/core';
-import type { InkUITheme, BorderStyle } from '@inkui/core';
+import { darkTheme, borderStyles } from '@inkui-cli/core';
+import type { InkUITheme, BorderStyle } from '@inkui-cli/core';
 
 const T = darkTheme;
 
@@ -153,7 +153,7 @@ function BadgeScene() {
         <Divider label="npx inkui add badge" />
         <Box>
           <Text color={T.colors.muted}>{'import { Badge } from '}</Text>
-          <Text color={T.colors.primary}>{'\'@inkui/badge\''}</Text>
+          <Text color={T.colors.primary}>{'\'@inkui-cli/badge\''}</Text>
         </Box>
         <Box>
           <Text color={T.colors.muted}>{'<Badge variant="success">deployed</Badge>'}</Text>
@@ -546,15 +546,15 @@ function MultiSelectScene({ tick }: { tick: number }) {
 type PkgRow = { pkg: string; version: string; size: string; status: string };
 
 const pkgData: PkgRow[] = [
-  { pkg: '@inkui/core',         version: '0.1.0', size: '2.6 KB', status: 'stable' },
-  { pkg: '@inkui/spinner',      version: '0.1.0', size: '837 B',  status: 'stable' },
-  { pkg: '@inkui/badge',        version: '0.1.0', size: '743 B',  status: 'stable' },
-  { pkg: '@inkui/progress-bar', version: '0.1.0', size: '1.3 KB', status: 'stable' },
-  { pkg: '@inkui/text-input',   version: '0.1.0', size: '3.3 KB', status: 'stable' },
-  { pkg: '@inkui/select',       version: '0.1.0', size: '2.6 KB', status: 'stable' },
-  { pkg: '@inkui/multi-select', version: '0.1.0', size: '3.8 KB', status: 'stable' },
-  { pkg: '@inkui/table',        version: '0.1.0', size: '4.1 KB', status: 'stable' },
-  { pkg: '@inkui/dialog',       version: '0.1.0', size: '3.5 KB', status: 'stable' },
+  { pkg: '@inkui-cli/core',         version: '0.1.0', size: '2.6 KB', status: 'stable' },
+  { pkg: '@inkui-cli/spinner',      version: '0.1.0', size: '837 B',  status: 'stable' },
+  { pkg: '@inkui-cli/badge',        version: '0.1.0', size: '743 B',  status: 'stable' },
+  { pkg: '@inkui-cli/progress-bar', version: '0.1.0', size: '1.3 KB', status: 'stable' },
+  { pkg: '@inkui-cli/text-input',   version: '0.1.0', size: '3.3 KB', status: 'stable' },
+  { pkg: '@inkui-cli/select',       version: '0.1.0', size: '2.6 KB', status: 'stable' },
+  { pkg: '@inkui-cli/multi-select', version: '0.1.0', size: '3.8 KB', status: 'stable' },
+  { pkg: '@inkui-cli/table',        version: '0.1.0', size: '4.1 KB', status: 'stable' },
+  { pkg: '@inkui-cli/dialog',       version: '0.1.0', size: '3.5 KB', status: 'stable' },
 ];
 
 const pkgCols: TableColumn<PkgRow>[] = [

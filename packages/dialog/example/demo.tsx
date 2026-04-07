@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { render, Box, Text } from 'ink';
 import { Dialog } from '../src/index.js';
 import type { DialogAction } from '../src/index.js';
-import { darkTheme, lightTheme } from '@inkui/core';
+import { darkTheme, lightTheme } from '@inkui-cli/core';
 
 const confirmActions: DialogAction[] = [
   { label: 'Cancel',  value: 'cancel'  },
@@ -19,7 +19,7 @@ const Demo = () => {
 
   return (
     <Box flexDirection="column" gap={1}>
-      <Text bold>@inkui/dialog — live demo</Text>
+      <Text bold>@inkui-cli/dialog — live demo</Text>
 
       {/* rounded border, dark theme, focused */}
       <Box flexDirection="column">

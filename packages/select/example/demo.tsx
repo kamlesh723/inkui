@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { render, Box, Text } from 'ink';
 import { Select } from '../src/index.js';
 import type { SelectItem } from '../src/index.js';
-import { darkTheme, lightTheme } from '@inkui/core';
+import { darkTheme, lightTheme } from '@inkui-cli/core';
 
 type Framework = 'react' | 'vue' | 'svelte' | 'angular' | 'solid';
 
@@ -26,7 +26,7 @@ const Demo = () => {
 
   return (
     <Box flexDirection="column" gap={1}>
-      <Text bold>@inkui/select — live demo</Text>
+      <Text bold>@inkui-cli/select — live demo</Text>
 
       <Box flexDirection="column">
         <Text dimColor>── dark theme · generic Select{'<Framework>'} ────</Text>
