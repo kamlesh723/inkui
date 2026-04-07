@@ -24,7 +24,7 @@
 
 <br/>
 
-<video src="https://github.com/kamlesh723/inkui/releases/download/v0.1.0/demo.mp4" autoplay loop muted playsinline width="100%"></video>
+<img src="./demo.gif" alt="InkUI component showcase" width="100%" />
 
 <br/>
 
