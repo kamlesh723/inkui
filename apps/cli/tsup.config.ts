@@ -11,7 +11,7 @@ export default defineConfig({
   },
   dts: false,
   clean: true,
-  // Bundle @inkui/* workspace packages into the CLI binary so it is self-contained.
+  // Bundle @inkui-cli/* workspace packages into the CLI binary so it is self-contained.
   // ink and react stay external — they are real runtime dependencies.
   noExternal: [/@inkui\//],
   external: ['react', 'ink'],

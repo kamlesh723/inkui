@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, Box, Text } from 'ink';
 import { Badge } from '../src/index.js';
-import { darkTheme, lightTheme } from '@inkui/core';
+import { darkTheme, lightTheme } from '@inkui-cli/core';
 
 const Demo = () => (
   <Box flexDirection="column" gap={1}>
-    <Text bold>@inkui/badge — live demo</Text>
+    <Text bold>@inkui-cli/badge — live demo</Text>
 
     <Box flexDirection="column">
       <Text dimColor>── dark theme ──────────────────────</Text>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text, useStdout } from 'ink';
-import { borderStyles, darkTheme } from '@inkui/core';
-import type { BorderStyle, InkUITheme } from '@inkui/core';
+import { borderStyles, darkTheme } from '@inkui-cli/core';
+import type { BorderStyle, InkUITheme } from '@inkui-cli/core';
 
 export interface TableColumn<T extends Record<string, unknown> = Record<string, unknown>> {
   /** Key into each data row */
@@ -17,7 +17,7 @@ export interface TableColumn<T extends Record<string, unknown> = Record<string, 
 export interface TableProps<T extends Record<string, unknown> = Record<string, unknown>> {
   columns: TableColumn<T>[];
   data: T[];
-  /** Border style key from @inkui/core tokens */
+  /** Border style key from @inkui-cli/core tokens */
   borderStyle?: BorderStyle;
   /** Theme override — defaults to darkTheme */
   theme?: InkUITheme;

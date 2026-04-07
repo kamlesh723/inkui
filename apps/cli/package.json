@@ -1,5 +1,5 @@
 {
-  "name": "@inkui/cli",
+  "name": "@inkui-cli/cli",
   "version": "0.1.0",
   "type": "module",
   "description": "shadcn-style CLI installer for InkUI terminal components",
@@ -14,10 +14,10 @@
     "test": "echo 'no tests for CLI app'"
   },
   "dependencies": {
-    "@inkui/core": "workspace:*",
-    "@inkui/spinner": "workspace:*",
-    "@inkui/badge": "workspace:*",
-    "@inkui/table": "workspace:*",
+    "@inkui-cli/core": "workspace:*",
+    "@inkui-cli/spinner": "workspace:*",
+    "@inkui-cli/badge": "workspace:*",
+    "@inkui-cli/table": "workspace:*",
     "ink": "^6.0.0",
     "react": "^19.0.0"
   },

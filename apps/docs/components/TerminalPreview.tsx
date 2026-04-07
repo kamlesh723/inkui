@@ -119,7 +119,7 @@ export const TerminalPreview: React.FC<TerminalPreviewProps> = ({
         <div className="terminal-dot" style={{ background: '#56d364' }} />
         <span className="terminal-label">
           {status === 'live'
-            ? `● live · pnpm -F @inkui/${component} demo`
+            ? `● live · pnpm -F @inkui-cli/${component} demo`
             : status === 'connecting'
             ? '○ connecting to pty-server…'
             : '○ static preview  ·  run pnpm dev:pty for live'}

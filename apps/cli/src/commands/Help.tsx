@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Box, Text, useApp } from 'ink';
-import { Badge } from '@inkui/badge';
-import { darkTheme } from '@inkui/core';
+import { Badge } from '@inkui-cli/badge';
+import { darkTheme } from '@inkui-cli/core';
 
 export const HelpCommand: React.FC = () => {
   const { exit } = useApp();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, Box } from 'ink';
-import { darkTheme } from '@inkui/core';
-import type { InkUITheme } from '@inkui/core';
+import { darkTheme } from '@inkui-cli/core';
+import type { InkUITheme } from '@inkui-cli/core';
 
 export type BadgeVariant = 'default' | 'success' | 'warning' | 'error' | 'info';
 

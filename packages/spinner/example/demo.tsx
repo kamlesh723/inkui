@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, Box, Text } from 'ink';
 import { Spinner } from '../src/index.js';
-import { darkTheme, lightTheme } from '@inkui/core';
+import { darkTheme, lightTheme } from '@inkui-cli/core';
 
 const Demo = () => (
   <Box flexDirection="column" gap={1}>
-    <Text bold>@inkui/spinner — live demo</Text>
+    <Text bold>@inkui-cli/spinner — live demo</Text>
     <Spinner label="Loading your stuff...  (dots)" type="dots" theme={darkTheme} />
     <Spinner label="Crunching numbers...  (line)" type="line" theme={darkTheme} />
     <Spinner label="Orbiting...           (arc)"  type="arc"  theme={darkTheme} />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { render, Box, Text } from 'ink';
 import { ProgressBar } from '../src/index.js';
-import { darkTheme, lightTheme } from '@inkui/core';
+import { darkTheme, lightTheme } from '@inkui-cli/core';
 
 const Demo = () => {
   const [progress, setProgress] = useState(0);
@@ -22,7 +22,7 @@ const Demo = () => {
 
   return (
     <Box flexDirection="column" gap={1}>
-      <Text bold>@inkui/progress-bar — live demo</Text>
+      <Text bold>@inkui-cli/progress-bar — live demo</Text>
 
       <Box flexDirection="column" gap={1}>
         <Text dimColor>── animated (dark theme) ───────────────────────</Text>

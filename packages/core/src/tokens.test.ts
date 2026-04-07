@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { borderStyles, spinnerFrames, spacing } from './tokens.js';
 import { darkTheme, lightTheme } from './theme.js';
 
-describe('@inkui/core tokens', () => {
+describe('@inkui-cli/core tokens', () => {
   it('exports 5 border styles', () => {
     expect(Object.keys(borderStyles)).toHaveLength(5);
   });

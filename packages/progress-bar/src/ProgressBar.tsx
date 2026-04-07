@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text, useStdout } from 'ink';
-import { darkTheme } from '@inkui/core';
-import type { InkUITheme } from '@inkui/core';
+import { darkTheme } from '@inkui-cli/core';
+import type { InkUITheme } from '@inkui-cli/core';
 
 export interface ProgressBarProps {
   /** Progress value 0–100 */

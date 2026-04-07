@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@inkui/docs", "@inkui/cli"]
+  "ignore": ["@inkui-cli/docs", "@inkui-cli/cli"]
 }

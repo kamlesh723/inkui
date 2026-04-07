@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Text, useInput, useApp, useStdin } from 'ink';
-import { darkTheme } from '@inkui/core';
-import type { InkUITheme } from '@inkui/core';
+import { darkTheme } from '@inkui-cli/core';
+import type { InkUITheme } from '@inkui-cli/core';
 
 export interface SelectItem<T = string> {
   label: string;

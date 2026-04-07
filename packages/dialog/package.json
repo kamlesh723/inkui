@@ -1,5 +1,5 @@
 {
-  "name": "@inkui/dialog",
+  "name": "@inkui-cli/dialog",
   "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -23,7 +23,7 @@
     "react": ">=19.0.0"
   },
   "dependencies": {
-    "@inkui/core": "workspace:*"
+    "@inkui-cli/core": "workspace:*"
   },
   "devDependencies": {
     "ink": "^6.0.0",

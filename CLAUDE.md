@@ -61,7 +61,7 @@ pnpm test             # vitest run
 3. Copy tsup.config.ts with `outExtension` and `external: ['react', 'ink']`
 4. Copy tsconfig.json extending `../../tsconfig.base.json`
 5. Write `src/<Name>.tsx`, `src/index.ts`, `example/demo.tsx`
-6. Add `"@inkui/core": "workspace:*"` to dependencies
+6. Add `"@inkui-cli/core": "workspace:*"` to dependencies
 7. `pnpm install` from root (workspace link is auto-resolved)
 8. `pnpm build` inside package — must pass before moving on
 9. `pnpm demo` — verify visual output
@@ -85,7 +85,7 @@ Then: apps/cli (Ink-based CLI installer) → apps/docs (Next.js + xterm.js)
 
 ## Component rules (no exceptions)
 
-- Accept `theme?: InkUITheme` — default to `darkTheme` from `@inkui/core`
+- Accept `theme?: InkUITheme` — default to `darkTheme` from `@inkui-cli/core`
 - Colors ONLY via Ink's `<Text color="">` — never import chalk
 - Never call `process.exit()` — use `useApp().exit()`
 - `useInput` always gets `{ isActive: focus }` to prevent leaking

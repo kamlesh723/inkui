@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Text, useApp } from 'ink';
-import { Spinner } from '@inkui/spinner';
-import { Badge } from '@inkui/badge';
-import { darkTheme } from '@inkui/core';
+import { Spinner } from '@inkui-cli/spinner';
+import { Badge } from '@inkui-cli/badge';
+import { darkTheme } from '@inkui-cli/core';
 import { copyFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { existsSync } from 'node:fs';

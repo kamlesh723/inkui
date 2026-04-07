@@ -1,5 +1,5 @@
 {
-  "name": "@inkui/demo",
+  "name": "@inkui-cli/demo",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -7,15 +7,15 @@
     "demo": "tsx index.tsx"
   },
   "dependencies": {
-    "@inkui/core": "workspace:*",
-    "@inkui/spinner": "workspace:*",
-    "@inkui/badge": "workspace:*",
-    "@inkui/progress-bar": "workspace:*",
-    "@inkui/text-input": "workspace:*",
-    "@inkui/select": "workspace:*",
-    "@inkui/multi-select": "workspace:*",
-    "@inkui/table": "workspace:*",
-    "@inkui/dialog": "workspace:*",
+    "@inkui-cli/core": "workspace:*",
+    "@inkui-cli/spinner": "workspace:*",
+    "@inkui-cli/badge": "workspace:*",
+    "@inkui-cli/progress-bar": "workspace:*",
+    "@inkui-cli/text-input": "workspace:*",
+    "@inkui-cli/select": "workspace:*",
+    "@inkui-cli/multi-select": "workspace:*",
+    "@inkui-cli/table": "workspace:*",
+    "@inkui-cli/dialog": "workspace:*",
     "ink": "^6.0.0",
     "react": "^19.0.0"
   },
