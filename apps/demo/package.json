@@ -1,0 +1,27 @@
+{
+  "name": "@inkui/demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "demo": "tsx index.tsx"
+  },
+  "dependencies": {
+    "@inkui/core": "workspace:*",
+    "@inkui/spinner": "workspace:*",
+    "@inkui/badge": "workspace:*",
+    "@inkui/progress-bar": "workspace:*",
+    "@inkui/text-input": "workspace:*",
+    "@inkui/select": "workspace:*",
+    "@inkui/multi-select": "workspace:*",
+    "@inkui/table": "workspace:*",
+    "@inkui/dialog": "workspace:*",
+    "ink": "^6.0.0",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.4.0",
+    "tsx": "^4.0.0"
+  }
+}
