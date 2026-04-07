@@ -1,24 +1,40 @@
-# InkUI
+<h1 align="center">InkUI</h1>
 
-**shadcn/ui for the terminal.** Copy-paste terminal UI components for [Ink](https://github.com/vadimdemedes/ink) — the React renderer for CLIs.
+<p align="center">
+  <strong>shadcn/ui for the terminal.</strong><br/>
+  Copy-paste components for <a href="https://github.com/vadimdemedes/ink">Ink</a> — the React renderer for CLIs.
+</p>
 
-[![CI](https://github.com/kamleshyadav723/inkui/actions/workflows/ci.yml/badge.svg)](https://github.com/kamleshyadav723/inkui/actions/workflows/ci.yml)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.4+-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Ink 6](https://img.shields.io/badge/Ink-6.x-61dafb?logo=react&logoColor=white)](https://github.com/vadimdemedes/ink)
-[![pnpm workspace](https://img.shields.io/badge/pnpm-workspace-f69220?logo=pnpm&logoColor=white)](https://pnpm.io/workspaces)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+<p align="center">
+  <a href="https://github.com/kamlesh723/inkui/actions/workflows/ci.yml">
+    <img src="https://github.com/kamlesh723/inkui/actions/workflows/ci.yml/badge.svg" alt="CI">
+  </a>
+  <a href="https://www.npmjs.com/package/@inkui-cli/cli">
+    <img src="https://img.shields.io/npm/v/@inkui-cli/cli?label=npm&color=cb0000" alt="npm">
+  </a>
+  <a href="https://www.npmjs.com/package/@inkui-cli/core">
+    <img src="https://img.shields.io/npm/dm/@inkui-cli/core?label=downloads&color=cb0000" alt="downloads">
+  </a>
+  <img src="https://img.shields.io/badge/TypeScript-5.4+-3178c6?logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Ink-6.x-61dafb?logo=react&logoColor=white" alt="Ink 6">
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License">
+  </a>
+</p>
+
+<br/>
 
 ![InkUI component showcase](./demo.gif)
 
+<br/>
+
 ---
 
-## What is InkUI?
+## The idea
 
-InkUI works exactly like [shadcn/ui](https://ui.shadcn.com/) — but for **terminal apps built with Ink**.
+Every time you build a CLI in Ink you rewrite the same spinner, progress bar, and select menu. InkUI gives you a starting point — but instead of shipping a black-box library, it works like **[shadcn/ui](https://ui.shadcn.com/)**: you run one command and get the TypeScript source file in your own project.
 
-Instead of installing a component library as a dependency, you **copy the component source directly into your project**. Run one command, get the TypeScript file, own it forever. Customise the colours, change the layout, strip what you don't need — it's just your code.
-
-```
+```bash
 npx inkui add spinner
 ```
 
@@ -28,152 +44,71 @@ npx inkui add spinner
   └── index.ts
 ```
 
-No lock-in. No version drift. No surprise breaking changes.
+```tsx
+import { Spinner } from './components/ui/spinner';
 
----
-
-## Live preview
-
-```
-@inkui-cli/spinner — live demo
-
-⠹ Loading your stuff...  (dots)
-| Crunching numbers...   (line)
-◝ Orbiting...            (arc)
-⣻ Bouncing...            (bounce)
+<Spinner label="Deploying to production..." type="arc" />
 ```
 
-```
-@inkui-cli/badge — live demo
-
- default   success   warning   error   info
-```
-
-```
-@inkui-cli/progress-bar — live demo
-
-Downloading ████████████████████░░░░░░░░░░░░░░░░░░░░  50%
-Installing  ████████████████████████████████████████ 100%
-```
-
-```
-@inkui-cli/table — live demo
-
-╭─────────────────────┬─────────┬──────────╮
-│ Package             │ Version │ ESM Size │
-├─────────────────────┼─────────┼──────────┤
-│ @inkui-cli/core         │  0.1.0  │   2.6 KB │
-│ @inkui-cli/spinner      │  0.1.0  │    837 B │
-│ @inkui-cli/badge        │  0.1.0  │    743 B │
-│ @inkui-cli/progress-bar │  0.1.0  │   1.3 KB │
-│ @inkui-cli/table        │  0.1.0  │   3.9 KB │
-╰─────────────────────┴─────────┴──────────╯
-```
-
-```
-@inkui-cli/select — live demo
-
-❯ React
-  Vue
-  Svelte
-  Angular  (disabled)
-  Solid
-```
-
-```
-@inkui-cli/dialog — live demo
-
-╭─────────────────────────────────╮
-│ Deploy to production?           │
-├─────────────────────────────────┤
-│                                 │
-│ This will push changes to prod. │
-│ All users will be affected.     │
-│                                 │
-├─────────────────────────────────┤
-│              Cancel    Confirm  │
-╰─────────────────────────────────╯
-  ← → navigate  ·  enter: confirm  ·  esc: dismiss
-```
+That's it. No new `node_modules` entry. No version drift. No surprise breaking changes. **Just code you own and can change.**
 
 ---
 
 ## Quick start
 
-**Step 1 — Add a component to your Ink project**
-
 ```bash
+# See all available components
+npx inkui list
+
+# Add one component
 npx inkui add spinner
-```
 
-**Step 2 — Import it**
+# Add several at once
+npx inkui add badge progress-bar table
 
-```tsx
-import { Spinner } from './components/ui/spinner';
-```
-
-**Step 3 — Use it**
-
-```tsx
-import React from 'react';
-import { render } from 'ink';
-import { Spinner } from './components/ui/spinner';
-
-const App = () => <Spinner label="Deploying..." type="dots" />;
-
-render(<App />);
-```
-
-That's it. The component is yours.
-
----
-
-## Available components
-
-| Component | What it does | Add it |
-|---|---|---|
-| **Spinner** | Animated spinner — dots, line, arc, bounce | `npx inkui add spinner` |
-| **Badge** | Status badge — default / success / warning / error / info | `npx inkui add badge` |
-| **ProgressBar** | Fill-bar with percent, auto terminal width | `npx inkui add progress-bar` |
-| **TextInput** | Text field — cursor, arrows, backspace, placeholder, password | `npx inkui add text-input` |
-| **Select** | Arrow-key single-select, disabled items, generic `Select<T>` | `npx inkui add select` |
-| **MultiSelect** | Space-toggle checkboxes, set state, generic `MultiSelect<T>` | `npx inkui add multi-select` |
-| **Table** | Data table — auto widths, overflow truncation, 5 border styles | `npx inkui add table` |
-| **Dialog** | Modal dialog — title, message, action buttons, Escape to dismiss | `npx inkui add dialog` |
-
-**Add everything at once:**
-
-```bash
+# Add everything
 npx inkui add --all
 ```
 
-**See what's available:**
+Your project only needs two peer deps:
 
 ```bash
-npx inkui list
+npm install ink react
 ```
 
 ---
 
-## Component usage examples
+## Components
+
+| Component | What it does | Install |
+|---|---|---|
+| **Spinner** | Animated spinner — `dots` `line` `arc` `bounce` | `npx inkui add spinner` |
+| **Badge** | Status chip — `default` `success` `warning` `error` `info` | `npx inkui add badge` |
+| **ProgressBar** | Fill bar with `%`, auto-sizes to terminal width | `npx inkui add progress-bar` |
+| **TextInput** | Cursor, arrows, backspace, placeholder, password mask | `npx inkui add text-input` |
+| **Select** | Arrow-key single-select, skips disabled items, generic `Select<T>` | `npx inkui add select` |
+| **MultiSelect** | Space-to-toggle checkboxes, pre-selection, generic `MultiSelect<T>` | `npx inkui add multi-select` |
+| **Table** | Auto column widths, overflow truncation, 5 border styles | `npx inkui add table` |
+| **Dialog** | Modal — title, message, keyboard-navigable action buttons | `npx inkui add dialog` |
+
+---
+
+## API reference
 
 ### Spinner
 
 ```tsx
 import { Spinner } from './components/ui/spinner';
 
-// Dots (default)
 <Spinner label="Resolving packages..." />
-
-// Other styles: line | arc | bounce
-<Spinner type="arc" label="Uploading..." />
+<Spinner type="arc"    label="Uploading..."  />
+<Spinner type="line"   label="Building..."   interval={40} />
+<Spinner type="bounce" label="Connecting..." />
 ```
-
-**Props**
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | `''` | Text shown after the spinner frame |
+| `label` | `string` | `''` | Text shown after the frame |
 | `type` | `'dots' \| 'line' \| 'arc' \| 'bounce'` | `'dots'` | Animation style |
 | `interval` | `number` | `80` | Frame speed in ms |
 | `theme` | `InkUITheme` | `darkTheme` | Color theme |
@@ -188,16 +123,14 @@ import { Badge } from './components/ui/badge';
 <Badge variant="success">deployed</Badge>
 <Badge variant="warning">degraded</Badge>
 <Badge variant="error">failed</Badge>
-<Badge variant="info">pending</Badge>
-<Badge variant="default">unknown</Badge>
+<Badge variant="info">queued</Badge>
+<Badge variant="default">v0.1.0</Badge>
 ```
-
-**Props**
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `children` | `string` | — *required* | Badge label |
-| `variant` | `'default' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'default'` | Visual style |
+| `children` | `string` | *required* | Label text |
+| `variant` | `'default' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'default'` | Color style |
 | `theme` | `InkUITheme` | `darkTheme` | Color theme |
 
 ---
@@ -207,22 +140,18 @@ import { Badge } from './components/ui/badge';
 ```tsx
 import { ProgressBar } from './components/ui/progress-bar';
 
-// Controlled — hook up to your own state
 const [progress, setProgress] = useState(0);
-<ProgressBar value={progress} label="Downloading" />
 
-// Fixed width, no percent label
+<ProgressBar value={progress} label="Downloading" />
 <ProgressBar value={66} width={40} showPercent={false} />
 ```
 
-**Props**
-
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `number` | — *required* | 0–100 |
+| `value` | `number` | *required* | 0–100 |
 | `label` | `string` | — | Left-side label |
 | `showPercent` | `boolean` | `true` | Show `%` on the right |
-| `width` | `number` | auto | Fixed bar width (columns) |
+| `width` | `number` | auto | Fixed bar width in columns |
 | `theme` | `InkUITheme` | `darkTheme` | Color theme |
 
 ---
@@ -242,19 +171,17 @@ const [name, setName] = useState('');
   placeholder="Enter your name"
 />
 
-// Password mode — masks input as *
-<TextInput value={pass} onChange={setPass} password />
+// Password — masks as *
+<TextInput value={pass} onChange={setPass} password label="Token" />
 ```
-
-**Props**
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `string` | — *required* | Controlled value |
-| `onChange` | `(v: string) => void` | — *required* | Called on every keystroke |
+| `value` | `string` | *required* | Controlled value |
+| `onChange` | `(v: string) => void` | *required* | Called on every keystroke |
 | `onSubmit` | `(v: string) => void` | — | Called on Enter |
 | `placeholder` | `string` | `''` | Shown when empty |
-| `password` | `boolean` | `false` | Mask as `*` |
+| `password` | `boolean` | `false` | Mask input as `*` |
 | `focus` | `boolean` | `true` | Whether this field is active |
 | `label` | `string` | — | Left-side label |
 | `theme` | `InkUITheme` | `darkTheme` | Color theme |
@@ -267,24 +194,26 @@ const [name, setName] = useState('');
 import { Select } from './components/ui/select';
 import type { SelectItem } from './components/ui/select';
 
-// Fully generic — value type can be anything
 type Framework = 'react' | 'vue' | 'svelte';
 
 const items: SelectItem<Framework>[] = [
-  { label: 'React',  value: 'react' },
-  { label: 'Vue',    value: 'vue' },
-  { label: 'Svelte', value: 'svelte' },
-  // Disable an option
+  { label: 'React',   value: 'react' },
+  { label: 'Vue',     value: 'vue' },
+  { label: 'Svelte',  value: 'svelte' },
   { label: 'Angular', value: 'angular' as any, disabled: true },
 ];
 
-<Select
-  items={items}
-  onSelect={(item) => console.log(item.value)} // typed as Framework
-/>
+<Select items={items} onSelect={(item) => console.log(item.value)} />
 ```
 
-**Keys:** `↑ ↓` to navigate · `Enter` to confirm · disabled items are skipped
+Keys: `↑ ↓` navigate · `Enter` confirm · disabled items are skipped automatically.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `SelectItem<T>[]` | *required* | Option list |
+| `onSelect` | `(item: SelectItem<T>) => void` | *required* | Called on confirm |
+| `focus` | `boolean` | `true` | Whether this component is active |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
 
 ---
 
@@ -300,15 +229,20 @@ import { MultiSelect } from './components/ui/multi-select';
     { label: 'Prettier',   value: 'prettier' },
     { label: 'Husky',      value: 'husky', disabled: true },
   ]}
-  defaultSelected={['ts']}
-  onSubmit={(selected) => {
-    // selected is MultiSelectItem<string>[]
-    console.log(selected.map((s) => s.value));
-  }}
+  defaultSelected={['ts', 'eslint']}
+  onSubmit={(selected) => console.log(selected.map((s) => s.value))}
 />
 ```
 
-**Keys:** `↑ ↓` to navigate · `Space` to toggle `◯/◉` · `Enter` to confirm
+Keys: `↑ ↓` navigate · `Space` toggle `◯/◉` · `Enter` confirm.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `MultiSelectItem<T>[]` | *required* | Option list |
+| `onSubmit` | `(selected: MultiSelectItem<T>[]) => void` | *required* | Called on confirm |
+| `defaultSelected` | `T[]` | `[]` | Pre-selected values |
+| `focus` | `boolean` | `true` | Whether this component is active |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
 
 ---
 
@@ -321,21 +255,28 @@ import type { TableColumn } from './components/ui/table';
 type Package = { name: string; version: string; size: string };
 
 const columns: TableColumn<Package>[] = [
-  { key: 'name',    header: 'Package',  align: 'left'   },
-  { key: 'version', header: 'Version',  align: 'center' },
-  { key: 'size',    header: 'Size',     align: 'right'  },
+  { key: 'name',    header: 'Package', align: 'left'   },
+  { key: 'version', header: 'Version', align: 'center' },
+  { key: 'size',    header: 'Size',    align: 'right'  },
 ];
 
 const data: Package[] = [
   { name: '@inkui-cli/spinner', version: '0.1.0', size: '837 B' },
-  { name: '@inkui-cli/table',   version: '0.1.0', size: '3.9 KB' },
+  { name: '@inkui-cli/table',   version: '0.1.0', size: '4.1 KB' },
 ];
 
 // Border styles: 'single' | 'double' | 'rounded' | 'bold' | 'ascii'
 <Table columns={columns} data={data} borderStyle="rounded" />
 ```
 
-Columns auto-size to content. Cells that overflow are truncated with `…`. The table shrinks to fit the terminal width.
+Columns auto-size to content. Cells that overflow are truncated with `…`. Table shrinks to fit terminal width automatically.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `columns` | `TableColumn<T>[]` | *required* | Column definitions |
+| `data` | `T[]` | *required* | Row data |
+| `borderStyle` | `'single' \| 'double' \| 'rounded' \| 'bold' \| 'ascii'` | `'single'` | Border style |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
 
 ---
 
@@ -352,10 +293,10 @@ const [open, setOpen] = useState(true);
   message="This will push changes to all users."
   actions={[
     { label: 'Cancel',  value: 'cancel'  },
-    { label: 'Confirm', value: 'confirm' },
+    { label: 'Deploy',  value: 'deploy'  },
   ]}
   onAction={(action) => {
-    if (action.value === 'confirm') deploy();
+    if (action.value === 'deploy') runDeploy();
     setOpen(false);
   }}
   onDismiss={() => setOpen(false)}
@@ -363,37 +304,49 @@ const [open, setOpen] = useState(true);
 />
 ```
 
-**Keys:** `←→` navigate actions · `Enter` confirm · `Escape` dismiss
+Keys: `← →` navigate actions · `Enter` confirm · `Escape` dismiss.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `isOpen` | `boolean` | *required* | Whether the dialog renders |
+| `title` | `string` | — | Bold title line |
+| `message` | `string` | *required* | Body text (supports `\n`) |
+| `actions` | `DialogAction[]` | *required* | Button definitions |
+| `onAction` | `(action: DialogAction) => void` | *required* | Called on confirm |
+| `onDismiss` | `() => void` | — | Called on Escape |
+| `borderStyle` | `BorderStyle` | `'rounded'` | Border style |
+| `focus` | `boolean` | `true` | Whether dialog is active |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
 
 ---
 
 ## Theming
 
-Every component accepts a `theme` prop. InkUI ships two built-in themes and makes it trivial to build your own.
+Every component accepts a `theme` prop. InkUI ships `darkTheme` and `lightTheme` out of the box, or you can build your own in seconds.
 
 ```tsx
 import { darkTheme, lightTheme } from '@inkui-cli/core';
 import type { InkUITheme } from '@inkui-cli/core';
 
-// Use a built-in theme
+// Built-ins
 <Spinner theme={darkTheme} />
 <Spinner theme={lightTheme} />
 
-// Build your own
+// Custom theme
 const myTheme: InkUITheme = {
   colors: {
-    primary: 'magenta',
-    secondary: 'cyan',
-    success: 'green',
-    warning: 'yellow',
-    error: 'red',
-    info: 'blue',
-    muted: 'gray',
-    text: 'white',
+    primary:     'magenta',
+    secondary:   'cyan',
+    success:     'green',
+    warning:     'yellow',
+    error:       'red',
+    info:        'blue',
+    muted:       'gray',
+    text:        'white',
     textInverse: 'black',
-    border: 'gray',
-    focus: 'magenta',
-    selection: 'cyan',
+    border:      'gray',
+    focus:       'magenta',
+    selection:   'cyan',
   },
   border: 'rounded',
 };
@@ -401,22 +354,7 @@ const myTheme: InkUITheme = {
 <Table theme={myTheme} borderStyle={myTheme.border} columns={cols} data={rows} />
 ```
 
-Colors are passed directly as Ink `<Text color="">` values — named colors, hex `#rrggbb`, or `rgb(r,g,b)`. No chalk, no ANSI codes, no cross-platform headaches.
-
----
-
-## How the CLI works
-
-```
-npx inkui add table
-```
-
-1. Looks up `table` in the registry
-2. Reads `Spinner.tsx` + `index.ts` from the InkUI source
-3. Copies them into `./components/ui/table/` in **your project**
-4. You get the TypeScript source, not a compiled artifact
-
-The component is yours to modify. If InkUI releases a better version later, you can diff and cherry-pick what you want.
+Color values are passed directly to Ink's `<Text color="">` — named colors, `#rrggbb` hex, or `rgb(r,g,b)`. No chalk, no ANSI escape codes, no cross-platform headaches.
 
 ---
 
@@ -427,84 +365,58 @@ The component is yours to modify. If InkUI releases a better version later, you 
 | Node.js | `>=20` |
 | React | `^19.0.0` |
 | Ink | `^6.0.0` |
-| TypeScript | `^5.4.0` (recommended) |
+| TypeScript | `^5.4.0` *(recommended)* |
 
-InkUI components use the React 19 JSX transform and Ink 6 APIs. Both are peer dependencies — your project supplies them.
+InkUI components are peer-dep free — your project supplies React and Ink.
 
 ---
 
-## Project structure
+## How the CLI works
 
+```bash
+npx inkui add table
 ```
-inkui/
-├── packages/
-│   ├── core/           @inkui-cli/core      — design tokens + themes
-│   ├── spinner/        @inkui-cli/spinner   — animated spinner
-│   ├── badge/          @inkui-cli/badge     — status badge
-│   ├── progress-bar/   @inkui-cli/progress-bar
-│   ├── text-input/     @inkui-cli/text-input
-│   ├── select/         @inkui-cli/select
-│   ├── multi-select/   @inkui-cli/multi-select
-│   ├── table/          @inkui-cli/table
-│   └── dialog/         @inkui-cli/dialog
-├── apps/
-│   ├── cli/            @inkui-cli/cli       — npx inkui add <component>
-│   └── docs/           @inkui-cli/docs      — Next.js docs + live terminal previews
-├── turbo.json
-└── pnpm-workspace.yaml
-```
+
+1. Looks up `table` in the built-in registry
+2. Reads `Table.tsx` + `index.ts` from the InkUI source
+3. Writes them into `./components/ui/table/` in **your project**
+4. You get TypeScript source, not a compiled artifact
+
+When a better version ships later, you can diff and cherry-pick exactly what you want. No forced upgrades.
 
 ---
 
 ## Local development
 
 ```bash
-# 1. Clone
-git clone https://github.com/kamleshyadav723/inkui.git
-cd inkui
+# Clone
+git clone https://github.com/kamlesh723/inkui.git && cd inkui
 
-# 2. Install (requires pnpm)
+# Install (pnpm required)
 pnpm install
 
-# 3. Build all packages
+# Build all packages
 pnpm build
 
-# 4. Run a component demo
+# Run a component demo
 cd packages/spinner && pnpm demo
 
-# 5. Run the CLI locally
-cd apps/cli && pnpm demo          # inkui list
-cd apps/cli && pnpm demo:add      # inkui add spinner
+# Run the CLI locally
+cd apps/cli && pnpm demo        # inkui list
+cd apps/cli && pnpm demo:add    # inkui add spinner
 
-# 6. Run the docs site
-cd apps/docs
-pnpm dev        # Next.js on :3000
-pnpm dev:pty    # PTY WebSocket server on :3001 (live terminal previews)
+# Run the docs site
+cd apps/docs && pnpm dev        # Next.js on :3000
 ```
-
----
-
-## Adding a new component
-
-1. `mkdir -p packages/<name>/src packages/<name>/example`
-2. Follow the pattern in `packages/spinner/` (package.json, tsup.config.ts, tsconfig.json)
-3. Build: `pnpm build` — must pass before opening a PR
-4. Demo: `pnpm demo` — must show correct visual output
-5. Add the component to `apps/cli/src/registry.ts`
-6. Add component data to `apps/docs/lib/components-data.ts`
-7. Open a PR
 
 ---
 
 ## Contributing
 
-Contributions are welcome. Please open an issue first if you want to add a new component or make a significant change.
-
 - **Bug fixes** — open a PR directly
-- **New components** — open an issue first to discuss the API
+- **New components** — open an issue first to discuss the API shape
 - **Theme additions** — PRs welcome
 
-Before submitting:
 ```bash
 pnpm build   # must pass
 pnpm test    # must pass
@@ -514,4 +426,4 @@ pnpm test    # must pass
 
 ## License
 
-MIT © [Kamlesh Yadav](https://github.com/kamleshyadav723)
+MIT — [Kamlesh Yadav](https://github.com/kamlesh723)
