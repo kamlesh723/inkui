@@ -6,8 +6,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/kamlesh723/inkui/actions/workflows/ci.yml">
-    <img src="https://github.com/kamlesh723/inkui/actions/workflows/ci.yml/badge.svg" alt="CI">
+  <a href="https://github.com/kamlesh723/InkUI/actions/workflows/ci.yml">
+    <img src="https://github.com/kamlesh723/InkUI/actions/workflows/ci.yml/badge.svg" alt="CI">
   </a>
   <a href="https://www.npmjs.com/package/@inkui-cli/cli">
     <img src="https://img.shields.io/npm/v/@inkui-cli/cli?label=npm&color=cb0000" alt="npm">
@@ -390,7 +390,7 @@ When a better version ships later, you can diff and cherry-pick exactly what you
 
 ```bash
 # Clone
-git clone https://github.com/kamlesh723/inkui.git && cd inkui
+git clone https://github.com/kamlesh723/InkUI.git && cd inkui
 
 # Install (pnpm required)
 pnpm install
