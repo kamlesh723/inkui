@@ -1,6 +1,7 @@
 {
   "name": "inkui-sysmon",
   "version": "1.0.0",
+  "private": true,
   "description": "Terminal system monitor — showcase of InkUI components",
   "type": "module",
   "bin": {
