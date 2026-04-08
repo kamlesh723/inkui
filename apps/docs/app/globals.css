@@ -103,7 +103,10 @@
 /* ── Base reset ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 
 body {
   background-color: var(--bg);
@@ -112,6 +115,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.2s ease, color 0.2s ease;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 code, pre, kbd, samp {
@@ -203,6 +208,34 @@ code, pre, kbd, samp {
 @media (min-width: 640px) {
   .desktop-nav { display: flex !important; }
   .mobile-menu-btn { display: none !important; }
+}
+
+/* ── Mobile responsive ──────────────────────────────────────── */
+@media (max-width: 639px) {
+  /* Component card preview text — prevent overflow */
+  .component-preview {
+    white-space: pre-wrap !important;
+    overflow: hidden !important;
+    word-break: break-word !important;
+  }
+
+  /* Install command box — scrollable within the box */
+  .install-cmd-text {
+    overflow-x: auto !important;
+    min-width: 0 !important;
+  }
+
+  /* Hero — tighter vertical padding on phones */
+  .hero-section {
+    padding: 40px 20px !important;
+    min-height: auto !important;
+  }
+
+  /* All landing sections — reduce horizontal padding */
+  .landing-section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
 }
 
 /* ── Shiki code block — always dark ────────────────────────── */

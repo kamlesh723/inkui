@@ -173,6 +173,22 @@ export default function SiteNav() {
           >
             <Github size={14} /> GitHub
           </a>
+          <div style={{ borderTop: '1px solid var(--border)', paddingTop: 12 }}>
+            <span
+              style={{
+                fontSize: '0.7rem',
+                background: 'rgba(6, 182, 212, 0.08)',
+                color: '#06B6D4',
+                border: '1px solid rgba(6, 182, 212, 0.25)',
+                padding: '3px 10px',
+                borderRadius: 20,
+                fontWeight: 600,
+                fontFamily: 'var(--font-geist-mono, monospace)',
+              }}
+            >
+              v0.1.1
+            </span>
+          </div>
         </div>
       )}
     </header>

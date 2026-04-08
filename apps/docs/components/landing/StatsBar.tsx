@@ -1,3 +1,5 @@
+'use client';
+
 export default function StatsBar() {
   const stats = [
     '15+ Components',
@@ -12,7 +14,8 @@ export default function StatsBar() {
         borderTop: '1px solid var(--border)',
         borderBottom: '1px solid var(--border)',
         background: 'var(--bg)',
-        padding: '28px 24px',
+        padding: '24px 16px',
+        overflowX: 'hidden',
       }}
     >
       <div
@@ -23,7 +26,8 @@ export default function StatsBar() {
           justifyContent: 'center',
           alignItems: 'center',
           flexWrap: 'wrap',
-          gap: 0,
+          rowGap: 16,
+          columnGap: 0,
         }}
       >
         {stats.map((stat, i) => (
@@ -31,15 +35,16 @@ export default function StatsBar() {
             <span
               style={{
                 color: 'var(--text-secondary)',
-                fontSize: '0.9rem',
+                fontSize: '0.875rem',
                 fontWeight: 500,
-                padding: '0 32px',
+                padding: '0 20px',
+                whiteSpace: 'nowrap',
               }}
             >
               {stat}
             </span>
             {i < stats.length - 1 && (
-              <div style={{ width: 1, height: 16, background: 'var(--border)' }} />
+              <div style={{ width: 1, height: 16, background: 'var(--border)', flexShrink: 0 }} />
             )}
           </div>
         ))}

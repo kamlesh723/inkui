@@ -49,6 +49,7 @@ function ComponentCard({ slug, name, desc, preview, previewColor }: (typeof comp
 
         {/* Preview */}
         <div
+          className="component-preview"
           style={{
             fontFamily: 'var(--font-geist-mono, monospace)',
             fontSize: '0.72rem',
@@ -57,6 +58,7 @@ function ComponentCard({ slug, name, desc, preview, previewColor }: (typeof comp
             whiteSpace: 'pre',
             lineHeight: 1.5,
             marginBottom: 14,
+            overflow: 'hidden',
           }}
         >
           {preview}
