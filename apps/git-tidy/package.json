@@ -1,6 +1,7 @@
 {
   "name": "git-tidy",
   "version": "1.0.0",
+  "private": true,
   "description": "Interactively clean up git branches — showcase of InkUI components",
   "type": "module",
   "bin": {
