@@ -57,7 +57,7 @@ jobs:
           publish: pnpm changeset publish
           title: 'chore: release packages'
           commit: 'chore: release packages'
-          createGithubReleases: false
+          createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
