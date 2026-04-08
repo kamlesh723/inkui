@@ -1,0 +1,69 @@
+---
+title: Confirm
+description: Yes/no confirmation prompt. The most common CLI interaction pattern.
+---
+
+A `y/N` confirmation prompt using Ink's `useInput`. Shows a blinking cursor while waiting. Resolves with a static confirmation line after the user answers.
+
+## Installation
+
+```bash
+npx inkui add confirm
+```
+
+## Usage
+
+```tsx
+import { Confirm } from './components/ui/confirm';
+
+<Confirm
+  message="Delete 47 files from dist/?"
+  defaultValue={false}
+  onConfirm={() => runDelete()}
+  onCancel={() => console.log('Cancelled')}
+/>
+```
+
+## Examples
+
+### Destructive confirmation (default No)
+
+```tsx
+<Confirm
+  message="Deploy to production?"
+  defaultValue={false}
+  onConfirm={deploy}
+  onCancel={() => setStep('cancelled')}
+/>
+// Output: ? Deploy to production? (y/N) █
+```
+
+### Safe action (default Yes)
+
+```tsx
+<Confirm
+  message="Save changes before exiting?"
+  defaultValue={true}
+  onConfirm={save}
+  onCancel={discardAndExit}
+/>
+// Output: ? Save changes before exiting? (Y/n) █
+```
+
+## Key bindings
+
+| Key | Action |
+|-----|--------|
+| `y` / `Y` | Confirm |
+| `n` / `N` / `Esc` | Cancel |
+| `Enter` | Use `defaultValue` |
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `message` | `string` | — | Question to display (required) |
+| `defaultValue` | `boolean` | `false` | `true` = Y default, `false` = N default |
+| `onConfirm` | `() => void` | — | Called on confirmation (required) |
+| `onCancel` | `() => void` | `undefined` | Called on cancellation |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

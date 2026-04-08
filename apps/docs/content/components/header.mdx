@@ -1,0 +1,67 @@
+---
+title: Header
+description: Styled header bar for CLI apps. Box, line, and filled styles.
+---
+
+A full-width header bar typically shown at the top of a CLI application. Three visual styles to match your app's aesthetic.
+
+## Installation
+
+```bash
+npx inkui add header
+```
+
+## Usage
+
+```tsx
+import { Header } from './components/ui/header';
+
+<Header title="MyApp" version="1.2.0" style="box" />
+```
+
+## Examples
+
+### Box style (default)
+
+```tsx
+<Header title="MyApp" version="1.2.0" style="box" subtitle="Deploy tool" />
+// ┌─── MyApp v1.2.0 ─────────────────────────────────────────┐
+// │ Deploy tool                                               │
+// └───────────────────────────────────────────────────────────┘
+```
+
+### Line style
+
+```tsx
+<Header title="MyApp" version="1.2.0" style="line" />
+// ══ MyApp v1.2.0 ════════════════════════════════════════════
+```
+
+### Filled style
+
+```tsx
+<Header title="MyApp" style="filled" />
+// ██ MyApp ████████████████████████████████████████████████████
+```
+
+### With subtitle
+
+```tsx
+<Header
+  title="Deployer"
+  version="2.0.0"
+  style="box"
+  subtitle="Targeting: production · Region: us-east-1"
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | — | Application name (required) |
+| `version` | `string` | `undefined` | Version string — displayed as `v{version}` |
+| `subtitle` | `string` | `undefined` | Second line shown inside box or below line |
+| `style` | `'box' \| 'line' \| 'filled'` | `'box'` | Visual style |
+| `align` | `'left' \| 'center'` | `'left'` | Title alignment |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

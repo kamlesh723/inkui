@@ -1,0 +1,72 @@
+---
+title: Toast
+description: Temporary notification messages that auto-dismiss. Success, warning, error, and info variants.
+---
+
+Shows a temporary message that auto-dismisses after a configurable duration. Includes a `useToast` hook for managing a queue of notifications.
+
+## Installation
+
+```bash
+npx inkui add toast
+```
+
+## Usage
+
+```tsx
+import { useToast, ToastStack } from './components/ui/toast';
+
+export default function App() {
+  const { toasts, show, dismiss } = useToast();
+
+  return (
+    <>
+      <MyApp onAction={() => show('Deployed successfully!', 'success')} />
+      <ToastStack toasts={toasts} onDismiss={dismiss} />
+    </>
+  );
+}
+```
+
+## Examples
+
+### All variants
+
+```tsx
+show('Successfully deployed to production', 'success');
+show('Warning: 3 deprecated packages found', 'warning');
+show('Error: Connection refused on port 5432', 'error');
+show('Server started on port 3000', 'info');
+```
+
+### Permanent toast (duration 0)
+
+```tsx
+show('Build complete', 'success', 0);
+```
+
+### Single Toast component
+
+```tsx
+<Toast message="Deployed!" variant="success" duration={5000} />
+```
+
+## Props
+
+### Toast
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `message` | `string` | — | Notification text (required) |
+| `variant` | `'success' \| 'warning' \| 'error' \| 'info'` | `'info'` | Color and icon style |
+| `duration` | `number` | `3000` | ms before auto-dismiss. `0` = permanent |
+| `onDismiss` | `() => void` | `undefined` | Called when dismissed |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
+
+### useToast
+
+```tsx
+const { toasts, show, dismiss } = useToast();
+show(message, variant?, duration?) // add a toast
+dismiss(id)                        // remove by id
+```

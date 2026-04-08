@@ -1,0 +1,46 @@
+---
+title: StatusIndicator
+description: Colored dot and label showing real-time status. Animates for loading states.
+---
+
+A colored dot with a status label. The dot animates for loading/syncing states. Useful for showing service health, connection status, or background worker states.
+
+## Installation
+
+```bash
+npx inkui add status-indicator
+```
+
+## Usage
+
+```tsx
+import { StatusIndicator } from './components/ui/status-indicator';
+
+<StatusIndicator status="online" label="API Gateway" />
+```
+
+## Examples
+
+```tsx
+<StatusIndicator status="online"  label="API Gateway" />
+<StatusIndicator status="loading" label="Syncing database..." />
+<StatusIndicator status="warning" label="High memory usage" />
+<StatusIndicator status="error"   label="Redis connection failed" />
+<StatusIndicator status="offline" label="CDN node 3" />
+<StatusIndicator status="idle"    label="Background worker" />
+```
+
+### Force pulse animation
+
+```tsx
+<StatusIndicator status="online" label="Watching files..." pulse />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `status` | `'online' \| 'offline' \| 'loading' \| 'warning' \| 'error' \| 'idle'` | — | Status value (required) |
+| `label` | `string` | — | Description text (required) |
+| `pulse` | `boolean` | auto for `loading` | Animate the dot |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

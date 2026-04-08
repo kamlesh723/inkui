@@ -1,0 +1,66 @@
+---
+title: LoadingBar
+description: Slim animated bar for indeterminate loading or determinate progress display.
+---
+
+A horizontal loading bar. Two modes: **indeterminate** (bouncing sweep animation — for "something is happening") and **determinate** (shows exact percentage — for trackable progress).
+
+## Installation
+
+```bash
+npx inkui add loading-bar
+```
+
+## Usage
+
+```tsx
+import { LoadingBar } from './components/ui/loading-bar';
+
+// Indeterminate — just animates
+<LoadingBar />
+
+// Determinate — shows progress
+<LoadingBar value={progress} />
+```
+
+## Examples
+
+### Indeterminate
+
+```tsx
+<LoadingBar />
+```
+
+### Determinate with controlled value
+
+```tsx
+const [progress, setProgress] = useState(0);
+
+useEffect(() => {
+  const t = setInterval(() => setProgress(p => Math.min(p + 5, 100)), 100);
+  return () => clearInterval(t);
+}, []);
+
+<LoadingBar value={progress} />
+```
+
+### Fixed width
+
+```tsx
+<LoadingBar value={65} width={40} />
+```
+
+### Custom color
+
+```tsx
+<LoadingBar value={80} color="#A855F7" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | `undefined` | 0–100. Omit for indeterminate mode |
+| `width` | `number` | terminal width | Bar width in columns |
+| `color` | `string` | theme primary | Bar fill color |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
