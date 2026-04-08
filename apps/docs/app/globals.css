@@ -4,30 +4,79 @@
 @source "../node_modules/fumadocs-ui/dist/**/*.js";
 
 @theme {
-  /* InkUI color palette as Tailwind tokens */
-  --color-ink-bg:             #0A0A0B;
-  --color-ink-surface:        #141417;
-  --color-ink-surface-hover:  #1C1C21;
-  --color-ink-border:         #27272A;
-  --color-ink-text:           #FAFAFA;
-  --color-ink-text-secondary: #A1A1AA;
-  --color-ink-text-muted:     #71717A;
-  --color-ink-cyan:           #06B6D4;
-  --color-ink-purple:         #A855F7;
-  --color-ink-green:          #22C55E;
-  --color-ink-yellow:         #EAB308;
-  --color-ink-red:            #EF4444;
-  --color-ink-code-bg:        #18181B;
-
-  /* Point Tailwind's font utilities at the Geist CSS vars */
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), "Cascadia Code", monospace;
+
+  --color-ink-cyan:   #06B6D4;
+  --color-ink-purple: #A855F7;
+  --color-ink-green:  #22C55E;
+  --color-ink-yellow: #EAB308;
+  --color-ink-red:    #EF4444;
 }
 
-/* ── Fumadocs dark-theme overrides (shadcn/ui variable convention) ── */
-/* Fumadocs reads these from .dark class or [data-theme=dark].         */
-/* We also set them on :root so the forced-dark default looks right.   */
-:root,
+/* ── Semantic color tokens ─────────────────────────────────── */
+/* Landing page components use these vars — never raw hex.    */
+
+:root {
+  /* Light mode */
+  --bg:              #FAFAFA;
+  --bg-alt:          #F4F4F5;
+  --surface:         #FFFFFF;
+  --surface-hover:   #F4F4F5;
+  --border:          #E4E4E7;
+  --border-subtle:   #F0F0F1;
+  --text:            #09090B;
+  --text-secondary:  #52525B;
+  --text-muted:      #71717A;
+  --text-faint:      #A1A1AA;
+  --code-bg:         #F1F1F3;
+  --nav-bg:          rgba(250, 250, 250, 0.88);
+  --dot-color:       rgba(0, 0, 0, 0.12);
+  --accent:          #06B6D4;
+}
+
+.dark {
+  /* Dark mode */
+  --bg:              #0A0A0B;
+  --bg-alt:          #0F0F12;
+  --surface:         #141417;
+  --surface-hover:   #1C1C21;
+  --border:          #27272A;
+  --border-subtle:   #1C1C21;
+  --text:            #FAFAFA;
+  --text-secondary:  #A1A1AA;
+  --text-muted:      #71717A;
+  --text-faint:      #3F3F46;
+  --code-bg:         #18181B;
+  --nav-bg:          rgba(10, 10, 11, 0.88);
+  --dot-color:       #27272A;
+  --accent:          #06B6D4;
+}
+
+/* ── Fumadocs CSS variable overrides ──────────────────────── */
+:root {
+  --background:        0 0% 98%;
+  --foreground:        240 10% 4%;
+  --card:              0 0% 100%;
+  --card-foreground:   240 10% 4%;
+  --popover:           0 0% 100%;
+  --popover-foreground: 240 10% 4%;
+  --primary:           189 94% 43%;
+  --primary-foreground: 0 0% 100%;
+  --secondary:         240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted:             240 4.8% 95.9%;
+  --muted-foreground:  240 3.8% 46.1%;
+  --accent:            240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive:       0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border:            240 5.9% 90%;
+  --input:             240 5.9% 90%;
+  --ring:              189 94% 43%;
+  --radius:            0.5rem;
+}
+
 .dark {
   --background:        240 10% 3.9%;
   --foreground:        0 0% 98%;
@@ -51,31 +100,31 @@
   --radius:            0.5rem;
 }
 
-/* ── Base reset ─────────────────────────────────────────── */
+/* ── Base reset ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
 body {
-  background-color:      #0A0A0B;
-  color:                 #FAFAFA;
-  /* Use the Geist CSS variable injected by next/font */
-  font-family:           var(--font-geist-sans), system-ui, sans-serif;
+  background-color: var(--bg);
+  color:            var(--text);
+  font-family:      var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 code, pre, kbd, samp {
   font-family: var(--font-geist-mono), "Cascadia Code", monospace;
 }
 
-/* ── Dot-grid background (hero) ─────────────────────────── */
+/* ── Dot-grid background ────────────────────────────────────── */
 .dot-grid {
-  background-image: radial-gradient(circle, #27272A 1px, transparent 1px);
+  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-/* ── Gradient text ──────────────────────────────────────── */
+/* ── Gradient text ──────────────────────────────────────────── */
 .gradient-text {
   background: linear-gradient(135deg, #06B6D4, #A855F7);
   -webkit-background-clip: text;
@@ -83,64 +132,58 @@ code, pre, kbd, samp {
   background-clip: text;
 }
 
-/* ── Fake terminal window ───────────────────────────────── */
+/* ── Terminal window — always dark ──────────────────────────── */
 .terminal-window {
-  background:   #0D0D10;
-  border:       1px solid #27272A;
+  background:    #0D0D10;
+  border:        1px solid #27272A;
   border-radius: 10px;
-  box-shadow:   0 0 60px rgba(6, 182, 212, 0.12),
-                0 25px 50px rgba(0, 0, 0, 0.5);
-  font-family:  var(--font-geist-mono), "Cascadia Code", monospace;
-  font-size:    0.8rem;
-  line-height:  1.6;
-  overflow:     hidden;
+  box-shadow:    0 0 60px rgba(6, 182, 212, 0.12),
+                 0 25px 50px rgba(0, 0, 0, 0.5);
+  font-family:   var(--font-geist-mono), "Cascadia Code", monospace;
+  font-size:     0.8rem;
+  line-height:   1.6;
+  overflow:      hidden;
+  color:         #FAFAFA;
 }
 
 .terminal-titlebar {
-  display:      flex;
-  align-items:  center;
-  gap:          6px;
-  padding:      10px 14px;
+  display:       flex;
+  align-items:   center;
+  gap:           6px;
+  padding:       10px 14px;
   border-bottom: 1px solid #27272A;
 }
 
-.terminal-dot {
-  width:         10px;
-  height:        10px;
-  border-radius: 50%;
-  flex-shrink:   0;
-}
+.terminal-dot          { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.terminal-dot-red      { background: #EF4444; }
+.terminal-dot-yellow   { background: #EAB308; }
+.terminal-dot-green    { background: #22C55E; }
 
-.terminal-dot-red    { background: #EF4444; }
-.terminal-dot-yellow { background: #EAB308; }
-.terminal-dot-green  { background: #22C55E; }
-
-/* ── Blinking cursor ────────────────────────────────────── */
+/* ── Blinking cursor ────────────────────────────────────────── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
 }
 .cursor-blink { animation: blink 1s step-end infinite; }
 
-/* ── Nav link hover ─────────────────────────────────────── */
+/* ── Nav / footer links ─────────────────────────────────────── */
 .nav-link {
-  color: #A1A1AA;
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.875rem;
   transition: color 0.15s ease;
 }
-.nav-link:hover { color: #FAFAFA; }
+.nav-link:hover { color: var(--text); }
 
-/* ── Footer link hover ──────────────────────────────────── */
 .footer-link {
-  color: #71717A;
+  color: var(--text-muted);
   font-size: 0.85rem;
   text-decoration: none;
   transition: color 0.15s ease;
 }
-.footer-link:hover { color: #A1A1AA; }
+.footer-link:hover { color: var(--text-secondary); }
 
-/* ── Code example: responsive split ────────────────────── */
+/* ── Code split layout ──────────────────────────────────────── */
 .code-split {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -149,15 +192,20 @@ code, pre, kbd, samp {
 }
 
 @media (max-width: 768px) {
-  .code-split {
-    grid-template-columns: 1fr;
-  }
-  .code-split-arrow {
-    display: none;
-  }
+  .code-split { grid-template-columns: 1fr; }
+  .code-split-arrow { display: none; }
 }
 
-/* ── Shiki code block theming ───────────────────────────── */
+/* ── Mobile nav ─────────────────────────────────────────────── */
+.mobile-nav-open  { display: flex; }
+.mobile-nav-close { display: none; }
+
+@media (min-width: 640px) {
+  .desktop-nav { display: flex !important; }
+  .mobile-menu-btn { display: none !important; }
+}
+
+/* ── Shiki code block — always dark ────────────────────────── */
 .shiki {
   background: #18181B !important;
   border-radius: 0;

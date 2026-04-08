@@ -23,7 +23,13 @@ export default async function CodeExample() {
   });
 
   return (
-    <section style={{ padding: '80px 24px', borderTop: '1px solid #27272A' }}>
+    <section
+      style={{
+        padding: '80px 24px',
+        borderTop: '1px solid var(--border)',
+        background: 'var(--bg-alt)',
+      }}
+    >
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <h2
           style={{
@@ -32,6 +38,7 @@ export default async function CodeExample() {
             fontWeight: 700,
             marginBottom: 12,
             letterSpacing: '-0.02em',
+            color: 'var(--text)',
           }}
         >
           Simple API. Real results.
@@ -39,7 +46,7 @@ export default async function CodeExample() {
         <p
           style={{
             textAlign: 'center',
-            color: '#A1A1AA',
+            color: 'var(--text-secondary)',
             marginBottom: 48,
             fontSize: '1rem',
           }}
@@ -48,7 +55,7 @@ export default async function CodeExample() {
         </p>
 
         <div className="code-split">
-          {/* Code panel */}
+          {/* Code panel — always dark */}
           <div
             style={{
               background: '#18181B',
@@ -83,26 +90,27 @@ export default async function CodeExample() {
                 tsx
               </span>
             </div>
-            {/* Shiki-rendered code */}
             <div
               style={{ fontFamily: 'var(--font-geist-mono, monospace)' }}
               dangerouslySetInnerHTML={{ __html: highlightedCode }}
             />
           </div>
 
-          {/* Arrow — hidden on mobile via CSS */}
-          <div className="code-split-arrow" style={{ color: '#3F3F46', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {/* Arrow */}
+          <div
+            className="code-split-arrow"
+            style={{ color: 'var(--text-faint)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </div>
 
-          {/* Terminal output panel */}
-          <div
-            className="terminal-window"
-            style={{ padding: 20 }}
-          >
-            <div style={{ color: '#A1A1AA', marginBottom: 16 }}>? Where to deploy?</div>
+          {/* Terminal output — always dark */}
+          <div className="terminal-window" style={{ padding: 20 }}>
+            <div style={{ color: '#A1A1AA', marginBottom: 16, fontSize: '0.85rem' }}>
+              ? Where to deploy?
+            </div>
             <div style={{ marginBottom: 4 }}>
               <span style={{ color: '#06B6D4' }}>❯ </span>
               <span
@@ -111,13 +119,14 @@ export default async function CodeExample() {
                   color: '#06B6D4',
                   padding: '1px 8px',
                   borderRadius: 3,
+                  fontSize: '0.85rem',
                 }}
               >
                 AWS
               </span>
             </div>
-            <div style={{ color: '#71717A', marginBottom: 4, paddingLeft: 18 }}>Vercel</div>
-            <div style={{ color: '#71717A', paddingLeft: 18, marginBottom: 24 }}>Railway</div>
+            <div style={{ color: '#52525B', marginBottom: 4, paddingLeft: 18, fontSize: '0.85rem' }}>Vercel</div>
+            <div style={{ color: '#52525B', paddingLeft: 18, marginBottom: 24, fontSize: '0.85rem' }}>Railway</div>
             <div style={{ color: '#3F3F46', fontSize: '0.72rem' }}>
               Use ↑↓ to navigate, Enter to select
             </div>

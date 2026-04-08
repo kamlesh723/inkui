@@ -19,8 +19,8 @@ export default function InstallBanner() {
     <section
       style={{
         padding: '80px 24px',
-        background: '#0F0F12',
-        borderTop: '1px solid #27272A',
+        background: 'var(--bg)',
+        borderTop: '1px solid var(--border)',
         textAlign: 'center',
       }}
     >
@@ -31,12 +31,13 @@ export default function InstallBanner() {
             fontWeight: 700,
             marginBottom: 32,
             letterSpacing: '-0.02em',
+            color: 'var(--text)',
           }}
         >
           Start in seconds.
         </h2>
 
-        {/* Command box */}
+        {/* Command box — always dark */}
         <div
           style={{
             background: '#18181B',
@@ -54,18 +55,13 @@ export default function InstallBanner() {
           <span>
             <span style={{ color: '#71717A' }}>$ </span>
             <span style={{ color: '#06B6D4' }}>{CMD}</span>
-            <span
-              className="cursor-blink"
-              style={{ color: '#06B6D4', marginLeft: 2 }}
-            >
-              █
-            </span>
+            <span className="cursor-blink" style={{ color: '#06B6D4', marginLeft: 2 }}>█</span>
           </span>
           <button
             onClick={handleCopy}
             style={{
               background: 'none',
-              border: '1px solid #27272A',
+              border: '1px solid #3F3F46',
               borderRadius: 6,
               padding: '4px 10px',
               color: copied ? '#22C55E' : '#A1A1AA',
@@ -82,12 +78,12 @@ export default function InstallBanner() {
           </button>
         </div>
 
-        <p style={{ color: '#71717A', fontSize: '0.85rem' }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
           Or install directly:{' '}
           <code
             style={{
-              color: '#A1A1AA',
-              background: '#18181B',
+              color: 'var(--text-secondary)',
+              background: 'var(--code-bg)',
               padding: '2px 6px',
               borderRadius: 4,
               fontFamily: 'var(--font-geist-mono, monospace)',

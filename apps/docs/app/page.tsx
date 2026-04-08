@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen" style={{ background: '#0A0A0B', color: '#FAFAFA' }}>
+    <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <SiteNav />
       <Hero />
       <StatsBar />

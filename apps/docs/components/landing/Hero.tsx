@@ -35,14 +35,14 @@ export default function Hero() {
             padding: '4px 14px',
             borderRadius: 20,
             border: '1px solid rgba(6, 182, 212, 0.3)',
-            background: 'rgba(6, 182, 212, 0.05)',
+            background: 'rgba(6, 182, 212, 0.07)',
             color: '#06B6D4',
             fontSize: '0.8rem',
             fontWeight: 500,
             marginBottom: 28,
           }}
         >
-          8+ Components · TypeScript · Open Source
+          15+ Components · TypeScript · Open Source
         </span>
       </motion.div>
 
@@ -56,6 +56,7 @@ export default function Hero() {
           letterSpacing: '-0.03em',
           marginBottom: 20,
           maxWidth: 700,
+          color: 'var(--text)',
         }}
       >
         Beautiful UI components for the{' '}
@@ -67,13 +68,14 @@ export default function Hero() {
         {...fadeUp(0.4)}
         style={{
           fontSize: '1.15rem',
-          color: '#A1A1AA',
+          color: 'var(--text-secondary)',
           maxWidth: 480,
           lineHeight: 1.7,
           marginBottom: 36,
         }}
       >
-        shadcn/ui, but for CLIs. Copy-paste components. TypeScript. Built on Ink.
+        shadcn/ui for CLIs. Copy-paste components into your project, own the
+        code, and ship beautiful terminal UIs with React and TypeScript.
       </motion.p>
 
       {/* Buttons */}
@@ -94,6 +96,7 @@ export default function Hero() {
             fontWeight: 600,
             fontSize: '0.9rem',
             textDecoration: 'none',
+            transition: 'opacity 0.15s',
           }}
         >
           Get Started <ArrowRight size={15} />
@@ -108,19 +111,20 @@ export default function Hero() {
             gap: 6,
             padding: '10px 22px',
             background: 'transparent',
-            color: '#FAFAFA',
-            border: '1px solid #27272A',
+            color: 'var(--text)',
+            border: '1px solid var(--border)',
             borderRadius: 8,
             fontWeight: 600,
             fontSize: '0.9rem',
             textDecoration: 'none',
+            transition: 'border-color 0.15s',
           }}
         >
           <Github size={15} /> GitHub
         </a>
       </motion.div>
 
-      {/* Terminal window */}
+      {/* Terminal window — always dark */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
