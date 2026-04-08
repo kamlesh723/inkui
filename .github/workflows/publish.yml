@@ -12,7 +12,6 @@ jobs:
   publish:
     name: Publish to npm
     runs-on: ubuntu-latest
-    # Only run when a changeset PR is merged — the action handles the check
     permissions:
       contents: write
       pull-requests: write
@@ -21,7 +20,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # Full history is required for changesets to detect changed packages
           fetch-depth: 0
 
       - name: Setup Node.js
@@ -52,20 +50,14 @@ jobs:
       - name: Build all packages
         run: pnpm turbo build --filter='./packages/*'
 
-      - name: Configure npm auth
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Create release PR or publish to npm
         uses: changesets/action@v1
         with:
-          # Script run inside the "version" step to bump all package versions
           version: pnpm changeset version
-          # Script run to publish — builds are already done in the step above
           publish: pnpm changeset publish
           title: 'chore: release packages'
           commit: 'chore: release packages'
+          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
