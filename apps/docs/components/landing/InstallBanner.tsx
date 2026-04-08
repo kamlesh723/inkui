@@ -47,15 +47,17 @@ export default function InstallBanner() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            gap: 12,
             fontFamily: 'var(--font-geist-mono, monospace)',
             fontSize: '0.9rem',
             marginBottom: 16,
+            overflow: 'hidden',
           }}
         >
-          <span>
-            <span style={{ color: '#71717A' }}>$ </span>
-            <span style={{ color: '#06B6D4' }}>{CMD}</span>
-            <span className="cursor-blink" style={{ color: '#06B6D4', marginLeft: 2 }}>█</span>
+          <span className="install-cmd-text" style={{ display: 'flex', alignItems: 'center', minWidth: 0, flex: 1 }}>
+            <span style={{ color: '#71717A', flexShrink: 0 }}>$ </span>
+            <span style={{ color: '#06B6D4', marginLeft: 4 }}>{CMD}</span>
+            <span className="cursor-blink" style={{ color: '#06B6D4', marginLeft: 2, flexShrink: 0 }}>█</span>
           </span>
           <button
             onClick={handleCopy}

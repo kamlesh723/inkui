@@ -14,15 +14,16 @@ const fadeUp = (delay: number) => ({
 export default function Hero() {
   return (
     <section
-      className="dot-grid"
+      className="dot-grid hero-section"
       style={{
         minHeight: 'calc(100vh - 56px)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '80px 24px',
+        padding: '60px 20px',
         textAlign: 'center',
+        overflowX: 'hidden',
       }}
     >
       {/* Badge */}
