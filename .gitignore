@@ -25,3 +25,4 @@ apps/docs/.source/
 
 # Pagefind build output (regenerated on each build)
 apps/docs/public/pagefind/
+.vercel
