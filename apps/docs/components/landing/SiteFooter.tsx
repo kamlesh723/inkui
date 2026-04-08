@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { Github } from 'lucide-react';
+import { LogoFull } from '@/components/Logo';
 
 export default function SiteFooter() {
   return (
     <footer
       style={{
         borderTop: '1px solid var(--border)',
-        padding: '48px 24px 32px',
+        padding: '56px 24px 36px',
         background: 'var(--bg-alt)',
       }}
     >
@@ -17,22 +18,13 @@ export default function SiteFooter() {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
           gap: 40,
-          marginBottom: 40,
+          marginBottom: 48,
         }}
       >
         {/* Brand */}
         <div>
-          <div
-            style={{
-              fontWeight: 700,
-              fontSize: '1.05rem',
-              fontFamily: 'var(--font-geist-mono, monospace)',
-              marginBottom: 10,
-              color: 'var(--text)',
-              letterSpacing: '-0.02em',
-            }}
-          >
-            Ink<span style={{ color: '#06B6D4' }}>UI</span>
+          <div style={{ marginBottom: 12 }}>
+            <LogoFull size={24} />
           </div>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.7, marginBottom: 6 }}>
             Beautiful UI components for the terminal.
