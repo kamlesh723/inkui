@@ -1,6 +1,6 @@
 {
   "name": "@inkui-cli/divider",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -23,7 +23,7 @@
     "react": ">=19.0.0"
   },
   "dependencies": {
-    "@inkui-cli/core": "workspace:*"
+    "@inkui-cli/core": "^0.1.0"
   },
   "devDependencies": {
     "ink": "^6.0.0",
