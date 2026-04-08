@@ -1,0 +1,54 @@
+---
+title: Divider
+description: Horizontal separator line with optional title. Four border styles.
+---
+
+A full-width horizontal separator. Supports an optional title and four character styles.
+
+## Installation
+
+```bash
+npx inkui add divider
+```
+
+## Usage
+
+```tsx
+import { Divider } from './components/ui/divider';
+
+<Divider />
+<Divider title="Settings" />
+```
+
+## Examples
+
+### All styles
+
+```tsx
+<Divider />                          // ────────────────────────────
+<Divider style="double" />           // ════════════════════════════
+<Divider style="dashed" />           // ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+<Divider style="bold" />             // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+### With title
+
+```tsx
+<Divider title="Configuration" />    // ── Configuration ───────────
+<Divider title="Output" style="double" />
+```
+
+### Fixed width
+
+```tsx
+<Divider width={40} title="Results" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | `undefined` | Optional label in the middle of the line |
+| `style` | `'single' \| 'double' \| 'dashed' \| 'bold'` | `'single'` | Line character style |
+| `width` | `number` | terminal width | Total width in columns |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

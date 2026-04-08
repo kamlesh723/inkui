@@ -1,0 +1,63 @@
+---
+title: KeyHint
+description: Keyboard shortcut hints row. Used internally by Select, MultiSelect, and Dialog.
+---
+
+Renders a row of keyboard shortcut hints. Used by other InkUI components internally and exported for use in your own interactive components.
+
+## Installation
+
+```bash
+npx inkui add key-hint
+```
+
+## Usage
+
+```tsx
+import { KeyHint } from './components/ui/key-hint';
+
+<KeyHint keys={[
+  { key: '↑↓',    label: 'Navigate' },
+  { key: 'Enter', label: 'Select'   },
+  { key: 'Esc',   label: 'Cancel'   },
+]} />
+```
+
+Output: `[↑↓] Navigate  [Enter] Select  [Esc] Cancel`
+
+## Examples
+
+### Select hints
+
+```tsx
+<KeyHint keys={[
+  { key: '↑↓',    label: 'Navigate' },
+  { key: 'Enter', label: 'Select'   },
+  { key: 'Esc',   label: 'Cancel'   },
+]} />
+```
+
+### Multi-select hints
+
+```tsx
+<KeyHint keys={[
+  { key: '↑↓',    label: 'Navigate' },
+  { key: 'Space', label: 'Toggle'   },
+  { key: 'Enter', label: 'Confirm'  },
+  { key: 'Esc',   label: 'Cancel'   },
+]} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `keys` | `KeyHintItem[]` | — | Array of `{ key, label }` hints (required) |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
+
+### KeyHintItem
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `key` | `string` | Key name shown in brackets, e.g. `"Enter"`, `"↑↓"` |
+| `label` | `string` | Action description, e.g. `"Select"`, `"Navigate"` |
