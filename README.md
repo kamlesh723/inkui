@@ -90,6 +90,13 @@ npm install ink react
 | **MultiSelect** | Space-to-toggle checkboxes, pre-selection, generic `MultiSelect<T>` | `npx inkui add multi-select` |
 | **Table** | Auto column widths, overflow truncation, 5 border styles | `npx inkui add table` |
 | **Dialog** | Modal — title, message, keyboard-navigable action buttons | `npx inkui add dialog` |
+| **Toast** | Auto-dismissing notifications — `success` `warning` `error` `info` | `npx inkui add toast` |
+| **StatusIndicator** | Animated dot + label for service/connection health | `npx inkui add status-indicator` |
+| **LoadingBar** | Slim bar — indeterminate bounce or determinate `value` | `npx inkui add loading-bar` |
+| **Confirm** | `y/N` prompt with default, resolves to static confirmation line | `npx inkui add confirm` |
+| **KeyHint** | Row of `[key] label` keyboard shortcut hints | `npx inkui add key-hint` |
+| **Divider** | Full-width separator — `single` `double` `dashed` `bold`, optional title | `npx inkui add divider` |
+| **Header** | App header bar — `box` `line` `filled` styles, title + subtitle | `npx inkui add header` |
 
 ---
 
@@ -316,6 +323,171 @@ Keys: `← →` navigate actions · `Enter` confirm · `Escape` dismiss.
 | `onDismiss` | `() => void` | — | Called on Escape |
 | `borderStyle` | `BorderStyle` | `'rounded'` | Border style |
 | `focus` | `boolean` | `true` | Whether dialog is active |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
+
+---
+
+### Toast
+
+```tsx
+import { useToast, ToastStack } from './components/ui/toast';
+
+export default function App() {
+  const { toasts, show, dismiss } = useToast();
+  return (
+    <>
+      <MyApp onAction={() => show('Deployed!', 'success')} />
+      <ToastStack toasts={toasts} onDismiss={dismiss} />
+    </>
+  );
+}
+```
+
+`useToast` API: `show(message, variant?, duration?)` · `dismiss(id)` · returns `toasts[]`
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `message` | `string` | *required* | Notification text |
+| `variant` | `'success' \| 'warning' \| 'error' \| 'info'` | `'info'` | Color and icon |
+| `duration` | `number` | `3000` | ms before auto-dismiss. `0` = permanent |
+| `onDismiss` | `() => void` | — | Called when dismissed |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
+
+---
+
+### StatusIndicator
+
+```tsx
+import { StatusIndicator } from './components/ui/status-indicator';
+
+<StatusIndicator status="online"  label="API Gateway" />
+<StatusIndicator status="loading" label="Syncing database..." />
+<StatusIndicator status="error"   label="Redis connection failed" />
+<StatusIndicator status="offline" label="CDN node 3" />
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `status` | `'online' \| 'offline' \| 'loading' \| 'warning' \| 'error' \| 'idle'` | *required* | Status value |
+| `label` | `string` | *required* | Description text |
+| `pulse` | `boolean` | auto for `loading` | Animate the dot |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
+
+---
+
+### LoadingBar
+
+```tsx
+import { LoadingBar } from './components/ui/loading-bar';
+
+// Indeterminate
+<LoadingBar />
+
+// Determinate
+<LoadingBar value={progress} />
+<LoadingBar value={65} width={40} color="#A855F7" />
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | — | 0–100. Omit for indeterminate mode |
+| `width` | `number` | terminal width | Bar width in columns |
+| `color` | `string` | theme primary | Bar fill color |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
+
+---
+
+### Confirm
+
+```tsx
+import { Confirm } from './components/ui/confirm';
+
+<Confirm
+  message="Deploy to production?"
+  defaultValue={false}
+  onConfirm={deploy}
+  onCancel={() => setStep('cancelled')}
+/>
+// Output: ? Deploy to production? (y/N) █
+```
+
+Keys: `y/Y` confirm · `n/N/Esc` cancel · `Enter` use default.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `message` | `string` | *required* | Question to display |
+| `defaultValue` | `boolean` | `false` | `true` = Y default, `false` = N default |
+| `onConfirm` | `() => void` | *required* | Called on confirmation |
+| `onCancel` | `() => void` | — | Called on cancellation |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
+
+---
+
+### KeyHint
+
+```tsx
+import { KeyHint } from './components/ui/key-hint';
+
+<KeyHint keys={[
+  { key: '↑↓',    label: 'Navigate' },
+  { key: 'Enter', label: 'Select'   },
+  { key: 'Esc',   label: 'Cancel'   },
+]} />
+// Output: [↑↓] Navigate  [Enter] Select  [Esc] Cancel
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `keys` | `{ key: string; label: string }[]` | *required* | Hint items |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
+
+---
+
+### Divider
+
+```tsx
+import { Divider } from './components/ui/divider';
+
+<Divider />                           // ────────────────────────────
+<Divider style="double" />            // ════════════════════════════
+<Divider style="dashed" />            // ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+<Divider style="bold" />              // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<Divider title="Configuration" />     // ── Configuration ───────────
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | — | Optional label in the line |
+| `style` | `'single' \| 'double' \| 'dashed' \| 'bold'` | `'single'` | Line character style |
+| `width` | `number` | terminal width | Total width in columns |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
+
+---
+
+### Header
+
+```tsx
+import { Header } from './components/ui/header';
+
+<Header title="MyApp" version="1.2.0" style="box" subtitle="Deploy tool" />
+// ┌─── MyApp v1.2.0 ─────────────────────────────────────────┐
+// │ Deploy tool                                               │
+// └───────────────────────────────────────────────────────────┘
+
+<Header title="MyApp" version="1.2.0" style="line" />
+// ══ MyApp v1.2.0 ════════════════════════════════════════════
+
+<Header title="MyApp" style="filled" />
+// ██ MyApp ████████████████████████████████████████████████████
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | *required* | Application name |
+| `version` | `string` | — | Version string — displayed as `v{version}` |
+| `subtitle` | `string` | — | Second line inside box or below line |
+| `style` | `'box' \| 'line' \| 'filled'` | `'box'` | Visual style |
+| `align` | `'left' \| 'center'` | `'left'` | Title alignment |
 | `theme` | `InkUITheme` | `darkTheme` | Color theme |
 
 ---

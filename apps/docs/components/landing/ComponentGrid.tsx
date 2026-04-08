@@ -64,6 +64,55 @@ const components = [
     preview: '╭─ Confirm ─╮\n│ Delete?   │\n╰──── OK ───╯',
     previewColor: '#A1A1AA',
   },
+  {
+    slug: 'toast',
+    name: 'Toast',
+    desc: 'Notifications',
+    preview: '✓ Deployed successfully!\n⚠ 3 deprecated packages\n✕ Connection refused',
+    previewColor: '#22C55E',
+  },
+  {
+    slug: 'status-indicator',
+    name: 'StatusIndicator',
+    desc: 'Service health',
+    preview: '● API Gateway  online\n◌ Database      syncing\n● CDN node 3   offline',
+    previewColor: '#22C55E',
+  },
+  {
+    slug: 'loading-bar',
+    name: 'LoadingBar',
+    desc: 'Progress bar',
+    preview: '▓▓▓▓▓▓▓▓░░░░░░░░ 52%',
+    previewColor: '#06B6D4',
+  },
+  {
+    slug: 'confirm',
+    name: 'Confirm',
+    desc: 'Yes/no prompts',
+    preview: '? Deploy to production? (y/N) █',
+    previewColor: '#A1A1AA',
+  },
+  {
+    slug: 'key-hint',
+    name: 'KeyHint',
+    desc: 'Keyboard hints',
+    preview: '[↑↓] Navigate  [Enter] Select\n[Esc] Cancel',
+    previewColor: '#71717A',
+  },
+  {
+    slug: 'divider',
+    name: 'Divider',
+    desc: 'Section separator',
+    preview: '── Configuration ───────────\n════════════════════════════',
+    previewColor: '#52525B',
+  },
+  {
+    slug: 'header',
+    name: 'Header',
+    desc: 'App header bar',
+    preview: '┌─── MyApp v1.0 ──────────┐\n│ Deploy tool             │\n└─────────────────────────┘',
+    previewColor: '#A1A1AA',
+  },
 ];
 
 function ComponentCard({ slug, name, desc, preview, previewColor }: (typeof components)[0]) {
@@ -138,7 +187,7 @@ export default function ComponentGrid() {
           All components
         </h2>
         <p style={{ textAlign: 'center', color: '#A1A1AA', marginBottom: 48, fontSize: '1rem' }}>
-          Copy-paste any component into your project. You own the code.
+          15 components. Copy-paste any into your project. You own the code.
         </p>
 
         <div
