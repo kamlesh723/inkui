@@ -153,6 +153,95 @@ importers:
         specifier: ^5.4.0
         version: 5.9.3
 
+  apps/git-tidy:
+    dependencies:
+      '@inkui-cli/badge':
+        specifier: workspace:*
+        version: link:../../packages/badge
+      '@inkui-cli/confirm':
+        specifier: workspace:*
+        version: link:../../packages/confirm
+      '@inkui-cli/key-hint':
+        specifier: workspace:*
+        version: link:../../packages/key-hint
+      '@inkui-cli/multi-select':
+        specifier: workspace:*
+        version: link:../../packages/multi-select
+      '@inkui-cli/spinner':
+        specifier: workspace:*
+        version: link:../../packages/spinner
+      '@inkui-cli/table':
+        specifier: workspace:*
+        version: link:../../packages/table
+      '@inkui-cli/toast':
+        specifier: workspace:*
+        version: link:../../packages/toast
+      ink:
+        specifier: ^6.0.0
+        version: 6.8.0(@types/react@19.2.14)(react@19.2.4)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.8)(tsx@4.21.0)(typescript@5.9.3)
+      tsx:
+        specifier: ^4.0.0
+        version: 4.21.0
+      typescript:
+        specifier: ^5.4.0
+        version: 5.9.3
+
+  apps/inkui-sysmon:
+    dependencies:
+      '@inkui-cli/badge':
+        specifier: workspace:*
+        version: link:../../packages/badge
+      '@inkui-cli/divider':
+        specifier: workspace:*
+        version: link:../../packages/divider
+      '@inkui-cli/header':
+        specifier: workspace:*
+        version: link:../../packages/header
+      '@inkui-cli/key-hint':
+        specifier: workspace:*
+        version: link:../../packages/key-hint
+      '@inkui-cli/progress-bar':
+        specifier: workspace:*
+        version: link:../../packages/progress-bar
+      '@inkui-cli/status-indicator':
+        specifier: workspace:*
+        version: link:../../packages/status-indicator
+      '@inkui-cli/table':
+        specifier: workspace:*
+        version: link:../../packages/table
+      ink:
+        specifier: ^6.0.0
+        version: 6.8.0(@types/react@19.2.14)(react@19.2.4)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      systeminformation:
+        specifier: ^5.23.0
+        version: 5.31.5
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.8)(tsx@4.21.0)(typescript@5.9.3)
+      tsx:
+        specifier: ^4.0.0
+        version: 4.21.0
+      typescript:
+        specifier: ^5.4.0
+        version: 5.9.3
+
   packages/badge:
     dependencies:
       '@inkui-cli/core':
@@ -184,8 +273,8 @@ importers:
   packages/confirm:
     dependencies:
       '@inkui-cli/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: ^0.1.0
+        version: 0.1.0
     devDependencies:
       '@types/react':
         specifier: ^19.0.0
@@ -252,8 +341,8 @@ importers:
   packages/divider:
     dependencies:
       '@inkui-cli/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: ^0.1.0
+        version: 0.1.0
     devDependencies:
       '@types/react':
         specifier: ^19.0.0
@@ -280,8 +369,8 @@ importers:
   packages/header:
     dependencies:
       '@inkui-cli/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: ^0.1.0
+        version: 0.1.0
     devDependencies:
       '@types/react':
         specifier: ^19.0.0
@@ -308,8 +397,8 @@ importers:
   packages/key-hint:
     dependencies:
       '@inkui-cli/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: ^0.1.0
+        version: 0.1.0
     devDependencies:
       '@types/react':
         specifier: ^19.0.0
@@ -336,8 +425,8 @@ importers:
   packages/loading-bar:
     dependencies:
       '@inkui-cli/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: ^0.1.0
+        version: 0.1.0
     devDependencies:
       '@types/react':
         specifier: ^19.0.0
@@ -476,8 +565,8 @@ importers:
   packages/status-indicator:
     dependencies:
       '@inkui-cli/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: ^0.1.0
+        version: 0.1.0
     devDependencies:
       '@types/react':
         specifier: ^19.0.0
@@ -560,8 +649,8 @@ importers:
   packages/toast:
     dependencies:
       '@inkui-cli/core':
-        specifier: workspace:*
-        version: link:../core
+        specifier: ^0.1.0
+        version: 0.1.0
     devDependencies:
       '@types/react':
         specifier: ^19.0.0
@@ -1277,6 +1366,9 @@ packages:
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [win32]
+
+  '@inkui-cli/core@0.1.0':
+    resolution: {integrity: sha512-t0HEkKkhmp7Lu7WA1Nt08sAqDCfslzkbQnoMXLXWYoXwWZ4hFzxP9LRXaO9R0mfmXB6QNuNuTAQ/6qBJenEiyw==}
 
   '@inquirer/external-editor@1.0.3':
     resolution: {integrity: sha512-RWbSrDiYmO4LbejWY7ttpxczuwQyZLBUyygsA9Nsv95hpzUWwnNTVQmAq3xuh7vNwCp07UTmE5i11XAEExx4RA==}
@@ -3472,6 +3564,12 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
 
+  systeminformation@5.31.5:
+    resolution: {integrity: sha512-5SyLdip4/3alxD4Kh+63bUQTJmu7YMfYQTC+koZy7X73HgNqZSD2P4wOZQWtUncvPvcEmnfIjCoygN4MRoEejQ==}
+    engines: {node: '>=8.0.0'}
+    os: [darwin, linux, win32, freebsd, openbsd, netbsd, sunos, android]
+    hasBin: true
+
   tagged-tag@1.0.0:
     resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
     engines: {node: '>=20'}
@@ -4245,6 +4343,8 @@ snapshots:
 
   '@img/sharp-win32-x64@0.34.5':
     optional: true
+
+  '@inkui-cli/core@0.1.0': {}
 
   '@inquirer/external-editor@1.0.3(@types/node@20.19.39)':
     dependencies:
@@ -6756,6 +6856,8 @@ snapshots:
       pirates: 4.0.7
       tinyglobby: 0.2.15
       ts-interface-checker: 0.1.13
+
+  systeminformation@5.31.5: {}
 
   tagged-tag@1.0.0: {}
 

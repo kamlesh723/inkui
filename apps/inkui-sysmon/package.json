@@ -1,0 +1,32 @@
+{
+  "name": "inkui-sysmon",
+  "version": "1.0.0",
+  "description": "Terminal system monitor — showcase of InkUI components",
+  "type": "module",
+  "bin": {
+    "inkui-sysmon": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.tsx",
+    "build": "tsup src/cli.tsx --format esm --outDir dist --banner.js '#!/usr/bin/env node'",
+    "start": "node dist/cli.js"
+  },
+  "dependencies": {
+    "@inkui-cli/header": "workspace:*",
+    "@inkui-cli/progress-bar": "workspace:*",
+    "@inkui-cli/badge": "workspace:*",
+    "@inkui-cli/status-indicator": "workspace:*",
+    "@inkui-cli/table": "workspace:*",
+    "@inkui-cli/divider": "workspace:*",
+    "@inkui-cli/key-hint": "workspace:*",
+    "ink": "^6.0.0",
+    "react": "^19.0.0",
+    "systeminformation": "^5.23.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.4.0"
+  }
+}
