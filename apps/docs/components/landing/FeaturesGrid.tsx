@@ -1,11 +1,7 @@
 import { Copy, Code, Palette, Layers, Terminal, Zap } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-const features: {
-  icon: LucideIcon;
-  title: string;
-  body: string;
-}[] = [
+const features: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: Copy,
     title: 'Copy & Paste',
@@ -23,8 +19,8 @@ const features: {
   },
   {
     icon: Layers,
-    title: '8+ Components',
-    body: 'Spinner, Badge, ProgressBar, TextInput, Select, MultiSelect, Table, Dialog — and growing fast.',
+    title: '15+ Components',
+    body: 'Spinner, Badge, ProgressBar, TextInput, Select, Table, Toast, Dialog, and more — growing fast.',
   },
   {
     icon: Terminal,
@@ -43,8 +39,8 @@ export default function FeaturesGrid() {
     <section
       style={{
         padding: '80px 24px',
-        borderTop: '1px solid #27272A',
-        background: '#0F0F12',
+        borderTop: '1px solid var(--border)',
+        background: 'var(--bg)',
       }}
     >
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
@@ -55,18 +51,12 @@ export default function FeaturesGrid() {
             fontWeight: 700,
             marginBottom: 12,
             letterSpacing: '-0.02em',
+            color: 'var(--text)',
           }}
         >
           Everything you need to build beautiful CLIs
         </h2>
-        <p
-          style={{
-            textAlign: 'center',
-            color: '#A1A1AA',
-            marginBottom: 48,
-            fontSize: '1rem',
-          }}
-        >
+        <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: 48, fontSize: '1rem' }}>
           Designed for the developer experience you expect from a modern component library.
         </p>
 
@@ -81,16 +71,17 @@ export default function FeaturesGrid() {
             <div
               key={title}
               style={{
-                background: '#141417',
-                border: '1px solid #27272A',
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
                 borderRadius: 8,
                 padding: 24,
+                transition: 'border-color 0.15s',
               }}
             >
               <Icon size={20} color="#06B6D4" style={{ marginBottom: 12 }} />
               <div
                 style={{
-                  color: '#FAFAFA',
+                  color: 'var(--text)',
                   fontWeight: 600,
                   fontSize: '0.9rem',
                   marginBottom: 8,
@@ -98,7 +89,7 @@ export default function FeaturesGrid() {
               >
                 {title}
               </div>
-              <div style={{ color: '#A1A1AA', fontSize: '0.85rem', lineHeight: 1.7 }}>
+              <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.7 }}>
                 {body}
               </div>
             </div>

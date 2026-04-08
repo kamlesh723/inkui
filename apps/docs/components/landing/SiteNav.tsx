@@ -1,19 +1,31 @@
 'use client';
 
 import Link from 'next/link';
-import { Github } from 'lucide-react';
+import { Github, Sun, Moon, Menu, X } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { useState, useEffect } from 'react';
 
 export default function SiteNav() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Avoid hydration mismatch — only render theme icon after mount
+  useEffect(() => setMounted(true), []);
+
+  const isDark = theme === 'dark';
+
   return (
     <header
       style={{
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        borderBottom: '1px solid #27272A',
-        background: 'rgba(10, 10, 11, 0.85)',
+        borderBottom: '1px solid var(--border)',
+        background: 'var(--nav-bg)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
+        transition: 'background 0.2s ease, border-color 0.2s ease',
       }}
     >
       <div
@@ -34,7 +46,7 @@ export default function SiteNav() {
               fontWeight: 700,
               fontSize: '1.05rem',
               letterSpacing: '-0.02em',
-              color: '#FAFAFA',
+              color: 'var(--text)',
               fontFamily: 'var(--font-geist-mono, monospace)',
             }}
           >
@@ -42,19 +54,20 @@ export default function SiteNav() {
           </span>
         </Link>
 
-        {/* Nav links */}
-        <nav style={{ display: 'flex', gap: 24, flex: 1 }}>
-          <Link href="/docs/getting-started/introduction" className="nav-link">
-            Docs
-          </Link>
-          <Link href="/docs/components/spinner" className="nav-link">
-            Components
-          </Link>
+        {/* Desktop nav links */}
+        <nav
+          className="desktop-nav"
+          style={{ display: 'flex', gap: 24, flex: 1 }}
+        >
+          <Link href="/docs/getting-started/introduction" className="nav-link">Docs</Link>
+          <Link href="/docs/components/spinner" className="nav-link">Components</Link>
         </nav>
 
         {/* Right side */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginLeft: 'auto' }}>
+          {/* Version badge */}
           <span
+            className="desktop-nav"
             style={{
               fontSize: '0.7rem',
               background: 'rgba(6, 182, 212, 0.08)',
@@ -64,10 +77,93 @@ export default function SiteNav() {
               borderRadius: 20,
               fontWeight: 600,
               fontFamily: 'var(--font-geist-mono, monospace)',
+              display: 'flex',
             }}
           >
-            v0.1.0
+            v0.1.1
           </span>
+
+          {/* GitHub */}
+          <a
+            href="https://github.com/kamlesh723/inkui"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link desktop-nav"
+            style={{ display: 'flex', alignItems: 'center', gap: 6 }}
+          >
+            <Github size={15} />
+            <span>GitHub</span>
+          </a>
+
+          {/* Theme toggle */}
+          {mounted && (
+            <button
+              onClick={() => setTheme(isDark ? 'light' : 'dark')}
+              aria-label="Toggle theme"
+              style={{
+                background: 'none',
+                border: '1px solid var(--border)',
+                borderRadius: 6,
+                padding: '5px',
+                cursor: 'pointer',
+                color: 'var(--text-secondary)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'border-color 0.15s, color 0.15s',
+              }}
+            >
+              {isDark ? <Sun size={15} /> : <Moon size={15} />}
+            </button>
+          )}
+
+          {/* Mobile menu toggle */}
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+            style={{
+              background: 'none',
+              border: '1px solid var(--border)',
+              borderRadius: 6,
+              padding: '5px',
+              cursor: 'pointer',
+              color: 'var(--text-secondary)',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            {menuOpen ? <X size={16} /> : <Menu size={16} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile dropdown menu */}
+      {menuOpen && (
+        <div
+          style={{
+            borderTop: '1px solid var(--border)',
+            background: 'var(--bg)',
+            padding: '16px 24px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 16,
+          }}
+        >
+          <Link
+            href="/docs/getting-started/introduction"
+            className="nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
+            Docs
+          </Link>
+          <Link
+            href="/docs/components/spinner"
+            className="nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
+            Components
+          </Link>
           <a
             href="https://github.com/kamlesh723/inkui"
             target="_blank"
@@ -75,11 +171,10 @@ export default function SiteNav() {
             className="nav-link"
             style={{ display: 'flex', alignItems: 'center', gap: 6 }}
           >
-            <Github size={15} />
-            GitHub
+            <Github size={14} /> GitHub
           </a>
         </div>
-      </div>
+      )}
     </header>
   );
 }

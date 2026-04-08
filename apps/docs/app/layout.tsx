@@ -8,7 +8,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: { default: 'InkUI', template: '%s · InkUI' },
   description:
-    'shadcn/ui-style terminal component library built on Ink (React for CLI). Copy-paste components. TypeScript. 8+ components.',
+    'shadcn/ui-style terminal component library built on Ink (React for CLI). Copy-paste components. TypeScript. 15+ components.',
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   ),
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} dark`}
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
       <body>
@@ -30,7 +30,6 @@ export default function RootLayout({
           theme={{
             defaultTheme: 'dark',
             enableSystem: false,
-            forcedTheme: 'dark',
           }}
         >
           {children}
