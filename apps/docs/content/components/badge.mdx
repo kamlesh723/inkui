@@ -1,0 +1,56 @@
+---
+title: Badge
+description: Compact status label with five semantic variants for status display.
+---
+
+A compact status badge with semantic color variants. Uses inverse terminal colors for a filled-pill look that stands out in any output.
+
+## Installation
+
+```bash
+npx inkui add badge
+```
+
+## Usage
+
+```tsx
+import { Badge } from './components/ui/badge';
+
+export default function App() {
+  return <Badge variant="success">deployed</Badge>;
+}
+```
+
+## Examples
+
+### All variants
+
+```tsx
+<Badge variant="default">unknown</Badge>
+<Badge variant="success">deployed</Badge>
+<Badge variant="warning">degraded</Badge>
+<Badge variant="error">failed</Badge>
+<Badge variant="info">pending</Badge>
+```
+
+### In context
+
+```tsx
+function ServiceStatus() {
+  return (
+    <>
+      <Text>API Gateway </Text><Badge variant="success">healthy</Badge>
+      <Text>Database    </Text><Badge variant="warning">degraded</Badge>
+      <Text>CDN         </Text><Badge variant="error">down</Badge>
+    </>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `string` | — | Badge label text (required) |
+| `variant` | `'default' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'default'` | Color variant |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

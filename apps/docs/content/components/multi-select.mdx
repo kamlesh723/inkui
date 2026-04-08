@@ -1,0 +1,83 @@
+---
+title: MultiSelect
+description: Multi-select with space-to-toggle checkboxes and Enter-to-confirm. Fully generic.
+---
+
+A multi-select component with space-to-toggle checkboxes, set-based internal state, and Enter-to-confirm. Fully generic over the value type.
+
+## Installation
+
+```bash
+npx inkui add multi-select
+```
+
+## Usage
+
+```tsx
+import { MultiSelect } from './components/ui/multi-select';
+
+export default function App() {
+  return (
+    <MultiSelect
+      items={[
+        { label: 'TypeScript', value: 'ts'       },
+        { label: 'ESLint',     value: 'eslint'   },
+        { label: 'Prettier',   value: 'prettier' },
+      ]}
+      onSubmit={(selected) => {
+        console.log(selected.map((s) => s.value));
+      }}
+    />
+  );
+}
+```
+
+## Examples
+
+### With default selected
+
+```tsx
+<MultiSelect
+  items={features}
+  defaultSelected={['ts', 'eslint']}
+  onSubmit={handleSubmit}
+/>
+```
+
+### With disabled items
+
+```tsx
+<MultiSelect
+  items={[
+    { label: 'GitHub Actions', value: 'gha'     },
+    { label: 'CircleCI',       value: 'circle'  },
+    { label: 'TeamCity',       value: 'tc', disabled: true },
+  ]}
+  onSubmit={handleSubmit}
+/>
+```
+
+### Focus management
+
+```tsx
+const [step, setStep] = useState<'select' | 'confirm'>('select');
+
+<MultiSelect
+  items={items}
+  focus={step === 'select'}
+  onSubmit={(selected) => {
+    setChosen(selected);
+    setStep('confirm');
+  }}
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `MultiSelectItem<T>[]` | — | List of `{ label, value, disabled? }` options (required) |
+| `onSubmit` | `(selected: MultiSelectItem<T>[]) => void` | — | Called on Enter with all selected items (required) |
+| `defaultSelected` | `T[]` | `[]` | Pre-selected values |
+| `focus` | `boolean` | `true` | Whether this component captures keyboard input |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

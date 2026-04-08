@@ -1,0 +1,99 @@
+---
+title: Theming
+description: Customize colors, borders, and spacing across all components.
+---
+
+## Theme system
+
+Every InkUI component accepts an optional `theme` prop of type `InkUITheme`. By default, all components use `darkTheme` from `@inkui-cli/core`.
+
+```tsx
+import { darkTheme, lightTheme } from '@inkui-cli/core';
+import { Spinner } from './components/ui/spinner';
+
+// Default (dark)
+<Spinner label="Loading..." />
+
+// Light theme
+<Spinner label="Loading..." theme={lightTheme} />
+```
+
+## Theme shape
+
+```ts
+interface InkUITheme {
+  colors: {
+    primary: string;
+    secondary: string;
+    success: string;
+    warning: string;
+    error: string;
+    text: string;
+    textMuted: string;
+    border: string;
+    background: string;
+  };
+  borderStyle: BorderStyle;
+  spacing: {
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+  };
+}
+```
+
+## Custom theme
+
+Create your own theme by extending the defaults:
+
+```ts
+import { darkTheme } from '@inkui-cli/core';
+import type { InkUITheme } from '@inkui-cli/core';
+
+export const myTheme: InkUITheme = {
+  ...darkTheme,
+  colors: {
+    ...darkTheme.colors,
+    primary: '#F472B6',   // pink instead of cyan
+    border: '#3F3F46',
+  },
+  borderStyle: 'rounded',
+};
+```
+
+## Global theme provider
+
+For consistency across your whole CLI app, create a theme context:
+
+```tsx
+import React, { createContext, useContext } from 'react';
+import { darkTheme } from '@inkui-cli/core';
+import type { InkUITheme } from '@inkui-cli/core';
+
+const ThemeContext = createContext<InkUITheme>(darkTheme);
+
+export function ThemeProvider({
+  theme,
+  children,
+}: {
+  theme: InkUITheme;
+  children: React.ReactNode;
+}) {
+  return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
+}
+
+export const useTheme = () => useContext(ThemeContext);
+```
+
+## Border styles
+
+The `borderStyle` token controls box-drawing characters across Table, Dialog, and other bordered components:
+
+| Value | Characters |
+|-------|-----------|
+| `single` | `┌─┐│└┘` |
+| `double` | `╔═╗║╚╝` |
+| `rounded` | `╭─╮│╰╯` |
+| `bold` | `┏━┓┃┗┛` |
+| `ascii` | `+-+\|+-+` |

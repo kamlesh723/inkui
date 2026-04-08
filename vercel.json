@@ -1,0 +1,6 @@
+{
+  "buildCommand": "pnpm turbo build --filter=@inkui-cli/docs",
+  "outputDirectory": "apps/docs/.next",
+  "installCommand": "pnpm install",
+  "framework": "nextjs"
+}

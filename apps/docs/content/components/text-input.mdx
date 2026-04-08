@@ -1,0 +1,98 @@
+---
+title: TextInput
+description: Controlled text input with cursor, arrow-key navigation, and password masking.
+---
+
+A controlled text input for terminal apps. Supports block cursor, arrow-key cursor movement, backspace, placeholder text, and password masking.
+
+## Installation
+
+```bash
+npx inkui add text-input
+```
+
+## Usage
+
+```tsx
+import { useState } from 'react';
+import { TextInput } from './components/ui/text-input';
+
+export default function App() {
+  const [name, setName] = useState('');
+
+  return (
+    <TextInput
+      label="Name"
+      value={name}
+      onChange={setName}
+      onSubmit={(v) => console.log('submitted:', v)}
+      placeholder="Enter your name"
+    />
+  );
+}
+```
+
+## Examples
+
+### Basic
+
+```tsx
+const [value, setValue] = useState('');
+<TextInput value={value} onChange={setValue} />
+```
+
+### With label and placeholder
+
+```tsx
+<TextInput
+  label="Email"
+  value={email}
+  onChange={setEmail}
+  placeholder="you@example.com"
+/>
+```
+
+### Password mode
+
+```tsx
+<TextInput
+  label="Password"
+  value={password}
+  onChange={setPassword}
+  password
+/>
+```
+
+### Multi-field form
+
+```tsx
+const [step, setStep] = useState<'name' | 'email' | 'done'>('name');
+
+<TextInput
+  label="Name "
+  value={name}
+  onChange={setName}
+  onSubmit={() => setStep('email')}
+  focus={step === 'name'}
+/>
+<TextInput
+  label="Email"
+  value={email}
+  onChange={setEmail}
+  onSubmit={() => setStep('done')}
+  focus={step === 'email'}
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | Controlled value (required) |
+| `onChange` | `(v: string) => void` | — | Called on every keystroke (required) |
+| `onSubmit` | `(v: string) => void` | `undefined` | Called when Enter is pressed |
+| `placeholder` | `string` | `''` | Shown when value is empty |
+| `password` | `boolean` | `false` | Mask characters as `*` |
+| `focus` | `boolean` | `true` | Whether this input captures keyboard input |
+| `label` | `string` | `undefined` | Optional label to the left |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

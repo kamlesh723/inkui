@@ -1,0 +1,84 @@
+---
+title: Select
+description: Keyboard-navigable single-select menu with generic value types and disabled items.
+---
+
+A keyboard-navigable single-select menu. Generic over the option value type — works with strings, numbers, or any object.
+
+## Installation
+
+```bash
+npx inkui add select
+```
+
+## Usage
+
+```tsx
+import { Select } from './components/ui/select';
+import type { SelectItem } from './components/ui/select';
+
+const items: SelectItem<string>[] = [
+  { label: 'AWS',     value: 'aws'     },
+  { label: 'Vercel',  value: 'vercel'  },
+  { label: 'Railway', value: 'railway' },
+];
+
+export default function App() {
+  return (
+    <Select
+      items={items}
+      onSelect={(item) => console.log('Selected:', item.value)}
+    />
+  );
+}
+```
+
+## Examples
+
+### String values
+
+```tsx
+<Select
+  items={[
+    { label: 'React',   value: 'react'   },
+    { label: 'Vue',     value: 'vue'     },
+    { label: 'Svelte',  value: 'svelte'  },
+  ]}
+  onSelect={(item) => setFramework(item.value)}
+/>
+```
+
+### With disabled items
+
+```tsx
+<Select
+  items={[
+    { label: 'Free plan',       value: 'free'       },
+    { label: 'Pro plan',        value: 'pro'        },
+    { label: 'Enterprise',      value: 'enterprise', disabled: true },
+  ]}
+  onSelect={handleSelect}
+/>
+```
+
+### Object values
+
+```tsx
+type Region = { id: string; name: string; latency: number };
+
+const regions: SelectItem<Region>[] = [
+  { label: 'US East',    value: { id: 'us-east-1',    name: 'N. Virginia', latency: 12 } },
+  { label: 'EU West',    value: { id: 'eu-west-1',    name: 'Ireland',     latency: 85 } },
+];
+
+<Select items={regions} onSelect={(item) => deploy(item.value.id)} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `SelectItem<T>[]` | — | List of `{ label, value, disabled? }` options (required) |
+| `onSelect` | `(item: SelectItem<T>) => void` | — | Called when user confirms a selection (required) |
+| `focus` | `boolean` | `true` | Whether this select captures keyboard input |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

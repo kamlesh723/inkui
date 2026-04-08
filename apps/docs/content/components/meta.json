@@ -1,0 +1,4 @@
+{
+  "title": "Components",
+  "pages": ["spinner", "badge", "progress-bar", "text-input", "select", "multi-select", "table", "dialog"]
+}

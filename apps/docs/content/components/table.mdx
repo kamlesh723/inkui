@@ -1,0 +1,71 @@
+---
+title: Table
+description: Data table with dynamic column widths, overflow truncation, and five border styles.
+---
+
+A data table with dynamic column widths, overflow truncation, three alignment modes, and five box-drawing border styles. Fully generic over the row type.
+
+## Installation
+
+```bash
+npx inkui add table
+```
+
+## Usage
+
+```tsx
+import { Table } from './components/ui/table';
+
+const columns = [
+  { key: 'name',    header: 'Name',    align: 'left'   },
+  { key: 'version', header: 'Version', align: 'center' },
+  { key: 'size',    header: 'Size',    align: 'right'  },
+] as const;
+
+const data = [
+  { name: '@inkui-cli/spinner', version: '0.1.0', size: '837 B' },
+  { name: '@inkui-cli/table',   version: '0.1.0', size: '3.9 KB' },
+];
+
+export default function App() {
+  return <Table columns={columns} data={data} />;
+}
+```
+
+## Examples
+
+### Rounded border
+
+```tsx
+<Table columns={columns} data={data} borderStyle="rounded" />
+```
+
+### Double border
+
+```tsx
+<Table columns={columns} data={data} borderStyle="double" />
+```
+
+### ASCII (for max compatibility)
+
+```tsx
+<Table columns={columns} data={data} borderStyle="ascii" />
+```
+
+### Fixed column widths
+
+```tsx
+const columns = [
+  { key: 'name',   header: 'Name',   width: 30, align: 'left'  },
+  { key: 'status', header: 'Status', width: 10, align: 'center' },
+];
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `columns` | `TableColumn<T>[]` | — | Column definitions: `{ key, header, align?, width? }` (required) |
+| `data` | `T[]` | — | Array of row objects (required) |
+| `borderStyle` | `'single' \| 'double' \| 'rounded' \| 'bold' \| 'ascii'` | `'single'` | Box-drawing border style |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

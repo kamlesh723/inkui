@@ -1,0 +1,97 @@
+---
+title: Dialog
+description: Modal dialog with title, message body, action buttons, and Escape-to-dismiss.
+---
+
+A modal dialog for confirmations, warnings, and prompts. Supports left/right action navigation and Escape-to-dismiss.
+
+## Installation
+
+```bash
+npx inkui add dialog
+```
+
+## Usage
+
+```tsx
+import { useState } from 'react';
+import { Dialog } from './components/ui/dialog';
+
+export default function App() {
+  const [open, setOpen] = useState(true);
+
+  return (
+    <Dialog
+      isOpen={open}
+      title="Deploy to production?"
+      message="This will push changes to all users."
+      actions={[
+        { label: 'Cancel',  value: 'cancel'  },
+        { label: 'Confirm', value: 'confirm' },
+      ]}
+      onAction={(action) => {
+        if (action.value === 'confirm') deploy();
+        setOpen(false);
+      }}
+      onDismiss={() => setOpen(false)}
+    />
+  );
+}
+```
+
+## Examples
+
+### Destructive confirmation
+
+```tsx
+<Dialog
+  isOpen={open}
+  title="Delete project?"
+  message={"This action cannot be undone.\nAll data will be permanently deleted."}
+  actions={[
+    { label: 'Keep',   value: 'keep'   },
+    { label: 'Delete', value: 'delete' },
+  ]}
+  onAction={handleAction}
+  onDismiss={() => setOpen(false)}
+/>
+```
+
+### Info dialog (no dismiss)
+
+```tsx
+<Dialog
+  isOpen={showInfo}
+  title="Update available"
+  message="InkUI v0.2.0 is available. Run npx inkui update."
+  actions={[{ label: 'OK', value: 'ok' }]}
+  onAction={() => setShowInfo(false)}
+/>
+```
+
+### Custom border
+
+```tsx
+<Dialog
+  isOpen={open}
+  title="Confirm"
+  message="Are you sure?"
+  actions={actions}
+  onAction={handleAction}
+  borderStyle="double"
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isOpen` | `boolean` | — | Controls whether the dialog renders (required) |
+| `message` | `string` | — | Body message — supports `\n` for multi-line (required) |
+| `actions` | `DialogAction[]` | — | Array of `{ label, value }` buttons (required) |
+| `onAction` | `(action: DialogAction) => void` | — | Called when user confirms an action (required) |
+| `onDismiss` | `() => void` | `undefined` | Called when user presses Escape |
+| `title` | `string` | `undefined` | Bold title at the top of the dialog |
+| `focus` | `boolean` | `true` | Whether this dialog captures keyboard input |
+| `borderStyle` | `BorderStyle` | `'rounded'` | Border style key from `@inkui-cli/core` |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
