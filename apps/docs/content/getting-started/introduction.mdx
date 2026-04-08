@@ -1,0 +1,35 @@
+---
+title: Introduction
+description: shadcn/ui for the terminal — copy-paste Ink components you own.
+---
+
+## What is InkUI?
+
+InkUI is a **copy-paste terminal component library** built on [Ink](https://github.com/vadimdemedes/ink) — React for CLIs. Inspired by shadcn/ui, every component you add is copied directly into your project. You own the source. No black-box dependency.
+
+## Why InkUI?
+
+Building CLI UIs with Ink is powerful, but repetitive. Every project ends up re-implementing spinners, progress bars, selection menus, and data tables from scratch. InkUI gives you polished, accessible, theme-aware versions of all these — ready to customize.
+
+## How it works
+
+1. Run `npx inkui add spinner` in your project
+2. The component source lands in `./components/ui/spinner.tsx`
+3. Import and use it — you own the code
+
+```tsx
+import { Spinner } from './components/ui/spinner';
+
+export default function Deploy() {
+  return <Spinner label="Deploying to production..." type="dots" />;
+}
+```
+
+## Key features
+
+- **Copy-paste model** — own the code, modify anything
+- **TypeScript first** — full type safety, generics for `Table<T>` and `Select<T>`
+- **Theme system** — dark and light themes, every color token customizable
+- **8 components** — Spinner, Badge, ProgressBar, TextInput, Select, MultiSelect, Table, Dialog
+- **One command install** — `npx inkui add <component>`
+- **Built on Ink** — the renderer used by Vercel, Prisma, and Gatsby CLIs

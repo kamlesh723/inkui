@@ -19,3 +19,9 @@ out
 
 # OS
 Thumbs.db
+
+# Fumadocs generated source map
+apps/docs/.source/
+
+# Pagefind build output (regenerated on each build)
+apps/docs/public/pagefind/

@@ -4,28 +4,30 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "postbuild": "npx pagefind --site .next/server/app --output-path public/pagefind",
     "dev": "next dev",
-    "dev:pty": "tsx server/pty-server.ts",
     "start": "next start",
-    "demo": "next build",
     "test": "echo 'no tests for docs app'"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "framer-motion": "^11.0.0",
+    "fumadocs-core": "^14.0.0",
+    "fumadocs-mdx": "^11.0.0",
+    "fumadocs-ui": "^14.0.0",
+    "geist": "^1.3.0",
+    "lucide-react": "^0.400.0",
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@xterm/xterm": "^5.5.0",
-    "@xterm/addon-fit": "^0.10.0",
-    "@xterm/addon-web-links": "^0.11.0",
-    "ws": "^8.17.0",
-    "node-pty": "^1.0.0"
+    "shiki": "^1.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^20.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@types/ws": "^8.5.0",
-    "@types/node": "^20.0.0",
-    "typescript": "^5.4.0",
-    "tsx": "^4.0.0"
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.4.0"
   }
 }

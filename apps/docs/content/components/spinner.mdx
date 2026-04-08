@@ -1,0 +1,62 @@
+---
+title: Spinner
+description: Animated loading indicator with four animation styles for any async operation.
+---
+
+An animated terminal spinner. Supports four distinct animation styles and integrates with the InkUI theme system.
+
+## Installation
+
+```bash
+npx inkui add spinner
+```
+
+## Usage
+
+```tsx
+import { Spinner } from './components/ui/spinner';
+
+export default function App() {
+  return <Spinner label="Loading data..." />;
+}
+```
+
+## Examples
+
+### Basic
+
+```tsx
+<Spinner label="Loading..." />
+```
+
+### Animation styles
+
+```tsx
+<Spinner type="dots"   label="Resolving packages..." />
+<Spinner type="line"   label="Compiling..."           />
+<Spinner type="arc"    label="Uploading..."           />
+<Spinner type="bounce" label="Connecting..."          />
+```
+
+### Custom interval
+
+```tsx
+<Spinner label="Thinking..." interval={120} />
+```
+
+### With theme
+
+```tsx
+import { lightTheme } from '@inkui-cli/core';
+
+<Spinner label="Loading..." theme={lightTheme} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | `''` | Text shown after the spinner frame |
+| `type` | `'dots' \| 'line' \| 'arc' \| 'bounce'` | `'dots'` | Animation style |
+| `interval` | `number` | `80` | Frame interval in milliseconds |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

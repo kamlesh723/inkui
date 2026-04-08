@@ -1,0 +1,70 @@
+---
+title: ProgressBar
+description: Terminal progress bar with block-fill characters that auto-sizes to terminal width.
+---
+
+A terminal progress bar using Unicode block characters. Auto-sizes to terminal width or accepts a fixed width.
+
+## Installation
+
+```bash
+npx inkui add progress-bar
+```
+
+## Usage
+
+```tsx
+import { useState, useEffect } from 'react';
+import { ProgressBar } from './components/ui/progress-bar';
+
+export default function App() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((p) => Math.min(p + 10, 100));
+    }, 200);
+    return () => clearInterval(timer);
+  }, []);
+
+  return <ProgressBar value={progress} label="Downloading" />;
+}
+```
+
+## Examples
+
+### Basic
+
+```tsx
+<ProgressBar value={65} />
+```
+
+### With label and percent
+
+```tsx
+<ProgressBar value={65} label="Downloading" showPercent />
+```
+
+### Fixed width
+
+```tsx
+<ProgressBar value={66} width={40} showPercent={false} />
+```
+
+### Multiple bars
+
+```tsx
+<ProgressBar value={100} label="Installing  " />
+<ProgressBar value={64}  label="Downloading " />
+<ProgressBar value={12}  label="Compiling   " />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | — | Progress value 0–100 (required) |
+| `label` | `string` | `undefined` | Optional label to the left of the bar |
+| `showPercent` | `boolean` | `true` | Show numeric percentage at the right |
+| `width` | `number` | auto | Fixed bar width in columns. Defaults to terminal width minus overhead |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

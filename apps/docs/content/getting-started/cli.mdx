@@ -1,0 +1,73 @@
+---
+title: CLI Reference
+description: All inkui CLI commands and options.
+---
+
+## inkui add
+
+Add one or more components to your project.
+
+```bash
+npx inkui add <component> [components...]
+```
+
+### Examples
+
+```bash
+# Add a single component
+npx inkui add spinner
+
+# Add multiple at once
+npx inkui add spinner table select dialog
+
+# Add all components
+npx inkui add spinner badge progress-bar text-input select multi-select table dialog
+```
+
+### Options
+
+| Flag | Description |
+|------|-------------|
+| `--dir <path>` | Target directory (default: `./components/ui`) |
+| `--overwrite` | Overwrite existing files without prompting |
+| `--dry-run` | Preview what would be added without writing |
+
+### What gets added
+
+Running `npx inkui add spinner` copies:
+
+```
+./components/ui/
+└── spinner.tsx     ← the component source you own
+```
+
+The component imports `@inkui-cli/core` for tokens. That package is added to your `package.json` automatically.
+
+## Available components
+
+| Component | Command |
+|-----------|---------|
+| Spinner | `npx inkui add spinner` |
+| Badge | `npx inkui add badge` |
+| ProgressBar | `npx inkui add progress-bar` |
+| TextInput | `npx inkui add text-input` |
+| Select | `npx inkui add select` |
+| MultiSelect | `npx inkui add multi-select` |
+| Table | `npx inkui add table` |
+| Dialog | `npx inkui add dialog` |
+
+## inkui list
+
+List all available components:
+
+```bash
+npx inkui list
+```
+
+## inkui diff
+
+Show what changed between your local copy and the latest version:
+
+```bash
+npx inkui diff spinner
+```

@@ -1,12 +1,17 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Sidebar } from '@/components/Sidebar';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
+import { RootProvider } from 'fumadocs-ui/provider';
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: { default: 'InkUI', template: '%s · InkUI' },
   description:
-    'shadcn/ui-style terminal component library built on Ink (React for CLI)',
+    'shadcn/ui-style terminal component library built on Ink (React for CLI). Copy-paste components. TypeScript. 8+ components.',
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
+  ),
 };
 
 export default function RootLayout({
@@ -15,26 +20,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable} dark`}
+      suppressHydrationWarning
+    >
       <body>
-        <div className="layout">
-          {/* Top nav */}
-          <header className="topnav">
-            <Link href="/" className="topnav-logo" style={{ textDecoration: 'none' }}>
-              InkUI
-            </Link>
-            <span className="topnav-badge">v0.1.0</span>
-            <span className="topnav-tagline">
-              shadcn-style terminal components for Ink
-            </span>
-          </header>
-
-          {/* Sidebar */}
-          <Sidebar />
-
-          {/* Page content */}
-          <main className="main">{children}</main>
-        </div>
+        <RootProvider
+          theme={{
+            defaultTheme: 'dark',
+            enableSystem: false,
+            forcedTheme: 'dark',
+          }}
+        >
+          {children}
+        </RootProvider>
+        <Analytics />
       </body>
     </html>
   );
