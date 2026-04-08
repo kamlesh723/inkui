@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Github, Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
+import { LogoFull } from '@/components/Logo';
 
 export default function SiteNav() {
   const { theme, setTheme } = useTheme();
@@ -41,17 +42,7 @@ export default function SiteNav() {
       >
         {/* Logo */}
         <Link href="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
-          <span
-            style={{
-              fontWeight: 700,
-              fontSize: '1.05rem',
-              letterSpacing: '-0.02em',
-              color: 'var(--text)',
-              fontFamily: 'var(--font-geist-mono, monospace)',
-            }}
-          >
-            Ink<span style={{ color: '#06B6D4' }}>UI</span>
-          </span>
+          <LogoFull size={26} />
         </Link>
 
         {/* Desktop nav links */}
