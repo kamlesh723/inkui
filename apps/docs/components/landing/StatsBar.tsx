@@ -1,7 +1,7 @@
 export default function StatsBar() {
   const stats = [
-    '8+ Components',
-    '10 npm packages',
+    '15+ Components',
+    '17 npm packages',
     'TypeScript',
     'Open Source',
   ];
