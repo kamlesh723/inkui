@@ -1,17 +1,14 @@
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { source } from '@/lib/source';
 import type { ReactNode } from 'react';
+import { LogoFull } from '@/components/Logo';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <DocsLayout
       tree={source.pageTree}
       nav={{
-        title: (
-          <span style={{ fontWeight: 700, letterSpacing: '-0.02em' }}>
-            Ink<span style={{ color: '#06B6D4' }}>UI</span>
-          </span>
-        ),
+        title: <LogoFull size={22} />,
         url: '/',
       }}
       sidebar={{

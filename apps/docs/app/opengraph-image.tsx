@@ -112,7 +112,7 @@ export default function OGImage() {
             gap: 16,
           }}
         >
-          {['8+ Components', 'TypeScript', 'MIT License'].map((label) => (
+          {['15+ Components', 'TypeScript', 'MIT License'].map((label) => (
             <div
               key={label}
               style={{

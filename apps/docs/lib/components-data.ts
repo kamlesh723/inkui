@@ -252,6 +252,172 @@ const columns = [
       `│                 Cancel  Confirm  │\n` +
       `╰──────────────────────────────────╯`,
   },
+  {
+    slug: 'toast',
+    name: 'Toast',
+    description:
+      'Auto-dismissing notification messages with success, warning, error, and info variants. Includes a useToast hook for managing a queue.',
+    props: [
+      { name: 'message',   type: 'string',                                         required: true,       description: 'Notification text' },
+      { name: 'variant',   type: "'success' | 'warning' | 'error' | 'info'",       default: "'info'",    description: 'Color and icon style' },
+      { name: 'duration',  type: 'number',                                         default: '3000',      description: 'ms before auto-dismiss. 0 = permanent' },
+      { name: 'onDismiss', type: '() => void',                                     default: 'undefined', description: 'Called when dismissed' },
+      { name: 'theme',     type: 'InkUITheme',                                     default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { useToast, ToastStack } from './components/ui/toast';
+
+export default function App() {
+  const { toasts, show, dismiss } = useToast();
+  return (
+    <>
+      <MyApp onAction={() => show('Deployed!', 'success')} />
+      <ToastStack toasts={toasts} onDismiss={dismiss} />
+    </>
+  );
+}`,
+    preview:
+      `✓ Deployed successfully!\n` +
+      `⚠ 3 deprecated packages\n` +
+      `✕ Connection refused`,
+  },
+
+  {
+    slug: 'status-indicator',
+    name: 'StatusIndicator',
+    description:
+      'Animated dot indicator for displaying service or connection health. Six status states with optional pulse animation.',
+    props: [
+      { name: 'status', type: "'online' | 'offline' | 'loading' | 'warning' | 'error' | 'idle'", required: true, description: 'Current status value' },
+      { name: 'label',  type: 'string',    required: true,       description: 'Description text shown next to the dot' },
+      { name: 'pulse',  type: 'boolean',   default: 'auto',      description: 'Animate the dot. Auto-enabled for loading status' },
+      { name: 'theme',  type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { StatusIndicator } from './components/ui/status-indicator';
+
+<StatusIndicator status="online"  label="API Gateway" />
+<StatusIndicator status="loading" label="Syncing database..." />
+<StatusIndicator status="error"   label="Redis connection failed" />
+<StatusIndicator status="offline" label="CDN node 3" />`,
+    preview:
+      `● API Gateway    online\n` +
+      `◌ Database       syncing\n` +
+      `○ CDN node       offline`,
+  },
+
+  {
+    slug: 'loading-bar',
+    name: 'LoadingBar',
+    description:
+      'Slim loading bar that supports both indeterminate (bouncing) and determinate (value-based) modes.',
+    props: [
+      { name: 'value', type: 'number',    default: 'undefined', description: '0–100. Omit for indeterminate bounce mode' },
+      { name: 'width', type: 'number',    default: 'auto',      description: 'Bar width in columns. Defaults to terminal width' },
+      { name: 'color', type: 'string',    default: 'theme primary', description: 'Bar fill color — hex or named color' },
+      { name: 'theme', type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { LoadingBar } from './components/ui/loading-bar';
+
+// Indeterminate — bouncing fill
+<LoadingBar />
+
+// Determinate
+<LoadingBar value={progress} />
+<LoadingBar value={65} width={40} color="#A855F7" />`,
+    preview:
+      `▓▓▓▓▓▓▓▓░░░░░░░░ 52%\n` +
+      `▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 100%`,
+  },
+
+  {
+    slug: 'confirm',
+    name: 'Confirm',
+    description:
+      'Simple y/N confirmation prompt. Supports a configurable default value and resolves to a static confirmation line after input.',
+    props: [
+      { name: 'message',      type: 'string',    required: true,       description: 'Question to display' },
+      { name: 'defaultValue', type: 'boolean',   default: 'false',     description: 'true = Y default, false = N default' },
+      { name: 'onConfirm',    type: '() => void', required: true,      description: 'Called when user confirms' },
+      { name: 'onCancel',     type: '() => void', default: 'undefined', description: 'Called when user cancels' },
+      { name: 'theme',        type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { Confirm } from './components/ui/confirm';
+
+<Confirm
+  message="Deploy to production?"
+  defaultValue={false}
+  onConfirm={deploy}
+  onCancel={() => setStep('cancelled')}
+/>`,
+    preview:
+      `? Deploy to production? (y/N) █`,
+  },
+
+  {
+    slug: 'key-hint',
+    name: 'KeyHint',
+    description:
+      'Displays a row of keyboard shortcut hints in [key] label format. Commonly placed at the bottom of interactive components.',
+    props: [
+      { name: 'keys',  type: '{ key: string; label: string }[]', required: true, description: 'Array of hint items' },
+      { name: 'theme', type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { KeyHint } from './components/ui/key-hint';
+
+<KeyHint keys={[
+  { key: '↑↓',    label: 'Navigate' },
+  { key: 'Enter', label: 'Select'   },
+  { key: 'Esc',   label: 'Cancel'   },
+]} />`,
+    preview:
+      `[↑↓] Navigate  [Enter] Select\n` +
+      `[Esc] Cancel`,
+  },
+
+  {
+    slug: 'divider',
+    name: 'Divider',
+    description:
+      'Full-width horizontal separator with four line styles and an optional centered title. Auto-sizes to terminal width.',
+    props: [
+      { name: 'title', type: 'string',   default: 'undefined',  description: 'Optional label displayed in the center of the line' },
+      { name: 'style', type: "'single' | 'double' | 'dashed' | 'bold'", default: "'single'", description: 'Line character style' },
+      { name: 'width', type: 'number',   default: 'auto',       description: 'Total width in columns' },
+      { name: 'theme', type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { Divider } from './components/ui/divider';
+
+<Divider />
+<Divider style="double" />
+<Divider style="dashed" />
+<Divider title="Configuration" />`,
+    preview:
+      `── Config ─────────────────\n` +
+      `══════════════════════════`,
+  },
+
+  {
+    slug: 'header',
+    name: 'Header',
+    description:
+      'Application header bar with title, optional version string and subtitle. Three visual styles: box, line, and filled.',
+    props: [
+      { name: 'title',    type: 'string',  required: true,       description: 'Application name' },
+      { name: 'version',  type: 'string',  default: 'undefined', description: 'Version string — displayed as v{version}' },
+      { name: 'subtitle', type: 'string',  default: 'undefined', description: 'Second line inside box or below line' },
+      { name: 'style',    type: "'box' | 'line' | 'filled'", default: "'box'", description: 'Visual style' },
+      { name: 'align',    type: "'left' | 'center'", default: "'left'", description: 'Title alignment' },
+      { name: 'theme',    type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { Header } from './components/ui/header';
+
+<Header title="MyApp" version="1.2.0" style="box" subtitle="Deploy tool" />
+<Header title="MyApp" version="1.2.0" style="line" />
+<Header title="MyApp" style="filled" />`,
+    preview:
+      `┌─── MyApp v1.0 ──────────┐\n` +
+      `│ Deploy tool             │\n` +
+      `└─────────────────────────┘`,
+  },
 ];
 
 export const COMPONENT_MAP = Object.fromEntries(

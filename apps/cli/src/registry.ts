@@ -48,6 +48,34 @@ export const REGISTRY: Record<string, RegistryEntry> = {
     description: 'Modal dialog — title, message, action buttons, Escape to dismiss',
     files: ['Dialog.tsx', 'index.ts'],
   },
+  toast: {
+    description: 'Auto-dismissing notifications — success / warning / error / info',
+    files: ['Toast.tsx', 'index.ts'],
+  },
+  'status-indicator': {
+    description: 'Animated dot indicator for service/connection health',
+    files: ['StatusIndicator.tsx', 'index.ts'],
+  },
+  'loading-bar': {
+    description: 'Slim loading bar — indeterminate bounce or determinate value',
+    files: ['LoadingBar.tsx', 'index.ts'],
+  },
+  confirm: {
+    description: 'y/N confirmation prompt with default value',
+    files: ['Confirm.tsx', 'index.ts'],
+  },
+  'key-hint': {
+    description: 'Row of [key] label keyboard shortcut hints',
+    files: ['KeyHint.tsx', 'index.ts'],
+  },
+  divider: {
+    description: 'Full-width separator — single, double, dashed, bold, optional title',
+    files: ['Divider.tsx', 'index.ts'],
+  },
+  header: {
+    description: 'App header bar — box, line, filled styles with title and subtitle',
+    files: ['Header.tsx', 'index.ts'],
+  },
 };
 
 /** Absolute path to the source directory for a component package. */
