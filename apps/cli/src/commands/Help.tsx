@@ -30,6 +30,9 @@ export const HelpCommand: React.FC = () => {
 
         <Text>  <Text color="cyan" bold>inkui playground</Text></Text>
         <Text dimColor>    Interactive component browser — Storybook for the terminal</Text>
+
+        <Text>  <Text color="cyan" bold>inkui theme</Text></Text>
+        <Text dimColor>    Visual theme builder — pick colors and export inkui.theme.ts</Text>
       </Box>
 
       <Box flexDirection="column">
