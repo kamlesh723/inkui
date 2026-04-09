@@ -14,7 +14,7 @@ export const HelpCommand: React.FC = () => {
     <Box flexDirection="column" gap={1}>
       <Box gap={2}>
         <Text bold>InkUI</Text>
-        <Badge variant="info" theme={darkTheme}>v0.1.0</Badge>
+        <Badge variant="info" theme={darkTheme}>v0.3.0</Badge>
       </Box>
 
       <Box flexDirection="column">

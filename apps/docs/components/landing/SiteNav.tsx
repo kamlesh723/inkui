@@ -71,7 +71,7 @@ export default function SiteNav() {
               display: 'flex',
             }}
           >
-            v0.1.1
+            v0.3.0
           </span>
 
           {/* GitHub */}
@@ -177,7 +177,7 @@ export default function SiteNav() {
                 fontFamily: 'var(--font-geist-mono, monospace)',
               }}
             >
-              v0.1.1
+              v0.3.0
             </span>
           </div>
         </div>
