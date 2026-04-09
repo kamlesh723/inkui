@@ -23,21 +23,63 @@ importers:
       '@inkui-cli/badge':
         specifier: workspace:*
         version: link:../../packages/badge
+      '@inkui-cli/confirm':
+        specifier: workspace:*
+        version: link:../../packages/confirm
       '@inkui-cli/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@inkui-cli/dialog':
+        specifier: workspace:*
+        version: link:../../packages/dialog
+      '@inkui-cli/divider':
+        specifier: workspace:*
+        version: link:../../packages/divider
+      '@inkui-cli/header':
+        specifier: workspace:*
+        version: link:../../packages/header
+      '@inkui-cli/key-hint':
+        specifier: workspace:*
+        version: link:../../packages/key-hint
+      '@inkui-cli/loading-bar':
+        specifier: workspace:*
+        version: link:../../packages/loading-bar
+      '@inkui-cli/multi-select':
+        specifier: workspace:*
+        version: link:../../packages/multi-select
+      '@inkui-cli/panel':
+        specifier: workspace:*
+        version: link:../../packages/panel
+      '@inkui-cli/progress-bar':
+        specifier: workspace:*
+        version: link:../../packages/progress-bar
+      '@inkui-cli/select':
+        specifier: workspace:*
+        version: link:../../packages/select
       '@inkui-cli/spinner':
         specifier: workspace:*
         version: link:../../packages/spinner
+      '@inkui-cli/status-indicator':
+        specifier: workspace:*
+        version: link:../../packages/status-indicator
       '@inkui-cli/table':
         specifier: workspace:*
         version: link:../../packages/table
+      '@inkui-cli/text-input':
+        specifier: workspace:*
+        version: link:../../packages/text-input
+      '@inkui-cli/toast':
+        specifier: workspace:*
+        version: link:../../packages/toast
       ink:
         specifier: ^6.0.0
         version: 6.8.0(@types/react@19.2.14)(react@19.2.4)
       react:
         specifier: ^19.0.0
         version: 19.2.4
+      string-width:
+        specifier: ^7.0.0
+        version: 7.2.0
     devDependencies:
       '@types/react':
         specifier: ^19.0.0
@@ -456,6 +498,43 @@ importers:
         specifier: workspace:*
         version: link:../core
     devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      ink:
+        specifier: ^6.0.0
+        version: 6.8.0(@types/react@19.2.14)(react@19.2.4)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.8)(tsx@4.21.0)(typescript@5.9.3)
+      tsx:
+        specifier: ^4.0.0
+        version: 4.21.0
+      typescript:
+        specifier: ^5.4.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.0.0
+        version: 2.1.9(@types/node@20.19.39)(lightningcss@1.32.0)
+
+  packages/panel:
+    dependencies:
+      '@inkui-cli/core':
+        specifier: workspace:*
+        version: link:../core
+      string-width:
+        specifier: ^7.0.0
+        version: 7.2.0
+    devDependencies:
+      '@inkui-cli/badge':
+        specifier: workspace:*
+        version: link:../badge
+      '@inkui-cli/spinner':
+        specifier: workspace:*
+        version: link:../spinner
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
