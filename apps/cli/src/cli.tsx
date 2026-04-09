@@ -1,8 +1,9 @@
 import React from 'react';
 import { render } from 'ink';
-import { ListCommand }  from './commands/List.js';
-import { AddCommand }   from './commands/Add.js';
-import { HelpCommand }  from './commands/Help.js';
+import { ListCommand }       from './commands/List.js';
+import { AddCommand }        from './commands/Add.js';
+import { HelpCommand }       from './commands/Help.js';
+import { PlaygroundCommand } from './commands/Playground.js';
 
 const args    = process.argv.slice(2);
 const command = args[0];
@@ -19,6 +20,10 @@ switch (command) {
       process.exit(1);
     }
     render(<AddCommand target={target} />);
+    break;
+
+  case 'playground':
+    render(<PlaygroundCommand />);
     break;
 
   default:

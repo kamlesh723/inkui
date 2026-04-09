@@ -27,6 +27,9 @@ export const HelpCommand: React.FC = () => {
 
         <Text>  <Text color="cyan" bold>inkui add --all</Text></Text>
         <Text dimColor>    Copy all components</Text>
+
+        <Text>  <Text color="cyan" bold>inkui playground</Text></Text>
+        <Text dimColor>    Interactive component browser — Storybook for the terminal</Text>
       </Box>
 
       <Box flexDirection="column">
@@ -34,6 +37,7 @@ export const HelpCommand: React.FC = () => {
         <Text dimColor>  npx inkui add spinner</Text>
         <Text dimColor>  npx inkui add table</Text>
         <Text dimColor>  npx inkui add --all</Text>
+        <Text dimColor>  npx inkui playground</Text>
       </Box>
     </Box>
   );
