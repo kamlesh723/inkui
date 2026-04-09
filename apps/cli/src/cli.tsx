@@ -4,6 +4,7 @@ import { ListCommand }       from './commands/List.js';
 import { AddCommand }        from './commands/Add.js';
 import { HelpCommand }       from './commands/Help.js';
 import { PlaygroundCommand } from './commands/Playground.js';
+import { ThemeCommand }      from './commands/Theme.js';
 
 const args    = process.argv.slice(2);
 const command = args[0];
@@ -24,6 +25,10 @@ switch (command) {
 
   case 'playground':
     render(<PlaygroundCommand />);
+    break;
+
+  case 'theme':
+    render(<ThemeCommand />);
     break;
 
   default:

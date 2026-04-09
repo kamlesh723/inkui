@@ -1,5 +1,11 @@
 # @inkui-cli/cli
 
+## 0.3.0
+
+### Minor Changes
+
+- Add `npx inkui theme` — interactive visual theme builder with live preview, color cycling, and inkui.theme.ts export
+
 ## 0.2.0
 
 ### Minor Changes
