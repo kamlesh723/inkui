@@ -1,70 +1,58 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type Line =
   | { type: 'cmd'; text: string }
   | { type: 'success'; text: string }
-  | { type: 'spinner' }
   | { type: 'table' }
   | { type: 'blank' };
 
+const CMD = 'npx inkui add table';
+
 const SEQUENCE: Line[] = [
-  { type: 'cmd', text: 'npx inkui add spinner table select' },
-  { type: 'success', text: '✔ Added spinner' },
+  { type: 'cmd', text: CMD },
   { type: 'success', text: '✔ Added table' },
-  { type: 'success', text: '✔ Added select' },
-  { type: 'blank' },
-  { type: 'spinner' },
   { type: 'blank' },
   { type: 'table' },
 ];
 
-const CHAR_DELAY = 50;
-const LINE_DELAY = 350;
-const LOOP_PAUSE = 3000;
+const CHAR_DELAY = 55;
+const LINE_DELAY = 380;
+const LOOP_PAUSE = 3200;
+
+// Table border strings — exact character widths: col1=14, col2=5, col3=10
+const T_TOP = '┌──────────────┬─────┬──────────┐';
+const T_MID = '├──────────────┼─────┼──────────┤';
+const T_BOT = '└──────────────┴─────┴──────────┘';
 
 export default function TerminalHero() {
   const [visibleLines, setVisibleLines] = useState<Line[]>([]);
   const [cmdText, setCmdText] = useState('');
-  const [spinnerFrame, setSpinnerFrame] = useState(0);
-  const mountedRef = useRef(true);
-
-  const spinnerFrames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    let spinnerInterval: ReturnType<typeof setInterval> | null = null;
-
-    spinnerInterval = setInterval(() => {
-      setSpinnerFrame((f) => (f + 1) % spinnerFrames.length);
-    }, 100);
-
-    return () => {
-      if (spinnerInterval) clearInterval(spinnerInterval);
-    };
-  }, []);
-
-  useEffect(() => {
-    mountedRef.current = true;
+    // Use a local flag per effect invocation — prevents StrictMode double-run
+    let active = true;
 
     async function runSequence() {
-      while (mountedRef.current) {
+      while (active) {
         setVisibleLines([]);
         setCmdText('');
+        setDone(false);
 
-        // Type out command
-        const cmdLine = SEQUENCE[0] as { type: 'cmd'; text: string };
-        for (let i = 0; i <= cmdLine.text.length; i++) {
-          if (!mountedRef.current) return;
-          setCmdText(cmdLine.text.slice(0, i));
+        for (let i = 0; i <= CMD.length; i++) {
+          if (!active) return;
+          setCmdText(CMD.slice(0, i));
           await sleep(CHAR_DELAY);
         }
+        if (!active) return;
+        setDone(true);
 
-        // Show rest of lines
         for (let i = 1; i < SEQUENCE.length; i++) {
-          if (!mountedRef.current) return;
+          if (!active) return;
           await sleep(LINE_DELAY);
-          setVisibleLines((prev) => [...prev, SEQUENCE[i]]);
+          setVisibleLines((prev) => [...prev, SEQUENCE[i]!]);
         }
 
         await sleep(LOOP_PAUSE);
@@ -72,9 +60,7 @@ export default function TerminalHero() {
     }
 
     runSequence();
-    return () => {
-      mountedRef.current = false;
-    };
+    return () => { active = false; };
   }, []);
 
   return (
@@ -87,35 +73,24 @@ export default function TerminalHero() {
         <span className="terminal-path" style={{ marginLeft: 8 }}>~/my-cli</span>
       </div>
 
-      {/* Terminal body */}
-      <div style={{ padding: '16px 20px', minHeight: 240 }}>
-        {/* Command line */}
+      {/* Body — left-aligned so table chars line up */}
+      <div style={{ padding: '18px 22px', minHeight: 210, textAlign: 'left' }}>
+        {/* Prompt + typed command */}
         <div style={{ marginBottom: 4 }}>
-          <span style={{ color: '#71717A' }}>$ </span>
+          <span style={{ color: '#5E7A96', marginRight: 6 }}>$</span>
           <span style={{ color: '#06B6D4' }}>{cmdText}</span>
-          {cmdText.length < 'npx inkui add spinner table select'.length && (
-            <span className="cursor-blink" style={{ color: '#06B6D4' }}>█</span>
+          {!done && (
+            <span className="cursor-blink" style={{ color: '#06B6D4', marginLeft: 1 }}>▋</span>
           )}
         </div>
 
-        {/* Animated lines */}
         {visibleLines.map((line, i) => {
-          if (line.type === 'blank') {
-            return <div key={i} style={{ height: 8 }} />;
-          }
+          if (line.type === 'blank') return <div key={i} style={{ height: 6 }} />;
 
           if (line.type === 'success') {
             return (
-              <div key={i} style={{ color: '#22C55E', marginBottom: 2 }}>
+              <div key={i} style={{ color: '#22C55E', fontSize: '0.8rem', marginBottom: 2 }}>
                 {line.text}
-              </div>
-            );
-          }
-
-          if (line.type === 'spinner') {
-            return (
-              <div key={i} style={{ color: '#06B6D4', marginBottom: 2 }}>
-                {spinnerFrames[spinnerFrame]} Loading data...
               </div>
             );
           }
@@ -125,18 +100,39 @@ export default function TerminalHero() {
               <div
                 key={i}
                 style={{
-                  color: '#A1A1AA',
                   fontFamily: 'var(--font-geist-mono, monospace)',
-                  fontSize: '0.78rem',
-                  lineHeight: 1.5,
+                  fontSize: '0.8rem',
+                  lineHeight: 1.55,
+                  whiteSpace: 'pre',
                 }}
               >
-                <div>┌──────────────┬─────────┬─────────┐</div>
-                <div>│ <span style={{ color: '#FAFAFA' }}>Name        </span> │ <span style={{ color: '#FAFAFA' }}>Status  </span> │ <span style={{ color: '#FAFAFA' }}>Score   </span> │</div>
-                <div>├──────────────┼─────────┼─────────┤</div>
-                <div>│ Kamlesh      │ <span style={{ color: '#22C55E' }}>Active  </span> │ 98/100  │</div>
-                <div>│ Priya        │ <span style={{ color: '#22C55E' }}>Active  </span> │ 87/100  │</div>
-                <div>└──────────────┴─────────┴─────────┘</div>
+                <div style={{ color: '#06B6D4' }}>{T_TOP}</div>
+                <div>
+                  <span style={{ color: '#06B6D4' }}>│</span>
+                  <span style={{ color: '#FAFAFA', fontWeight: 600 }}>{' Name         '}</span>
+                  <span style={{ color: '#06B6D4' }}>│</span>
+                  <span style={{ color: '#FAFAFA', fontWeight: 600 }}>{' ID  '}</span>
+                  <span style={{ color: '#06B6D4' }}>│</span>
+                  <span style={{ color: '#FAFAFA', fontWeight: 600 }}>{' Status   '}</span>
+                  <span style={{ color: '#06B6D4' }}>│</span>
+                </div>
+                <div style={{ color: '#06B6D4' }}>{T_MID}</div>
+                {[
+                  { name: 'Ink          ', id: '1   ', status: 'Active   ' },
+                  { name: 'Node.js      ', id: '2   ', status: 'Active   ' },
+                  { name: 'React        ', id: '3   ', status: 'Active   ' },
+                ].map((row, ri) => (
+                  <div key={ri}>
+                    <span style={{ color: '#06B6D4' }}>│</span>
+                    <span style={{ color: '#E2E8F0' }}>{' ' + row.name}</span>
+                    <span style={{ color: '#06B6D4' }}>│</span>
+                    <span style={{ color: '#E2E8F0' }}>{' ' + row.id}</span>
+                    <span style={{ color: '#06B6D4' }}>│</span>
+                    <span style={{ color: '#22C55E' }}>{' ' + row.status}</span>
+                    <span style={{ color: '#06B6D4' }}>│</span>
+                  </div>
+                ))}
+                <div style={{ color: '#06B6D4' }}>{T_BOT}</div>
               </div>
             );
           }

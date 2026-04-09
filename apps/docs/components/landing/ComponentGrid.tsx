@@ -126,7 +126,7 @@ function ComponentCard({ slug, name, desc, preview, previewColor, pkg }: (typeof
 
 export default function ComponentGrid() {
   return (
-    <section style={{ padding: '96px 24px', background: 'var(--bg-alt)' }}>
+    <section id="components" style={{ padding: '96px 24px', background: 'var(--bg-alt)' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
