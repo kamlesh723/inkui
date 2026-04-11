@@ -391,7 +391,7 @@ function KeyHintPreview() {
 
 function DividerPreview() {
   return (
-    <div style={{ fontFamily: 'var(--font-geist-mono, monospace)', fontSize: '0.82rem', width: '100%' }}>
+    <div style={{ fontFamily: 'var(--font-geist-mono, monospace)', fontSize: '0.82rem', width: '100%', overflow: 'hidden' }}>
       <div style={{ marginBottom: 12, color: '#5E7A96', fontSize: '0.72rem' }}>Divider · separator styles</div>
       {[
         { chars: '─', label: 'default',  color: '#2D4460' },
@@ -399,9 +399,9 @@ function DividerPreview() {
         { chars: '━', label: 'bold',     color: '#06B6D4' },
         { chars: '┄', label: 'dashed',   color: '#2D4460' },
       ].map(({ chars, label, color }) => (
-        <div key={label} style={{ marginBottom: 10 }}>
-          <span style={{ color: '#5E7A96', fontSize: '0.7rem', marginRight: 8 }}>{label}</span>
-          <span style={{ color }}>{chars.repeat(22)}</span>
+        <div key={label} style={{ marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8, overflow: 'hidden' }}>
+          <span style={{ color: '#5E7A96', fontSize: '0.7rem', flexShrink: 0, minWidth: 48 }}>{label}</span>
+          <span style={{ color, overflow: 'hidden', textOverflow: 'clip', whiteSpace: 'nowrap', flex: 1 }}>{chars.repeat(30)}</span>
         </div>
       ))}
     </div>
@@ -415,14 +415,14 @@ function HeaderPreview() {
       <div style={{ marginBottom: 10, background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.2)', padding: '5px 12px', borderRadius: 4, color: '#06B6D4' }}>
         ◆ MyApp <span style={{ color: '#3D5068' }}>v2.1.0</span>
       </div>
-      <div style={{ color: '#2D4460', marginBottom: 10 }}>
-        {'═'.repeat(36)}
+      <div style={{ color: '#2D4460', marginBottom: 10, overflow: 'hidden', whiteSpace: 'nowrap' }}>
+        {'═'.repeat(28)}
       </div>
-      <div style={{ color: '#5E7A96', marginBottom: 2 }}>{'┌' + '─'.repeat(34) + '┐'}</div>
-      <div style={{ color: '#5E7A96' }}>
-        {'│'}<span style={{ color: '#E2E8F0' }}> Deploy Dashboard{'  '.repeat(5)}</span>{'│'}
+      <div style={{ color: '#5E7A96', marginBottom: 2, overflow: 'hidden', whiteSpace: 'nowrap' }}>{'┌' + '─'.repeat(26) + '┐'}</div>
+      <div style={{ color: '#5E7A96', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+        {'│'}<span style={{ color: '#E2E8F0' }}> Deploy Dashboard          </span>{'│'}
       </div>
-      <div style={{ color: '#5E7A96' }}>{'└' + '─'.repeat(34) + '┘'}</div>
+      <div style={{ color: '#5E7A96', overflow: 'hidden', whiteSpace: 'nowrap' }}>{'└' + '─'.repeat(26) + '┘'}</div>
     </div>
   );
 }
@@ -506,6 +506,8 @@ export default function ComponentPreview({ id }: { id: string }) {
         overflow: 'hidden',
         background: '#060F1C',
         boxShadow: '0 0 0 1px rgba(6,182,212,0.06), 0 8px 32px rgba(0,0,0,0.4)',
+        maxWidth: '100%',
+        boxSizing: 'border-box' as const,
       }}
     >
       {/* Titlebar */}
@@ -554,10 +556,13 @@ export default function ComponentPreview({ id }: { id: string }) {
       {/* Preview area */}
       <div
         style={{
-          padding: '28px 24px',
+          padding: '24px 20px',
           minHeight: 120,
           display: 'flex',
           alignItems: 'center',
+          overflow: 'hidden',
+          maxWidth: '100%',
+          boxSizing: 'border-box',
         }}
       >
         <PreviewComp key={id} />

@@ -3,9 +3,9 @@
 import { useEffect, useRef } from 'react';
 
 export default function CursorGlow() {
-  const outerRef = useRef<HTMLDivElement>(null);
-  const dotRef   = useRef<HTMLDivElement>(null);
-  const posRef   = useRef({ x: -600, y: -600 });
+  const outerRef  = useRef<HTMLDivElement>(null);
+  const dotRef    = useRef<HTMLDivElement>(null);
+  const posRef    = useRef({ x: -600, y: -600 });
   const targetRef = useRef({ x: -600, y: -600 });
 
   useEffect(() => {
@@ -17,17 +17,16 @@ export default function CursorGlow() {
     window.addEventListener('mousemove', onMove);
 
     const tick = () => {
-      posRef.current.x += (targetRef.current.x - posRef.current.x) * 0.10;
-      posRef.current.y += (targetRef.current.y - posRef.current.y) * 0.10;
+      posRef.current.x += (targetRef.current.x - posRef.current.x) * 0.09;
+      posRef.current.y += (targetRef.current.y - posRef.current.y) * 0.09;
 
       if (outerRef.current) {
         outerRef.current.style.transform =
-          `translate(${posRef.current.x - 280}px, ${posRef.current.y - 280}px)`;
+          `translate(${posRef.current.x - 200}px, ${posRef.current.y - 200}px)`;
       }
-      // dot follows cursor exactly (no lag)
       if (dotRef.current) {
         dotRef.current.style.transform =
-          `translate(${targetRef.current.x - 3}px, ${targetRef.current.y - 3}px)`;
+          `translate(${targetRef.current.x - 2}px, ${targetRef.current.y - 2}px)`;
       }
       rafId = requestAnimationFrame(tick);
     };
@@ -41,7 +40,7 @@ export default function CursorGlow() {
 
   return (
     <>
-      {/* Outer glow — lagged, larger */}
+      {/* Outer glow — soft, barely-there, lagged */}
       <div
         ref={outerRef}
         aria-hidden
@@ -49,17 +48,17 @@ export default function CursorGlow() {
           position: 'fixed',
           top: 0,
           left: 0,
-          width: 560,
-          height: 560,
+          width: 400,
+          height: 400,
           borderRadius: '50%',
           background:
-            'radial-gradient(circle, rgba(6,182,212,0.13) 0%, rgba(124,58,237,0.07) 38%, transparent 65%)',
+            'radial-gradient(circle, rgba(6,182,212,0.055) 0%, rgba(124,58,237,0.025) 45%, transparent 70%)',
           pointerEvents: 'none',
           zIndex: 9997,
           willChange: 'transform',
         }}
       />
-      {/* Sharp center dot — exact cursor position */}
+      {/* Center dot — small, subtle glow */}
       <div
         ref={dotRef}
         aria-hidden
@@ -67,11 +66,11 @@ export default function CursorGlow() {
           position: 'fixed',
           top: 0,
           left: 0,
-          width: 6,
-          height: 6,
+          width: 4,
+          height: 4,
           borderRadius: '50%',
-          background: 'rgba(6,182,212,0.85)',
-          boxShadow: '0 0 8px rgba(6,182,212,0.9), 0 0 20px rgba(6,182,212,0.4)',
+          background: 'rgba(6,182,212,0.6)',
+          boxShadow: '0 0 6px rgba(6,182,212,0.5)',
           pointerEvents: 'none',
           zIndex: 9998,
           willChange: 'transform',

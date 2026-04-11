@@ -18,19 +18,20 @@ export default function SiteNav() {
         background: 'var(--nav-bg)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        overflow: 'hidden', // prevents any child from bleeding outside
       }}
     >
       <div
         style={{
           maxWidth: 1100,
           margin: '0 auto',
-          padding: '0 20px',
+          padding: '0 16px',
           height: 56,
           display: 'flex',
           alignItems: 'center',
-          gap: 28,
+          gap: 16,
           minWidth: 0,
+          width: '100%',
+          boxSizing: 'border-box',
         }}
       >
         {/* Logo — never shrinks */}
@@ -48,23 +49,24 @@ export default function SiteNav() {
         </nav>
 
         {/* Right side */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginLeft: 'auto', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto', flexShrink: 0 }}>
 
           {/* Version badge — desktop only */}
           <span className="desktop-nav version-badge">
             v0.3.0
           </span>
 
-          {/* GitHub — desktop only */}
+          {/* GitHub — icon always visible, text desktop-only */}
           <a
             href="https://github.com/kamlesh723/inkui"
             target="_blank"
             rel="noopener noreferrer"
-            className="nav-link desktop-nav"
-            style={{ display: 'flex', alignItems: 'center', gap: 5 }}
+            className="nav-link"
+            style={{ display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0 }}
+            aria-label="GitHub"
           >
-            <Github size={15} />
-            <span>GitHub</span>
+            <Github size={16} />
+            <span className="desktop-nav" style={{ display: 'none' }}>GitHub</span>
           </a>
 
           {/* Mobile menu toggle */}
