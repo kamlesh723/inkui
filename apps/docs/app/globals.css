@@ -52,8 +52,30 @@
   --accent:          #06B6D4;
 }
 
-/* ── Fumadocs CSS variable overrides — dark ────────────────────── */
+/* ── Fumadocs CSS variable overrides ───────────────────────────── */
+/* This site is dark-only. We force --fd-* vars in :root so that even
+   if next-themes hasn't injected .dark before first paint on mobile
+   (causing near-black text on dark bg), the UI is always readable.  */
 :root {
+  /* Fumadocs fd-* dark theme — forced unconditionally */
+  --fd-background:           0 0% 8.04%;
+  --fd-foreground:           0 0% 92%;
+  --fd-muted:                0 0% 12.9%;
+  --fd-muted-foreground:     0 0% 60.9%;
+  --fd-popover:              0 0% 9.8%;
+  --fd-popover-foreground:   0 0% 88%;
+  --fd-card:                 0 0% 9.8%;
+  --fd-card-foreground:      0 0% 98%;
+  --fd-border:               0 0% 14%;
+  --fd-primary:              0 0% 98%;
+  --fd-primary-foreground:   0 0% 9%;
+  --fd-secondary:            0 0% 12.9%;
+  --fd-secondary-foreground: 0 0% 98%;
+  --fd-accent:               0 0% 16.9%;
+  --fd-accent-foreground:    0 0% 90%;
+  --fd-ring:                 0 0% 14.9%;
+
+  /* Shadcn/Tailwind vars (also used by fumadocs internally) */
   --background:        220 30% 5%;
   --foreground:        0 0% 98%;
   --card:              220 25% 7%;
@@ -314,6 +336,13 @@ code, pre, kbd, samp {
   overflow-x: auto;
   font-size: 0.78rem;
   line-height: 1.7;
+}
+
+/* Force shiki to always use dark syntax colors (site is dark-only).
+   Without this, on mobile where .dark class may not apply before paint,
+   code spans inherit the light-theme --shiki-light color (near black). */
+.shiki code span {
+  color: var(--shiki-dark) !important;
 }
 
 /* ── Hide Fumadocs built-in theme toggle (dark-only site) ───────── */
