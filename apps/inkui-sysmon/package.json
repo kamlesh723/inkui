@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "tsx src/cli.tsx",
-    "build": "tsup src/cli.tsx --format esm --outDir dist --banner.js '#!/usr/bin/env node'",
+    "build": "tsup",
     "start": "node dist/cli.js"
   },
   "dependencies": {

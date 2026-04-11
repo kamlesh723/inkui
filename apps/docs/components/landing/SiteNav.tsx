@@ -46,6 +46,7 @@ export default function SiteNav() {
         >
           <Link href="/docs/getting-started/introduction" className="nav-link" style={{ lineHeight: 1 }}>Docs</Link>
           <Link href="/docs/components/spinner" className="nav-link" style={{ lineHeight: 1 }}>Components</Link>
+          <Link href="/changelog" className="nav-link" style={{ lineHeight: 1 }}>Changelog</Link>
         </nav>
 
         {/* Right side */}
@@ -117,6 +118,14 @@ export default function SiteNav() {
             style={{ fontSize: '0.9rem' }}
           >
             Components
+          </Link>
+          <Link
+            href="/changelog"
+            className="nav-link"
+            onClick={() => setMenuOpen(false)}
+            style={{ fontSize: '0.9rem' }}
+          >
+            Changelog
           </Link>
           <a
             href="https://github.com/kamlesh723/inkui"

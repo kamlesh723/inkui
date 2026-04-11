@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Github } from 'lucide-react';
+import { Github, Twitter, Linkedin } from 'lucide-react';
 import { LogoFull } from '@/components/Logo';
 
 export default function SiteFooter() {
@@ -29,7 +29,37 @@ export default function SiteFooter() {
           <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.7, marginBottom: 6 }}>
             Beautiful UI components for the terminal.
           </p>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Built by Kamlesh Yadav</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+            Built by{' '}
+            <a
+              href="https://github.com/kamlesh723"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              Kamlesh Yadav
+            </a>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <a
+                href="https://x.com/kamlesh_builds"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link"
+                aria-label="X (Twitter)"
+              >
+                <Twitter size={13} />
+              </a>
+              <a
+                href="https://linkedin.com/in/kamleshYadav91"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={13} />
+              </a>
+            </span>
+          </p>
         </div>
 
         {/* Links */}
@@ -40,9 +70,9 @@ export default function SiteFooter() {
           <nav style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <Link href="/docs/getting-started/introduction" className="footer-link">Docs</Link>
             <Link href="/docs/components/spinner" className="footer-link">Components</Link>
-            <a href="https://github.com/kamlesh723/inkui/releases" target="_blank" rel="noopener noreferrer" className="footer-link">
+            <Link href="/changelog" className="footer-link">
               Changelog
-            </a>
+            </Link>
             <a href="https://www.npmjs.com/org/inkui-cli" target="_blank" rel="noopener noreferrer" className="footer-link">
               npm
             </a>

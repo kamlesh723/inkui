@@ -584,6 +584,12 @@ pnpm install
 # Build all packages
 pnpm build
 
+# Run all tests
+pnpm test
+
+# Run tests for a single package
+cd packages/spinner && pnpm test
+
 # Run a component demo
 cd packages/spinner && pnpm demo
 

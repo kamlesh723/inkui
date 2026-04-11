@@ -165,12 +165,42 @@ render(<Name> />);
 setTimeout(() => process.exit(0), 3000);
 ```
 
-### 6. Install and build
+### 6. Write tests
+
+Create `packages/<name>/src/<Name>.test.tsx`:
+
+```tsx
+import { describe, it, expect } from 'vitest';
+import React from 'react';
+import { render } from 'ink-testing-library';
+import { <Name> } from './<Name>.js';
+
+describe('<Name>', () => {
+  it('renders without crashing', () => {
+    const { lastFrame } = render(<<Name> /* required props */ />);
+    expect(lastFrame()).toBeTruthy();
+    expect(lastFrame()!.length).toBeGreaterThan(0);
+  });
+
+  it('renders expected static output', () => {
+    const { lastFrame } = render(<<Name> label="hello" />);
+    expect(lastFrame()).toContain('hello');
+  });
+});
+```
+
+Rules:
+- Static render only — do not test animations, timers, or keyboard events
+- Wrap any raw string children in `<Text>` from `ink` (Ink requirement)
+- Use `ink-testing-library`'s `render()` — it is already installed at the root
+
+### 7. Install and build
 
 ```bash
 pnpm install   # from repo root — links workspace deps
 cd packages/<name>
 pnpm build
+pnpm test      # vitest run — must pass
 tsx example/demo.tsx   # verify it works visually
 ```
 
@@ -189,7 +219,8 @@ Every component must pass this before a PR is merged:
 - [ ] Props interface is exported from `src/index.ts`
 - [ ] `example/demo.tsx` runs cleanly with `tsx example/demo.tsx`
 - [ ] Demo exits automatically (use `setTimeout(() => process.exit(0), 3000)`)
-- [ ] Tests exist in `src/<Name>.test.tsx`
+- [ ] Tests exist in `src/<Name>.test.tsx` and `pnpm test` passes inside the package
+- [ ] Tests use `ink-testing-library` — static render only, no timers or keyboard events
 - [ ] `pnpm build` passes without errors or type errors
 
 ---
