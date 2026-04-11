@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Hero from '@/components/landing/Hero';
 import StatsBar from '@/components/landing/StatsBar';
-import ComponentGrid from '@/components/landing/ComponentGrid';
+import ComponentShowcase from '@/components/landing/ComponentShowcase';
 import FeaturesGrid from '@/components/landing/FeaturesGrid';
 import CodeExample from '@/components/landing/CodeExample';
 import InstallBanner from '@/components/landing/InstallBanner';
@@ -18,7 +18,7 @@ export default function HomePage() {
       <SiteNav />
       <Hero />
       <StatsBar />
-      <ComponentGrid />
+      <ComponentShowcase />
       <FeaturesGrid />
       <CodeExample />
       <InstallBanner />

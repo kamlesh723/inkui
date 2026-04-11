@@ -1,20 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { Github, Sun, Moon, Menu, X } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import { useState, useEffect } from 'react';
+import { Github, Menu, X } from 'lucide-react';
+import { useState } from 'react';
 import { LogoFull } from '@/components/Logo';
 
 export default function SiteNav() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // Avoid hydration mismatch — only render theme icon after mount
-  useEffect(() => setMounted(true), []);
-
-  const isDark = theme === 'dark';
 
   return (
     <header
@@ -26,21 +18,22 @@ export default function SiteNav() {
         background: 'var(--nav-bg)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        transition: 'background 0.2s ease, border-color 0.2s ease',
+        overflow: 'hidden', // prevents any child from bleeding outside
       }}
     >
       <div
         style={{
-          maxWidth: 1200,
+          maxWidth: 1100,
           margin: '0 auto',
-          padding: '0 24px',
+          padding: '0 20px',
           height: 56,
           display: 'flex',
           alignItems: 'center',
-          gap: 32,
+          gap: 28,
+          minWidth: 0,
         }}
       >
-        {/* Logo */}
+        {/* Logo — never shrinks */}
         <Link href="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
           <LogoFull size={26} />
         </Link>
@@ -55,58 +48,24 @@ export default function SiteNav() {
         </nav>
 
         {/* Right side */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginLeft: 'auto' }}>
-          {/* Version badge */}
-          <span
-            className="desktop-nav"
-            style={{
-              fontSize: '0.7rem',
-              background: 'rgba(6, 182, 212, 0.08)',
-              color: '#06B6D4',
-              border: '1px solid rgba(6, 182, 212, 0.25)',
-              padding: '2px 10px',
-              borderRadius: 20,
-              fontWeight: 600,
-              fontFamily: 'var(--font-geist-mono, monospace)',
-              display: 'flex',
-            }}
-          >
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginLeft: 'auto', flexShrink: 0 }}>
+
+          {/* Version badge — desktop only */}
+          <span className="desktop-nav version-badge">
             v0.3.0
           </span>
 
-          {/* GitHub */}
+          {/* GitHub — desktop only */}
           <a
             href="https://github.com/kamlesh723/inkui"
             target="_blank"
             rel="noopener noreferrer"
             className="nav-link desktop-nav"
-            style={{ display: 'flex', alignItems: 'center', gap: 6 }}
+            style={{ display: 'flex', alignItems: 'center', gap: 5 }}
           >
             <Github size={15} />
             <span>GitHub</span>
           </a>
-
-          {/* Theme toggle */}
-          {mounted && (
-            <button
-              onClick={() => setTheme(isDark ? 'light' : 'dark')}
-              aria-label="Toggle theme"
-              style={{
-                background: 'none',
-                border: '1px solid var(--border)',
-                borderRadius: 6,
-                padding: '5px',
-                cursor: 'pointer',
-                color: 'var(--text-secondary)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'border-color 0.15s, color 0.15s',
-              }}
-            >
-              {isDark ? <Sun size={15} /> : <Moon size={15} />}
-            </button>
-          )}
 
           {/* Mobile menu toggle */}
           <button
@@ -129,13 +88,13 @@ export default function SiteNav() {
         </div>
       </div>
 
-      {/* Mobile dropdown menu */}
+      {/* Mobile dropdown */}
       {menuOpen && (
         <div
           style={{
             borderTop: '1px solid var(--border)',
             background: 'var(--bg)',
-            padding: '16px 24px',
+            padding: '16px 20px',
             display: 'flex',
             flexDirection: 'column',
             gap: 16,
@@ -145,6 +104,7 @@ export default function SiteNav() {
             href="/docs/getting-started/introduction"
             className="nav-link"
             onClick={() => setMenuOpen(false)}
+            style={{ fontSize: '0.9rem' }}
           >
             Docs
           </Link>
@@ -152,6 +112,7 @@ export default function SiteNav() {
             href="/docs/components/spinner"
             className="nav-link"
             onClick={() => setMenuOpen(false)}
+            style={{ fontSize: '0.9rem' }}
           >
             Components
           </Link>
@@ -160,25 +121,12 @@ export default function SiteNav() {
             target="_blank"
             rel="noopener noreferrer"
             className="nav-link"
-            style={{ display: 'flex', alignItems: 'center', gap: 6 }}
+            style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.9rem' }}
           >
             <Github size={14} /> GitHub
           </a>
-          <div style={{ borderTop: '1px solid var(--border)', paddingTop: 12 }}>
-            <span
-              style={{
-                fontSize: '0.7rem',
-                background: 'rgba(6, 182, 212, 0.08)',
-                color: '#06B6D4',
-                border: '1px solid rgba(6, 182, 212, 0.25)',
-                padding: '3px 10px',
-                borderRadius: 20,
-                fontWeight: 600,
-                fontFamily: 'var(--font-geist-mono, monospace)',
-              }}
-            >
-              v0.3.0
-            </span>
+          <div style={{ paddingTop: 4 }}>
+            <span className="version-badge">v0.3.0</span>
           </div>
         </div>
       )}

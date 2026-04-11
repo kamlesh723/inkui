@@ -30,7 +30,7 @@ export default async function CodeExample() {
         background: 'var(--bg-alt)',
       }}
     >
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+      <div style={{ maxWidth: 1040, margin: '0 auto' }}>
         <h2
           style={{
             textAlign: 'center',

@@ -13,7 +13,7 @@ export default function SiteFooter() {
     >
       <div
         style={{
-          maxWidth: 1100,
+          maxWidth: 1040,
           margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',

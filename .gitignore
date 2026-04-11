@@ -3,7 +3,7 @@ dist
 .turbo
 .DS_Store
 *.js.map
-
+venv
 # Next.js
 .next
 out
