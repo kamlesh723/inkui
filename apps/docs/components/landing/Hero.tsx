@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import TerminalHero from '@/components/TerminalHero';
-import { hyperspeedPresets } from '@/components/HyperspeedPresets';
 
-const Hyperspeed = dynamic(
-  () => import('@/components/Hyperspeed').then((m) => ({ default: m.Hyperspeed })),
+const LiquidBackground = dynamic(
+  () => import('@/components/LiquidBackground'),
   { ssr: false },
 );
 
@@ -18,6 +18,9 @@ const fadeUp = (delay: number) => ({
 });
 
 export default function Hero() {
+  const [primaryHovered, setPrimaryHovered] = useState(false);
+  const [secondaryHovered, setSecondaryHovered] = useState(false);
+
   return (
     <section
       className="hero-section"
@@ -34,10 +37,41 @@ export default function Hero() {
         overflow: 'hidden',
       }}
     >
-      {/* Hyperspeed WebGL background */}
-      <Hyperspeed effectOptions={hyperspeedPresets.one} />
+      {/* Liquid aurora background */}
+      <LiquidBackground />
 
-      <div style={{ position: 'relative', zIndex: 1, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        {/* Badge */}
+        <motion.div
+          {...fadeUp(0.08)}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 7,
+            background: 'rgba(6,182,212,0.08)',
+            border: '1px solid rgba(6,182,212,0.22)',
+            borderRadius: 20,
+            padding: '4px 14px',
+            marginBottom: 28,
+            fontSize: '0.73rem',
+            color: '#06B6D4',
+            fontFamily: 'var(--font-geist-mono, monospace)',
+            fontWeight: 600,
+            letterSpacing: '0.02em',
+          }}
+        >
+          <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#22C55E', display: 'inline-block', boxShadow: '0 0 6px #22C55E' }} />
+          v0.3.0 · shadcn/ui for terminal UIs
+        </motion.div>
 
         {/* Line 1 */}
         <motion.h1
@@ -71,7 +105,14 @@ export default function Hero() {
           }}
         >
           Copy. Paste.{' '}
-          <span style={{ color: '#06B6D4' }}>Own it.</span>
+          <span
+            style={{
+              color: '#06B6D4',
+              textShadow: '0 0 40px rgba(6,182,212,0.5), 0 2px 20px rgba(0,0,0,0.4)',
+            }}
+          >
+            Own it.
+          </span>
         </motion.h1>
 
         {/* Subheading */}
@@ -102,39 +143,48 @@ export default function Hero() {
         >
           <Link
             href="/docs/getting-started/introduction"
+            onMouseEnter={() => setPrimaryHovered(true)}
+            onMouseLeave={() => setPrimaryHovered(false)}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: 7,
-              padding: '11px 26px',
-              background: '#06B6D4',
+              padding: '11px 28px',
+              background: primaryHovered ? '#22D3EE' : '#06B6D4',
               color: '#000',
               borderRadius: 8,
               fontWeight: 700,
               fontSize: '0.875rem',
               textDecoration: 'none',
               letterSpacing: '-0.01em',
-              boxShadow: '0 0 0 1px rgba(6,182,212,0.4), 0 4px 24px rgba(6,182,212,0.3)',
-              transition: 'opacity 0.15s, box-shadow 0.15s',
+              boxShadow: primaryHovered
+                ? '0 0 0 1px rgba(6,182,212,0.6), 0 4px 32px rgba(6,182,212,0.5), 0 0 60px rgba(6,182,212,0.2)'
+                : '0 0 0 1px rgba(6,182,212,0.4), 0 4px 24px rgba(6,182,212,0.3)',
+              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+              transform: primaryHovered ? 'translateY(-2px) scale(1.02)' : 'translateY(0) scale(1)',
             }}
           >
-            Get Started
+            Get Started →
           </Link>
           <Link
             href="/#components"
+            onMouseEnter={() => setSecondaryHovered(true)}
+            onMouseLeave={() => setSecondaryHovered(false)}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: 7,
-              padding: '11px 26px',
-              background: 'transparent',
-              color: '#FAFAFA',
-              border: '1px solid rgba(255,255,255,0.25)',
+              padding: '11px 28px',
+              background: secondaryHovered ? 'rgba(255,255,255,0.07)' : 'transparent',
+              color: secondaryHovered ? '#FAFAFA' : 'rgba(255,255,255,0.85)',
+              border: `1px solid ${secondaryHovered ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.2)'}`,
               borderRadius: 8,
               fontWeight: 600,
               fontSize: '0.875rem',
               textDecoration: 'none',
-              transition: 'border-color 0.15s',
+              transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+              transform: secondaryHovered ? 'translateY(-2px)' : 'translateY(0)',
+              boxShadow: secondaryHovered ? '0 4px 20px rgba(0,0,0,0.3)' : 'none',
             }}
           >
             Browse Components
@@ -150,7 +200,6 @@ export default function Hero() {
         >
           <TerminalHero />
         </motion.div>
-
       </div>
     </section>
   );

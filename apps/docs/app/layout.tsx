@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import { RootProvider } from 'fumadocs-ui/provider';
 import { Analytics } from '@vercel/analytics/react';
+import CursorGlowClient from '@/components/CursorGlowClient';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      className={`${GeistSans.variable} ${GeistMono.variable} dark`}
       suppressHydrationWarning
     >
       <body>
@@ -38,6 +39,7 @@ export default function RootLayout({
         >
           {children}
         </RootProvider>
+        <CursorGlowClient />
         <Analytics />
       </body>
     </html>
