@@ -440,3 +440,11 @@ main[data-docs-layout] {
     --fd-toc-width: 220px;
   }
 }
+
+/* ── ComponentPreview — tighten prose heading gap after preview card ─ */
+/* Prose h2 has large margin-top; reduce it when immediately after a div
+   (which is how ComponentPreview renders in the MDX prose container)    */
+.prose div + h2,
+.prose div + h3 {
+  margin-top: 1.2rem !important;
+}

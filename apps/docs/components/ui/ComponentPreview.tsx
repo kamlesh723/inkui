@@ -500,7 +500,7 @@ export default function ComponentPreview({ id }: { id: string }) {
   return (
     <div
       style={{
-        margin: '24px 0 32px',
+        margin: '20px 0 16px',
         border: '1px solid rgba(6,182,212,0.18)',
         borderRadius: 12,
         overflow: 'hidden',
