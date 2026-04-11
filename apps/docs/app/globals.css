@@ -347,10 +347,16 @@ nav button[aria-label*="heme"] {
   100% { transform: translate(-50%, -50%) scale(1.02) rotate(180deg); }
 }
 
-/* ── Fumadocs sidebar — let fumadocs own sticky/height natively ─── */
-/* fumadocs already sets md:sticky and --fd-sidebar-height on #nd-sidebar.
-   No override needed. Removed: was incorrectly overriding via [class*="fd-sidebar"]
-   which matched the sidebar's Tailwind class string, breaking collapse reflow. */
+/* ── Fumadocs sidebar — sticky in flex row requires align-self:start ─ */
+/* position:sticky doesn't work in a flex container without this.
+   Targets only #nd-sidebar so collapse/transform behavior is unaffected. */
+@media (min-width: 768px) {
+  #nd-sidebar {
+    align-self: flex-start;
+    position: sticky;
+    top: 0;
+  }
+}
 
 /* ── Mobile docs layout — prevent horizontal overflow ──────────── */
 @media (max-width: 767px) {
