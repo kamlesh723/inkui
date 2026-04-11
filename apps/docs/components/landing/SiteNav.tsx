@@ -35,17 +35,17 @@ export default function SiteNav() {
         }}
       >
         {/* Logo — never shrinks */}
-        <Link href="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
+        <Link href="/" style={{ textDecoration: 'none', flexShrink: 0, display: 'flex', alignItems: 'center' }}>
           <LogoFull size={26} />
         </Link>
 
         {/* Desktop nav links */}
         <nav
           className="desktop-nav"
-          style={{ display: 'flex', gap: 24, flex: 1 }}
+          style={{ display: 'flex', gap: 24, flex: 1, alignItems: 'center' }}
         >
-          <Link href="/docs/getting-started/introduction" className="nav-link">Docs</Link>
-          <Link href="/docs/components/spinner" className="nav-link">Components</Link>
+          <Link href="/docs/getting-started/introduction" className="nav-link" style={{ lineHeight: 1 }}>Docs</Link>
+          <Link href="/docs/components/spinner" className="nav-link" style={{ lineHeight: 1 }}>Components</Link>
         </nav>
 
         {/* Right side */}

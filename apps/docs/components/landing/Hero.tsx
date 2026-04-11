@@ -31,7 +31,7 @@ export default function Hero() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '60px 20px 80px',
+        padding: '48px 20px 60px',
         textAlign: 'center',
         overflowX: 'hidden',
         overflow: 'hidden',
@@ -138,7 +138,7 @@ export default function Hero() {
             gap: 12,
             flexWrap: 'wrap',
             justifyContent: 'center',
-            marginBottom: 64,
+            marginBottom: 44,
           }}
         >
           <Link
