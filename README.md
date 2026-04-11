@@ -6,14 +6,20 @@
 </p>
 
 <p align="center">
+  <a href="https://inkui-lib.vercel.app">inkui-lib.vercel.app</a> ·
+  <a href="https://inkui-lib.vercel.app/docs/getting-started/introduction">Docs</a> ·
+  <a href="https://inkui-lib.vercel.app/docs/components/spinner">Components</a>
+</p>
+
+<p align="center">
   <a href="https://github.com/kamlesh723/InkUI/actions/workflows/ci.yml">
     <img src="https://github.com/kamlesh723/InkUI/actions/workflows/ci.yml/badge.svg" alt="CI">
   </a>
   <a href="https://www.npmjs.com/package/@inkui-cli/cli">
-    <img src="https://img.shields.io/npm/v/@inkui-cli/cli?label=npm&color=cb0000" alt="npm">
+    <img src="https://img.shields.io/npm/v/@inkui-cli/cli?label=npm&color=06B6D4" alt="npm">
   </a>
   <a href="https://www.npmjs.com/package/@inkui-cli/core">
-    <img src="https://img.shields.io/npm/dm/@inkui-cli/core?label=downloads&color=cb0000" alt="downloads">
+    <img src="https://img.shields.io/npm/dm/@inkui-cli/core?label=downloads&color=06B6D4" alt="downloads">
   </a>
   <img src="https://img.shields.io/badge/TypeScript-5.4+-3178c6?logo=typescript&logoColor=white" alt="TypeScript">
   <img src="https://img.shields.io/badge/Ink-6.x-61dafb?logo=react&logoColor=white" alt="Ink 6">
@@ -24,7 +30,20 @@
 
 <br/>
 
-<img src="./demo.gif" alt="InkUI component showcase" width="100%" />
+```
+⠋ Building component library...
+
+┌─── InkUI v0.3.0 ──────────────────────────────────────┐
+│ shadcn/ui for the terminal                             │
+└────────────────────────────────────────────────────────┘
+
+● Spinner      ● Badge        ● ProgressBar   ● TextInput
+● Select       ● MultiSelect  ● Table         ● Dialog
+● Toast        ● StatusInd.   ● LoadingBar    ● Confirm
+● KeyHint      ● Divider      ● Header
+
+✓ 15 components ready  →  npx inkui add <component>
+```
 
 <br/>
 
@@ -74,6 +93,79 @@ Your project only needs two peer deps:
 
 ```bash
 npm install ink react
+```
+
+---
+
+## What you can build
+
+Here are three real CLIs assembled entirely from InkUI components:
+
+### DeployKit — zero-config deployment CLI
+
+```
+◆ DeployKit v2.1.0 · production
+────────────────────────────────────
+
+⠙ Uploading artifacts...
+● API Gateway
+⠙ Database
+⠙ CDN Edge
+
+artifacts  ████████████████████░░  82%
+```
+
+```bash
+npx inkui add spinner status-indicator progress-bar toast header
+```
+
+---
+
+### AuditShield — dependency security scanner
+
+```
+◆ AuditShield v1.3.0
+────────────────────────────────────
+
+⠸ Scanning 847 packages...
+
+⚠ Found 2 critical, 2 high, 8 medium
+
+┌──────────────────────┬──────┐
+│ Package              │ Sev  │
+├──────────────────────┼──────┤
+│ lodash@4.17.15       │ CRIT │
+│ axios@0.21.1         │ HIGH │
+└──────────────────────┴──────┘
+
+  Fix 2 critical vulnerabilities?
+  [Fix all]  [Skip]
+```
+
+```bash
+npx inkui add spinner table badge confirm key-hint
+```
+
+---
+
+### DevDash — live local dev dashboard
+
+```
+◆ DevDash · local environment · 3,241 req/session
+────────────────────────────────────────────────────
+
+● API :3000      ● DB  :5432
+● Redis:6379     ⠼ Queue
+
+cpu  ████████████░░░░░░░░  61%
+mem  ████████████████░░░░  80%
+
+────────────────────────────────────
+[r] refresh  [l] logs  [d] details  [q] quit
+```
+
+```bash
+npx inkui add header status-indicator loading-bar table key-hint
 ```
 
 ---
@@ -504,7 +596,7 @@ import type { InkUITheme } from '@inkui-cli/core';
 <Spinner theme={darkTheme} />
 <Spinner theme={lightTheme} />
 
-// Custom theme
+// Custom theme — or use `npx inkui theme` for a visual builder
 const myTheme: InkUITheme = {
   colors: {
     primary:     'magenta',
@@ -527,6 +619,8 @@ const myTheme: InkUITheme = {
 ```
 
 Color values are passed directly to Ink's `<Text color="">` — named colors, `#rrggbb` hex, or `rgb(r,g,b)`. No chalk, no ANSI escape codes, no cross-platform headaches.
+
+Run `npx inkui theme` for an interactive visual theme builder in the terminal.
 
 ---
 

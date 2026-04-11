@@ -432,3 +432,18 @@ main[data-docs-layout] {
   transition: width 0.2s ease;
 }
 .nav-link:hover::after { width: 100%; }
+
+/* ── Docs layout — eliminate dead space between content and TOC ── */
+/* Override fumadocs xl:mx-auto centering so article fills PageBody */
+@media (min-width: 1280px) {
+  #nd-page article {
+    max-width: none !important;
+    margin-inline-start: 0 !important;
+    margin-inline-end: 0 !important;
+  }
+
+  /* Reduce TOC width slightly so the overall layout is tighter */
+  #nd-docs-layout {
+    --fd-toc-width: 220px;
+  }
+}
