@@ -30,20 +30,7 @@
 
 <br/>
 
-```
-⠋ Building component library...
-
-┌─── InkUI v0.3.0 ──────────────────────────────────────┐
-│ shadcn/ui for the terminal                             │
-└────────────────────────────────────────────────────────┘
-
-● Spinner      ● Badge        ● ProgressBar   ● TextInput
-● Select       ● MultiSelect  ● Table         ● Dialog
-● Toast        ● StatusInd.   ● LoadingBar    ● Confirm
-● KeyHint      ● Divider      ● Header
-
-✓ 15 components ready  →  npx inkui add <component>
-```
+<img src="./demo.gif" alt="InkUI component showcase" width="100%" />
 
 <br/>
 
@@ -99,74 +86,7 @@ npm install ink react
 
 ## What you can build
 
-Here are three real CLIs assembled entirely from InkUI components:
-
-### DeployKit — zero-config deployment CLI
-
-```
-◆ DeployKit v2.1.0 · production
-────────────────────────────────────
-
-⠙ Uploading artifacts...
-● API Gateway
-⠙ Database
-⠙ CDN Edge
-
-artifacts  ████████████████████░░  82%
-```
-
-```bash
-npx inkui add spinner status-indicator progress-bar toast header
-```
-
----
-
-### AuditShield — dependency security scanner
-
-```
-◆ AuditShield v1.3.0
-────────────────────────────────────
-
-⠸ Scanning 847 packages...
-
-⚠ Found 2 critical, 2 high, 8 medium
-
-┌──────────────────────┬──────┐
-│ Package              │ Sev  │
-├──────────────────────┼──────┤
-│ lodash@4.17.15       │ CRIT │
-│ axios@0.21.1         │ HIGH │
-└──────────────────────┴──────┘
-
-  Fix 2 critical vulnerabilities?
-  [Fix all]  [Skip]
-```
-
-```bash
-npx inkui add spinner table badge confirm key-hint
-```
-
----
-
-### DevDash — live local dev dashboard
-
-```
-◆ DevDash · local environment · 3,241 req/session
-────────────────────────────────────────────────────
-
-● API :3000      ● DB  :5432
-● Redis:6379     ⠼ Queue
-
-cpu  ████████████░░░░░░░░  61%
-mem  ████████████████░░░░  80%
-
-────────────────────────────────────
-[r] refresh  [l] logs  [d] details  [q] quit
-```
-
-```bash
-npx inkui add header status-indicator loading-bar table key-hint
-```
+See [inkui-lib.vercel.app](https://inkui-lib.vercel.app) for live animated demos of real CLIs built with InkUI — **DeployKit**, **AuditShield**, and **DevDash** — each assembled from InkUI components with side-by-side terminal previews and one-line install commands.
 
 ---
 

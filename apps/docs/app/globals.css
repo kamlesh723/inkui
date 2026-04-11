@@ -347,23 +347,10 @@ nav button[aria-label*="heme"] {
   100% { transform: translate(-50%, -50%) scale(1.02) rotate(180deg); }
 }
 
-/* ── Fumadocs sidebar — sticky on scroll (desktop only) ────────── */
-/* Must be desktop-only: on mobile the sidebar is an overlay,
-   forcing sticky+height:100dvh would push content off-screen */
-@media (min-width: 768px) {
-  .fd-sidebar,
-  [class*="fd-sidebar"],
-  aside.nd-sidebar,
-  [data-fd-sidebar] {
-    position: sticky !important;
-    top: 0 !important;
-    height: 100dvh !important;
-    max-height: 100dvh !important;
-    overflow-y: auto !important;
-    align-self: flex-start !important;
-    flex-shrink: 0 !important;
-  }
-}
+/* ── Fumadocs sidebar — let fumadocs own sticky/height natively ─── */
+/* fumadocs already sets md:sticky and --fd-sidebar-height on #nd-sidebar.
+   No override needed. Removed: was incorrectly overriding via [class*="fd-sidebar"]
+   which matched the sidebar's Tailwind class string, breaking collapse reflow. */
 
 /* ── Mobile docs layout — prevent horizontal overflow ──────────── */
 @media (max-width: 767px) {
