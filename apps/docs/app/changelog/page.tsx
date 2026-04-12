@@ -12,7 +12,7 @@ type Category = 'Added' | 'Fixed' | 'Changed';
 interface Entry {
   category: Category;
   text: string;
-  highlight?: string; // bold component/feature name at start
+  highlight?: string;
 }
 
 interface Release {
@@ -47,10 +47,10 @@ const releases: Release[] = [
     date: 'April 9, 2026',
     entries: [
       { category: 'Added', highlight: 'Toast, StatusIndicator, LoadingBar, Confirm, KeyHint, Divider, Header', text: '— 7 new components' },
-      { category: 'Added', highlight: 'Panel', text: '— bordered box component with an optional title embedded in the top border' },
-      { category: 'Added', highlight: 'npx inkui playground', text: '— interactive component browser directly in the terminal' },
-      { category: 'Added', highlight: 'git-tidy showcase', text: '— interactive git branch cleanup CLI built entirely with InkUI components' },
-      { category: 'Added', highlight: 'inkui-sysmon showcase', text: '— terminal system monitor built with InkUI components' },
+      { category: 'Added', highlight: 'Panel', text: '— bordered box with an optional title embedded in the top border' },
+      { category: 'Added', highlight: 'npx inkui playground', text: '— interactive component browser in the terminal' },
+      { category: 'Added', highlight: 'git-tidy showcase', text: '— interactive git branch cleanup CLI built with InkUI' },
+      { category: 'Added', highlight: 'inkui-sysmon showcase', text: '— terminal system monitor built with InkUI' },
       { category: 'Added', text: 'Full light/dark theme support with CSS variables throughout the docs site' },
       { category: 'Added', text: 'Mobile navigation menu' },
       { category: 'Added', text: 'CONTRIBUTING.md, GitHub issue templates, and PR template' },
@@ -73,7 +73,7 @@ const releases: Release[] = [
       { category: 'Added', text: 'TypeScript-first with full type exports' },
       { category: 'Added', text: 'ESM + CJS dual builds via tsup, compatible with Ink 6 / Node 20+' },
       { category: 'Added', text: 'Turborepo monorepo with per-package build and test pipelines' },
-      { category: 'Added', text: 'InkUI docs website — Phase 1 (component reference pages, getting started guide)' },
+      { category: 'Added', text: 'InkUI docs website — component reference pages and getting started guide' },
       { category: 'Added', text: 'Demo GIF and launch-ready README' },
     ],
   },
@@ -81,78 +81,74 @@ const releases: Release[] = [
 
 // ─── Category config ──────────────────────────────────────────────────────────
 
-const categoryConfig: Record<Category, { color: string; bg: string; border: string; dot: string }> = {
-  Added:   { color: '#22C55E', bg: 'rgba(34,197,94,0.08)',   border: 'rgba(34,197,94,0.2)',   dot: '#22C55E' },
-  Fixed:   { color: '#06B6D4', bg: 'rgba(6,182,212,0.08)',   border: 'rgba(6,182,212,0.2)',   dot: '#06B6D4' },
-  Changed: { color: '#A855F7', bg: 'rgba(168,85,247,0.08)',  border: 'rgba(168,85,247,0.2)',  dot: '#A855F7' },
+const CAT: Record<Category, { color: string; bg: string; border: string }> = {
+  Added:   { color: '#22C55E', bg: 'rgba(34,197,94,0.08)',  border: 'rgba(34,197,94,0.22)'  },
+  Fixed:   { color: '#06B6D4', bg: 'rgba(6,182,212,0.08)',  border: 'rgba(6,182,212,0.22)'  },
+  Changed: { color: '#A855F7', bg: 'rgba(168,85,247,0.08)', border: 'rgba(168,85,247,0.22)' },
 };
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-function CategoryBadge({ category }: { category: Category }) {
-  const cfg = categoryConfig[category];
+function Badge({ category }: { category: Category }) {
+  const c = CAT[category];
   return (
     <span style={{
       display: 'inline-flex',
       alignItems: 'center',
-      gap: 5,
-      fontSize: '0.65rem',
+      fontSize: '0.6rem',
       fontWeight: 700,
       letterSpacing: '0.08em',
-      textTransform: 'uppercase',
-      color: cfg.color,
-      background: cfg.bg,
-      border: `1px solid ${cfg.border}`,
+      textTransform: 'uppercase' as const,
+      color: c.color,
+      background: c.bg,
+      border: `1px solid ${c.border}`,
       borderRadius: 4,
-      padding: '2px 8px',
+      padding: '1px 7px',
       fontFamily: 'var(--font-geist-mono, monospace)',
       flexShrink: 0,
+      whiteSpace: 'nowrap' as const,
     }}>
       {category}
     </span>
   );
 }
 
-function EntryItem({ entry }: { entry: Entry }) {
-  const cfg = categoryConfig[entry.category];
+function EntryRow({ entry }: { entry: Entry }) {
+  const c = CAT[entry.category];
   return (
     <li style={{
       display: 'flex',
       alignItems: 'flex-start',
-      gap: 12,
-      padding: '10px 0',
+      gap: 10,
+      padding: '11px 0',
       borderBottom: '1px solid var(--border-subtle)',
-      listStyle: 'none',
     }}>
-      {/* Colored dot */}
+      {/* Glowing dot */}
       <span style={{
-        width: 6,
-        height: 6,
+        width: 6, height: 6,
         borderRadius: '50%',
-        background: cfg.dot,
+        background: c.color,
+        boxShadow: `0 0 6px ${c.color}`,
         flexShrink: 0,
-        marginTop: 8,
-        boxShadow: `0 0 6px ${cfg.dot}`,
+        marginTop: 9,
       }} />
 
       <div style={{ flex: 1, minWidth: 0 }}>
-        <CategoryBadge category={entry.category} />
-        <p style={{
-          margin: '6px 0 0',
-          fontSize: '0.92rem',
-          lineHeight: 1.65,
-          color: 'var(--text-secondary)',
-        }}>
+        <div style={{ marginBottom: 4 }}>
+          <Badge category={entry.category} />
+        </div>
+        <p style={{ margin: 0, fontSize: '0.875rem', lineHeight: 1.65, color: 'var(--text-secondary)' }}>
           {entry.highlight && (
             <code style={{
               fontFamily: 'var(--font-geist-mono, monospace)',
-              fontSize: '0.82rem',
+              fontSize: '0.78rem',
               color: 'var(--text)',
               background: 'rgba(255,255,255,0.06)',
               border: '1px solid var(--border)',
               borderRadius: 4,
               padding: '1px 6px',
-              marginRight: 4,
+              marginRight: 5,
+              wordBreak: 'break-word' as const,
             }}>
               {entry.highlight}
             </code>
@@ -168,132 +164,117 @@ function ReleaseCard({ release, isLatest }: { release: Release; isLatest: boolea
   const added   = release.entries.filter(e => e.category === 'Added');
   const fixed   = release.entries.filter(e => e.category === 'Fixed');
   const changed = release.entries.filter(e => e.category === 'Changed');
+  const stats   = ([['Added', added], ['Fixed', fixed], ['Changed', changed]] as [Category, Entry[]][])
+    .filter(([, items]) => items.length > 0);
 
   return (
-    <div style={{ display: 'flex', gap: 24, marginBottom: 64 }}>
+    <div className="cl-row">
       {/* Timeline spine */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+      <div className="cl-spine">
         <div style={{
-          width: 36,
-          height: 36,
+          width: 34, height: 34,
           borderRadius: '50%',
-          background: isLatest
-            ? 'linear-gradient(135deg, #06B6D4, #A855F7)'
-            : 'var(--surface)',
+          background: isLatest ? 'linear-gradient(135deg, #06B6D4, #A855F7)' : 'var(--surface)',
           border: isLatest ? 'none' : '2px solid var(--border)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '0.6rem',
-          fontWeight: 800,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: '0.65rem', fontWeight: 800,
           color: isLatest ? '#fff' : 'var(--text-muted)',
           fontFamily: 'var(--font-geist-mono, monospace)',
           flexShrink: 0,
-          boxShadow: isLatest ? '0 0 20px rgba(6,182,212,0.4)' : 'none',
+          boxShadow: isLatest ? '0 0 18px rgba(6,182,212,0.45)' : 'none',
         }}>
           {isLatest ? '★' : '○'}
         </div>
         <div style={{
-          width: 1,
-          flex: 1,
+          width: 1, flex: 1,
           background: 'linear-gradient(to bottom, var(--border), transparent)',
-          marginTop: 8,
-          minHeight: 40,
+          marginTop: 6, minHeight: 32,
         }} />
       </div>
 
       {/* Card */}
       <div style={{
-        flex: 1,
-        minWidth: 0,
+        flex: 1, minWidth: 0,
         background: 'var(--surface)',
-        border: `1px solid ${isLatest ? 'rgba(6,182,212,0.25)' : 'var(--border)'}`,
+        border: `1px solid ${isLatest ? 'rgba(6,182,212,0.28)' : 'var(--border)'}`,
         borderRadius: 12,
         overflow: 'hidden',
         marginBottom: 8,
-        boxShadow: isLatest ? '0 0 40px rgba(6,182,212,0.06)' : 'none',
+        boxShadow: isLatest ? '0 0 48px rgba(6,182,212,0.07), 0 2px 24px rgba(0,0,0,0.3)' : '0 2px 12px rgba(0,0,0,0.2)',
       }}>
-        {/* Card header */}
-        <div style={{
-          padding: '20px 24px',
-          borderBottom: '1px solid var(--border)',
-          background: isLatest ? 'rgba(6,182,212,0.04)' : 'transparent',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: 12,
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+
+        {/* Header */}
+        <div
+          className="cl-card-header"
+          style={{
+            borderBottom: '1px solid var(--border)',
+            background: isLatest ? 'rgba(6,182,212,0.04)' : 'transparent',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap' as const,
+            gap: 10,
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <h2 style={{
               margin: 0,
-              fontSize: '1.5rem',
+              fontSize: '1.4rem',
               fontWeight: 800,
               fontFamily: 'var(--font-geist-mono, monospace)',
-              background: isLatest ? 'linear-gradient(135deg, #06B6D4, #A855F7)' : 'none',
-              WebkitBackgroundClip: isLatest ? 'text' : 'unset',
-              WebkitTextFillColor: isLatest ? 'transparent' : 'var(--text)',
-              backgroundClip: isLatest ? 'text' : 'unset',
               letterSpacing: '-0.02em',
+              ...(isLatest ? {
+                background: 'linear-gradient(135deg, #06B6D4, #A855F7)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              } : { color: 'var(--text)' }),
             }}>
               {release.version}
             </h2>
-            {isLatest && (
-              <span className="version-badge">latest</span>
-            )}
+            {isLatest && <span className="version-badge">latest</span>}
           </div>
           <span style={{
-            fontSize: '0.8rem',
+            fontSize: '0.78rem',
             color: 'var(--text-muted)',
             fontFamily: 'var(--font-geist-mono, monospace)',
+            flexShrink: 0,
           }}>
             {release.date}
           </span>
         </div>
 
         {/* Stats bar */}
-        <div style={{
-          display: 'flex',
-          gap: 0,
-          borderBottom: '1px solid var(--border)',
-        }}>
-          {([['Added', added], ['Fixed', fixed], ['Changed', changed]] as [Category, Entry[]][])
-            .filter(([, items]) => items.length > 0)
-            .map(([cat, items]) => {
-              const cfg = categoryConfig[cat];
-              return (
-                <div key={cat} style={{
-                  flex: 1,
-                  padding: '10px 16px',
-                  borderRight: '1px solid var(--border)',
-                  textAlign: 'center',
+        <div style={{ display: 'flex', borderBottom: '1px solid var(--border)' }}>
+          {stats.map(([cat, items]) => {
+            const c = CAT[cat];
+            return (
+              <div key={cat} className="cl-stats-cell">
+                <div style={{
+                  fontSize: '1.2rem', fontWeight: 700,
+                  color: c.color,
+                  fontFamily: 'var(--font-geist-mono, monospace)',
+                  lineHeight: 1,
                 }}>
-                  <div style={{
-                    fontSize: '1.25rem',
-                    fontWeight: 700,
-                    color: cfg.color,
-                    fontFamily: 'var(--font-geist-mono, monospace)',
-                  }}>
-                    {items.length}
-                  </div>
-                  <div style={{
-                    fontSize: '0.68rem',
-                    color: 'var(--text-muted)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.06em',
-                    fontWeight: 600,
-                  }}>
-                    {cat}
-                  </div>
+                  {items.length}
                 </div>
-              );
-            })}
+                <div style={{
+                  fontSize: '0.62rem', color: 'var(--text-muted)',
+                  textTransform: 'uppercase' as const,
+                  letterSpacing: '0.06em', fontWeight: 600,
+                  marginTop: 3,
+                }}>
+                  {cat}
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Entries */}
-        <ul style={{ margin: 0, padding: '4px 24px 8px', listStyle: 'none' }}>
+        <ul className="cl-entry-list">
           {release.entries.map((entry, i) => (
-            <EntryItem key={i} entry={entry} />
+            <EntryRow key={i} entry={entry} />
           ))}
         </ul>
       </div>
@@ -301,37 +282,31 @@ function ReleaseCard({ release, isLatest }: { release: Release; isLatest: boolea
   );
 }
 
-// ─── Page ────────────────────────────────────────────────────────────────────
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function ChangelogPage() {
   return (
     <>
       {/* Page header */}
-      <div style={{ marginBottom: 56 }}>
+      <div style={{ marginBottom: 48 }}>
         <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 8,
-          fontSize: '0.72rem',
-          fontWeight: 600,
-          color: '#06B6D4',
-          textTransform: 'uppercase',
+          display: 'inline-flex', alignItems: 'center', gap: 7,
+          fontSize: '0.68rem', fontWeight: 700,
+          color: '#06B6D4', textTransform: 'uppercase' as const,
           letterSpacing: '0.1em',
           fontFamily: 'var(--font-geist-mono, monospace)',
-          marginBottom: 16,
+          marginBottom: 14,
           background: 'rgba(6,182,212,0.08)',
-          border: '1px solid rgba(6,182,212,0.2)',
-          borderRadius: 20,
-          padding: '4px 14px',
+          border: '1px solid rgba(6,182,212,0.22)',
+          borderRadius: 20, padding: '4px 14px',
         }}>
-          <span style={{ fontSize: '0.65rem' }}>●</span> Release History
+          <span style={{ fontSize: '0.5rem' }}>●</span> Release History
         </div>
 
         <h1 style={{
-          fontSize: 'clamp(2rem, 5vw, 2.75rem)',
-          fontWeight: 800,
-          letterSpacing: '-0.03em',
-          margin: '0 0 12px',
+          fontSize: 'clamp(1.8rem, 5vw, 2.6rem)',
+          fontWeight: 800, letterSpacing: '-0.03em',
+          margin: '0 0 10px',
           background: 'linear-gradient(135deg, #FAFAFA 40%, #5E7A96)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
@@ -342,38 +317,29 @@ export default function ChangelogPage() {
         </h1>
 
         <p style={{
-          fontSize: '1rem',
-          color: 'var(--text-muted)',
-          margin: '0 0 24px',
-          lineHeight: 1.7,
-          maxWidth: 520,
+          fontSize: '0.95rem', color: 'var(--text-muted)',
+          margin: '0 0 20px', lineHeight: 1.7, maxWidth: 480,
         }}>
-          Every release of InkUI, with what was added, fixed, and changed.
+          Every release of InkUI — what was added, fixed, and changed.
         </p>
 
         {/* Legend */}
-        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-          {(['Added', 'Fixed', 'Changed'] as Category[]).map(cat => {
-            const cfg = categoryConfig[cat];
-            return (
-              <div key={cat} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <span style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: '50%',
-                  background: cfg.dot,
-                  boxShadow: `0 0 6px ${cfg.dot}`,
-                }} />
-                <span style={{
-                  fontSize: '0.78rem',
-                  color: 'var(--text-muted)',
-                  fontFamily: 'var(--font-geist-mono, monospace)',
-                }}>
-                  {cat}
-                </span>
-              </div>
-            );
-          })}
+        <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' as const }}>
+          {(['Added', 'Fixed', 'Changed'] as Category[]).map(cat => (
+            <div key={cat} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{
+                width: 7, height: 7, borderRadius: '50%',
+                background: CAT[cat].color,
+                boxShadow: `0 0 5px ${CAT[cat].color}`,
+              }} />
+              <span style={{
+                fontSize: '0.75rem', color: 'var(--text-muted)',
+                fontFamily: 'var(--font-geist-mono, monospace)',
+              }}>
+                {cat}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 

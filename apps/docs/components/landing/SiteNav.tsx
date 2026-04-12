@@ -39,10 +39,10 @@ export default function SiteNav() {
           <LogoFull size={26} />
         </Link>
 
-        {/* Desktop nav links */}
+        {/* Desktop nav links — display controlled by .desktop-nav CSS class, not inline style */}
         <nav
           className="desktop-nav"
-          style={{ display: 'flex', gap: 24, flex: 1, alignItems: 'center' }}
+          style={{ gap: 24, flex: 1, alignItems: 'center' }}
         >
           <Link href="/docs/getting-started/introduction" className="nav-link" style={{ lineHeight: 1 }}>Docs</Link>
           <Link href="/docs/components/spinner" className="nav-link" style={{ lineHeight: 1 }}>Components</Link>

@@ -481,3 +481,24 @@ main[data-docs-layout] {
 .prose div + h3 {
   margin-top: 1.2rem !important;
 }
+
+/* ── Changelog page responsive ──────────────────────────────────── */
+/* Shared layout helpers used by app/changelog/page.tsx             */
+.cl-row   { display: flex; gap: 24px; margin-bottom: 56px; }
+.cl-spine { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+
+/* Card inner padding — tighter on small screens */
+.cl-card-header  { padding: 20px 24px; }
+.cl-entry-list   { margin: 0; padding: 4px 24px 12px; list-style: none; }
+.cl-stats-cell   { flex: 1; padding: 10px 16px; border-right: 1px solid var(--border); text-align: center; }
+
+@media (max-width: 560px) {
+  /* Hide timeline spine — full-width cards on phones */
+  .cl-spine { display: none !important; }
+  .cl-row   { gap: 0; margin-bottom: 32px; }
+
+  /* Tighter card inner spacing */
+  .cl-card-header { padding: 14px 16px !important; }
+  .cl-entry-list  { padding: 4px 14px 10px !important; }
+  .cl-stats-cell  { padding: 8px 8px !important; }
+}
