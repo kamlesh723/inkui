@@ -4,6 +4,10 @@
     "spinner", "badge", "progress-bar", "text-input",
     "select", "multi-select", "table", "dialog",
     "toast", "status-indicator", "loading-bar",
-    "confirm", "key-hint", "divider", "header"
+    "confirm", "key-hint", "divider", "header",
+    "scroll-area", "tabs", "accordion",
+    "streaming-text", "token-counter", "code-block", "diff-view", "typewriter",
+    "tree-view", "autocomplete", "stepper", "data-table",
+    "gauge", "sparkline", "markdown", "json-viewer"
   ]
 }

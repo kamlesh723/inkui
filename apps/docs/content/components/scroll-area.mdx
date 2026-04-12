@@ -1,0 +1,54 @@
+---
+title: ScrollArea
+description: Scrollable content region with visible scrollbar track and keyboard navigation.
+---
+
+A scrollable container that displays a visible scrollbar when content exceeds the visible height. Foundation component used by TreeView, DataTable, CodeBlock, and more.
+
+## Installation
+
+```bash
+npx inkui add scroll-area
+```
+
+## Usage
+
+```tsx
+import { ScrollArea } from './components/ui/scroll-area';
+import { Text } from 'ink';
+
+const items = Array.from({ length: 50 }, (_, i) => (
+  <Text key={i}>Line {i + 1}</Text>
+));
+
+export default function App() {
+  return (
+    <ScrollArea height={10}>
+      {items}
+    </ScrollArea>
+  );
+}
+```
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `↑` / `k` | Scroll up one line |
+| `↓` / `j` | Scroll down one line |
+| `Page Up` / `u` | Scroll up half-page |
+| `Page Down` / `d` | Scroll down half-page |
+| `g` | Scroll to top |
+| `G` | Scroll to bottom |
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `height` | `number` | — | Visible height in rows (required) |
+| `scrollbar` | `boolean` | `true` | Show/hide scrollbar |
+| `scrollbarChar` | `string` | `'█'` | Scrollbar thumb character |
+| `trackChar` | `string` | `'░'` | Scrollbar track character |
+| `onScroll` | `(offset, total) => void` | — | Called on scroll |
+| `focus` | `boolean` | `true` | Accept keyboard input |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

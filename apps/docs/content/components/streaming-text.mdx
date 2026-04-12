@@ -1,0 +1,48 @@
+---
+title: StreamingText
+description: Token-by-token text rendering with blinking cursor for LLM streaming.
+---
+
+Render text as it streams in from an LLM API. The component displays a blinking cursor while streaming and fires `onComplete` when done. No artificial delay — text appears immediately as the `text` prop updates.
+
+## Installation
+
+```bash
+npx inkui add streaming-text
+```
+
+## Usage
+
+```tsx
+import { StreamingText } from './components/ui/streaming-text';
+import { useState } from 'react';
+
+export default function App() {
+  const [response, setResponse] = useState('');
+  const [isStreaming, setIsStreaming] = useState(true);
+
+  // In your LLM streaming callback:
+  // onToken((token) => setResponse(prev => prev + token));
+  // onEnd(() => setIsStreaming(false));
+
+  return (
+    <StreamingText
+      text={response}
+      streaming={isStreaming}
+      onComplete={() => console.log('Done!')}
+    />
+  );
+}
+```
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `text` | `string` | — | Current text to display (required) |
+| `streaming` | `boolean` | `true` | Whether streaming is in progress |
+| `cursor` | `string` | `'█'` | Cursor character |
+| `cursorBlinkSpeed` | `number` | `530` | Cursor blink interval in ms |
+| `color` | `string` | — | Text color override |
+| `onComplete` | `() => void` | — | Called when streaming ends |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

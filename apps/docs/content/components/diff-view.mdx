@@ -1,0 +1,51 @@
+---
+title: DiffView
+description: Unified diff viewer with add/remove highlighting — LCS algorithm, no external deps.
+---
+
+Display text diffs with colored additions and deletions. Uses a built-in LCS-based diff algorithm with no external dependencies.
+
+## Installation
+
+```bash
+npx inkui add diff-view
+```
+
+## Usage
+
+```tsx
+import { DiffView } from './components/ui/diff-view';
+
+const before = `const retries = 3;
+const timeout = 30;`;
+
+const after = `const retries = 5;
+const timeout = 30;
+const debug = true;`;
+
+export default function App() {
+  return (
+    <DiffView
+      before={before}
+      after={after}
+      beforeLabel="v1"
+      afterLabel="v2"
+    />
+  );
+}
+```
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `before` | `string` | — | Original text (required) |
+| `after` | `string` | — | Modified text (required) |
+| `mode` | `'unified' \| 'split'` | `'unified'` | Display mode |
+| `showLineNumbers` | `boolean` | `true` | Show line numbers |
+| `contextLines` | `number` | `3` | Unchanged lines around changes |
+| `maxHeight` | `number` | — | Max visible rows |
+| `beforeLabel` | `string` | `'Before'` | Label for original |
+| `afterLabel` | `string` | `'After'` | Label for modified |
+| `showBorder` | `boolean` | `true` | Show rounded border |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

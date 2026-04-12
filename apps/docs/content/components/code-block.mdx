@@ -1,0 +1,52 @@
+---
+title: CodeBlock
+description: Syntax-highlighted code display with line numbers — no external dependencies.
+---
+
+Display code with syntax highlighting using a built-in regex-based tokenizer. Supports 13 languages, line numbers, line highlighting, and titles.
+
+## Installation
+
+```bash
+npx inkui add code-block
+```
+
+## Usage
+
+```tsx
+import { CodeBlock } from './components/ui/code-block';
+
+const code = `import express from 'express';
+const app = express();
+app.listen(3000);`;
+
+export default function App() {
+  return (
+    <CodeBlock
+      code={code}
+      language="javascript"
+      title="server.js"
+      highlightLines={[3]}
+    />
+  );
+}
+```
+
+## Supported Languages
+
+`javascript` · `typescript` · `python` · `json` · `bash` · `html` · `css` · `rust` · `go` · `yaml` · `markdown` · `diff` · `plain`
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `code` | `string` | — | Code string (required) |
+| `language` | `Language` | `'plain'` | Syntax highlighting language |
+| `showLineNumbers` | `boolean` | `true` | Show line number gutter |
+| `startLine` | `number` | `1` | Starting line number |
+| `highlightLines` | `number[]` | `[]` | Lines to highlight (1-indexed) |
+| `maxHeight` | `number` | — | Max visible rows |
+| `showBorder` | `boolean` | `true` | Show rounded border |
+| `title` | `string` | — | Filename/title above code |
+| `wrap` | `boolean` | `false` | Wrap long lines (false = truncate) |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

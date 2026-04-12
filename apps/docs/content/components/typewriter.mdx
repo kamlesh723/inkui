@@ -1,0 +1,41 @@
+---
+title: Typewriter
+description: Character-by-character text animation with configurable speed and delay.
+---
+
+Animate text as if it's being typed in real-time. Unlike StreamingText, this has intentional delay for dramatic or onboarding effect.
+
+## Installation
+
+```bash
+npx inkui add typewriter
+```
+
+## Usage
+
+```tsx
+import { Typewriter } from './components/ui/typewriter';
+
+export default function App() {
+  return (
+    <Typewriter
+      text="Welcome to InkUI — a terminal UI component library."
+      speed={40}
+      onComplete={() => console.log('Done!')}
+    />
+  );
+}
+```
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `text` | `string` | — | Full text to type out (required) |
+| `speed` | `number` | `30` | Characters per second |
+| `delay` | `number` | `0` | Delay before starting (ms) |
+| `cursor` | `boolean` | `true` | Show blinking cursor during typing |
+| `cursorChar` | `string` | `'▌'` | Cursor character |
+| `onComplete` | `() => void` | — | Called when typing completes |
+| `playing` | `boolean` | `true` | Start animation (false = show full text) |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

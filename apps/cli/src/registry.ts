@@ -76,6 +76,82 @@ export const REGISTRY: Record<string, RegistryEntry> = {
     description: 'App header bar — box, line, filled styles with title and subtitle',
     files: ['Header.tsx', 'index.ts'],
   },
+
+  // ── Layout ────────────────────────────────────────────────────────────────
+  'scroll-area': {
+    description: 'Scrollable content region with visible scrollbar',
+    files: ['ScrollArea.tsx', 'index.ts'],
+  },
+  tabs: {
+    description: 'Keyboard-navigable tab panels with underline, boxed, pills variants',
+    files: ['Tabs.tsx', 'index.ts'],
+  },
+  accordion: {
+    description: 'Expandable/collapsible sections with keyboard navigation',
+    files: ['Accordion.tsx', 'index.ts'],
+  },
+
+  // ── AI & Streaming ────────────────────────────────────────────────────────
+  'streaming-text': {
+    description: 'Token-by-token text rendering with blinking cursor for LLM streaming',
+    files: ['StreamingText.tsx', 'index.ts'],
+  },
+  'token-counter': {
+    description: 'Visual token usage display with budget bar — compact/detailed/minimal',
+    files: ['TokenCounter.tsx', 'index.ts'],
+  },
+  'code-block': {
+    description: 'Syntax-highlighted code display with line numbers — no external deps',
+    files: ['CodeBlock.tsx', 'highlight.ts', 'index.ts'],
+  },
+  'diff-view': {
+    description: 'Unified diff viewer with add/remove highlighting — LCS-based, no deps',
+    files: ['DiffView.tsx', 'diff.ts', 'index.ts'],
+  },
+  typewriter: {
+    description: 'Character-by-character text animation with configurable speed',
+    files: ['Typewriter.tsx', 'index.ts'],
+  },
+
+  // ── Data & Power ──────────────────────────────────────────────────────────
+  'tree-view': {
+    description: 'Hierarchical collapsible tree with keyboard navigation',
+    files: ['TreeView.tsx', 'index.ts'],
+  },
+  autocomplete: {
+    description: 'Text input with filtered dropdown suggestions',
+    files: ['Autocomplete.tsx', 'index.ts'],
+  },
+  stepper: {
+    description: 'Multi-step wizard flow with visual progress indicator',
+    files: ['Stepper.tsx', 'index.ts'],
+  },
+  'data-table': {
+    description: 'Interactive table with sorting, filtering, and pagination',
+    files: ['DataTable.tsx', 'index.ts'],
+  },
+  gauge: {
+    description: 'Semicircular or linear metric gauge — bar, arc, ring variants',
+    files: ['Gauge.tsx', 'index.ts'],
+  },
+  sparkline: {
+    description: 'Inline mini chart using block characters for trend data',
+    files: ['Sparkline.tsx', 'index.ts'],
+  },
+  markdown: {
+    description: 'Terminal Markdown renderer — headings, lists, code blocks, blockquotes',
+    files: ['Markdown.tsx', 'index.ts'],
+  },
+  'json-viewer': {
+    description: 'Interactive JSON explorer with collapsible nodes and syntax coloring',
+    files: ['JSONViewer.tsx', 'index.ts'],
+  },
+
+  // ── Hooks ─────────────────────────────────────────────────────────────────
+  hooks: {
+    description: 'Utility hooks — useFocusManager, useKeyBindings, useTerminalSize, useAsync',
+    files: ['useFocusManager.ts', 'useKeyBindings.ts', 'useTerminalSize.ts', 'useAsync.ts', 'index.ts'],
+  },
 };
 
 /** Absolute path to the source directory for a component package. */

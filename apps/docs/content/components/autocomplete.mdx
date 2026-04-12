@@ -1,0 +1,60 @@
+---
+title: Autocomplete
+description: Text input with filtered dropdown suggestions and keyboard navigation.
+---
+
+Type to filter a list of options, navigate with arrow keys, and select with Enter.
+
+## Installation
+
+```bash
+npx inkui add autocomplete
+```
+
+## Usage
+
+```tsx
+import { Autocomplete } from './components/ui/autocomplete';
+
+const packages = [
+  { label: 'express', value: 'express', description: 'Web framework' },
+  { label: 'react', value: 'react', description: 'UI library' },
+  { label: 'typescript', value: 'typescript', description: 'TypeScript compiler' },
+];
+
+export default function App() {
+  return (
+    <Autocomplete
+      items={packages}
+      onSelect={(item) => console.log(item.value)}
+      placeholder="Search packages..."
+      label="Install:"
+    />
+  );
+}
+```
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| Type | Filter suggestions |
+| `↑` / `↓` | Navigate suggestions |
+| `Enter` | Select highlighted item |
+| `Tab` | Autocomplete to highlighted |
+| `Esc` | Clear input / close |
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `AutocompleteItem[]` | — | Available options (required) |
+| `onSelect` | `(item) => void` | — | Called on selection (required) |
+| `placeholder` | `string` | `'Search...'` | Input placeholder |
+| `label` | `string` | — | Label before input |
+| `maxVisible` | `number` | `5` | Max dropdown items |
+| `filter` | `(query, item) => boolean` | — | Custom filter function |
+| `showDescriptions` | `boolean` | `true` | Show item descriptions |
+| `emptyMessage` | `string` | `'No matches'` | Message when no results |
+| `focus` | `boolean` | `true` | Accept keyboard input |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

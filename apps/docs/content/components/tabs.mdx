@@ -1,0 +1,66 @@
+---
+title: Tabs
+description: Keyboard-navigable tab panels with underline, boxed, and pills variants.
+---
+
+Switch between content views using keyboard navigation. Supports disabled tabs, badge counts, and three visual styles.
+
+## Installation
+
+```bash
+npx inkui add tabs
+```
+
+## Usage
+
+```tsx
+import { Tabs } from './components/ui/tabs';
+import { useState } from 'react';
+import { Text } from 'ink';
+
+const tabs = [
+  { key: 'logs', label: 'Logs' },
+  { key: 'metrics', label: 'Metrics' },
+  { key: 'config', label: 'Config' },
+];
+
+export default function App() {
+  const [active, setActive] = useState('logs');
+  return (
+    <Tabs tabs={tabs} activeKey={active} onChange={setActive}>
+      <Text>Log output here</Text>
+      <Text>Metrics dashboard</Text>
+      <Text>Configuration panel</Text>
+    </Tabs>
+  );
+}
+```
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `←` / `h` | Previous tab |
+| `→` / `l` | Next tab |
+| `1–9` | Jump to tab by index |
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `tabs` | `Tab[]` | — | Tab definitions (required) |
+| `activeKey` | `string` | — | Currently active tab key |
+| `onChange` | `(key: string) => void` | — | Called on tab change (required) |
+| `position` | `'top' \| 'bottom'` | `'top'` | Tab bar position |
+| `variant` | `'underline' \| 'boxed' \| 'pills'` | `'underline'` | Visual style |
+| `focus` | `boolean` | `true` | Accept keyboard input |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
+
+### Tab Object
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `key` | `string` | Unique identifier |
+| `label` | `string` | Display label |
+| `badge` | `number` | Optional badge count |
+| `disabled` | `boolean` | Disable this tab |

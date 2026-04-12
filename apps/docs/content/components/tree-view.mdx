@@ -1,0 +1,68 @@
+---
+title: TreeView
+description: Hierarchical collapsible tree with keyboard navigation and guide lines.
+---
+
+Navigate hierarchical data with expand/collapse, keyboard focus, and tree guide lines. Ideal for file explorers, dependency trees, and structured data.
+
+## Installation
+
+```bash
+npx inkui add tree-view
+```
+
+## Usage
+
+```tsx
+import { TreeView } from './components/ui/tree-view';
+
+const nodes = [
+  {
+    id: 'src',
+    label: 'src',
+    defaultExpanded: true,
+    children: [
+      { id: 'index', label: 'index.ts' },
+      { id: 'utils', label: 'utils.ts' },
+    ],
+  },
+  { id: 'pkg', label: 'package.json' },
+];
+
+export default function App() {
+  return (
+    <TreeView
+      nodes={nodes}
+      onSelect={(node) => console.log(node.id)}
+    />
+  );
+}
+```
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `↑` / `k` | Previous node |
+| `↓` / `j` | Next node |
+| `→` / `l` / `Enter` | Expand or select |
+| `←` / `h` | Collapse |
+| `Space` | Toggle expand/collapse |
+| `g` | First node |
+| `G` | Last node |
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `nodes` | `TreeNode[]` | — | Tree data (required) |
+| `onSelect` | `(node) => void` | — | Called on Enter/select |
+| `onToggle` | `(node, expanded) => void` | — | Called on expand/collapse |
+| `maxHeight` | `number` | — | Max visible rows |
+| `guides` | `boolean` | `true` | Show tree guide lines |
+| `showIcons` | `boolean` | `true` | Show file/folder icons |
+| `leafIcon` | `string` | `'📄'` | Icon for leaf nodes |
+| `branchIcon` | `string` | `'📁'` | Icon for collapsed branches |
+| `branchOpenIcon` | `string` | `'📂'` | Icon for expanded branches |
+| `focus` | `boolean` | `true` | Accept keyboard input |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

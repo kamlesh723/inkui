@@ -1,0 +1,48 @@
+---
+title: Accordion
+description: Expandable/collapsible sections with keyboard navigation.
+---
+
+Reveal or hide content sections on demand. Supports single or multiple open sections simultaneously.
+
+## Installation
+
+```bash
+npx inkui add accordion
+```
+
+## Usage
+
+```tsx
+import { Accordion } from './components/ui/accordion';
+import { Text } from 'ink';
+
+const items = [
+  { key: 'db', title: 'Database Config', content: <Text>host: localhost</Text>, defaultOpen: true },
+  { key: 'api', title: 'API Settings', content: <Text>timeout: 30s</Text> },
+];
+
+export default function App() {
+  return <Accordion items={items} />;
+}
+```
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `↑` / `k` | Previous section |
+| `↓` / `j` | Next section |
+| `Enter` / `Space` | Toggle open/close |
+| `g` | First section |
+| `G` | Last section |
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `AccordionItem[]` | — | Section definitions (required) |
+| `multiple` | `boolean` | `false` | Allow multiple sections open |
+| `borderStyle` | `'single' \| 'rounded' \| 'none'` | `'none'` | Border around sections |
+| `focus` | `boolean` | `true` | Accept keyboard input |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

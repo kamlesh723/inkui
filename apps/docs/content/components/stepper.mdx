@@ -1,0 +1,55 @@
+---
+title: Stepper
+description: Multi-step wizard flow with visual progress indicator.
+---
+
+Show progress through a multi-step flow. Purely presentational — the parent manages which step is current.
+
+## Installation
+
+```bash
+npx inkui add stepper
+```
+
+## Usage
+
+```tsx
+import { Stepper } from './components/ui/stepper';
+
+const steps = [
+  { key: 'setup', title: 'Setup', description: 'Install dependencies' },
+  { key: 'configure', title: 'Configure', description: 'Set API keys' },
+  { key: 'deploy', title: 'Deploy', description: 'Push to production' },
+];
+
+export default function App() {
+  return (
+    <Stepper
+      steps={steps}
+      currentStep="configure"
+      completedSteps={['setup']}
+    />
+  );
+}
+```
+
+## Step Indicators
+
+| State | Symbol | Color |
+|-------|--------|-------|
+| Completed | `✓` | success (green) |
+| Current | `●` | primary (cyan) |
+| Upcoming | `○` | muted |
+| Error | `✕` | error (red) |
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `steps` | `Step[]` | — | Step definitions (required) |
+| `currentStep` | `string` | — | Current step key (required) |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction |
+| `showNumbers` | `boolean` | `false` | Show step numbers |
+| `completedSteps` | `string[]` | `[]` | Completed step keys |
+| `errorSteps` | `string[]` | `[]` | Error step keys |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

@@ -1,0 +1,69 @@
+---
+title: JSONViewer
+description: Interactive JSON explorer with collapsible nodes and syntax coloring.
+---
+
+Explore JSON data interactively with expand/collapse, keyboard navigation, and syntax coloring.
+
+## Installation
+
+```bash
+npx inkui add json-viewer
+```
+
+## Usage
+
+```tsx
+import { JSONViewer } from './components/ui/json-viewer';
+
+const data = {
+  name: 'InkUI',
+  version: '0.3.0',
+  config: { debug: false, port: 3000 },
+  tags: ['terminal', 'ink', 'react'],
+};
+
+export default function App() {
+  return (
+    <JSONViewer
+      data={data}
+      initialDepth={2}
+      rootLabel="config"
+    />
+  );
+}
+```
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `↑` / `k` | Previous node |
+| `↓` / `j` | Next node |
+| `→` / `l` / `Space` | Expand |
+| `←` / `h` | Collapse |
+| `g` | First node |
+| `G` | Last node |
+
+## Color Coding
+
+| Type | Color |
+|------|-------|
+| String | success (green) |
+| Number | warning (yellow) |
+| Boolean | info (blue) |
+| Null | muted |
+| Keys | text |
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `any` | — | JSON data (required) |
+| `initialDepth` | `number` | `1` | Auto-expand depth |
+| `maxHeight` | `number` | — | Max visible rows |
+| `showTypes` | `boolean` | `false` | Show type annotations |
+| `showIndices` | `boolean` | `true` | Show array indices |
+| `rootLabel` | `string` | `'root'` | Root node label |
+| `focus` | `boolean` | `true` | Accept keyboard input |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

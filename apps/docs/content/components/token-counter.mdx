@@ -1,0 +1,55 @@
+---
+title: TokenCounter
+description: Visual token usage display with a budget bar that changes color as usage grows.
+---
+
+Display LLM token usage with a visual progress bar. Color changes from green → yellow → red as usage approaches the limit.
+
+## Installation
+
+```bash
+npx inkui add token-counter
+```
+
+## Usage
+
+```tsx
+import { TokenCounter } from './components/ui/token-counter';
+
+export default function App() {
+  return (
+    <TokenCounter
+      used={42318}
+      total={200000}
+      model="claude-sonnet-4"
+      inputTokens={38210}
+      outputTokens={4108}
+      inputCostPer1k={0.003}
+      outputCostPer1k={0.015}
+      variant="detailed"
+    />
+  );
+}
+```
+
+## Variants
+
+- **`compact`** (default) — single line with bar and percentage
+- **`detailed`** — full box with model, input/output breakdown, cost
+- **`minimal`** — abbreviated numbers, no bar
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `used` | `number` | — | Tokens used (required) |
+| `total` | `number` | — | Token budget (required) |
+| `model` | `string` | — | Model name for detailed view |
+| `inputTokens` | `number` | — | Input token count |
+| `outputTokens` | `number` | — | Output token count |
+| `inputCostPer1k` | `number` | — | Cost per 1k input tokens |
+| `outputCostPer1k` | `number` | — | Cost per 1k output tokens |
+| `showBar` | `boolean` | `true` | Show progress bar |
+| `barWidth` | `number` | `20` | Bar width in columns |
+| `variant` | `'compact' \| 'detailed' \| 'minimal'` | `'compact'` | Display style |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

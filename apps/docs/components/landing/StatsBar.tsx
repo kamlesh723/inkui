@@ -2,8 +2,8 @@
 
 export default function StatsBar() {
   const stats = [
-    '15+ Components',
-    '16 npm packages',
+    '32+ Components',
+    '33 npm packages',
     'TypeScript',
     'MIT License',
   ];

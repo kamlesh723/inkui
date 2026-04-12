@@ -1,0 +1,66 @@
+---
+title: DataTable
+description: Interactive table with sorting, filtering, and pagination.
+---
+
+A fully interactive data table with row selection, column sorting, search filtering, and pagination.
+
+## Installation
+
+```bash
+npx inkui add data-table
+```
+
+## Usage
+
+```tsx
+import { DataTable } from './components/ui/data-table';
+
+const columns = [
+  { key: 'name', header: 'Name', sortable: true },
+  { key: 'status', header: 'Status' },
+  { key: 'region', header: 'Region' },
+];
+
+const data = [
+  { name: 'api-prod', status: 'online', region: 'us-east' },
+  { name: 'worker-1', status: 'error', region: 'eu-west' },
+];
+
+export default function App() {
+  return (
+    <DataTable
+      columns={columns}
+      data={data}
+      onSelect={(row) => console.log(row)}
+    />
+  );
+}
+```
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `↑` / `↓` | Navigate rows |
+| `←` / `→` | Switch pages |
+| `/` | Toggle search mode |
+| `s` | Cycle sort on sortable column |
+| `Enter` | Select row |
+| `Esc` | Exit search |
+| `g` / `G` | First / last row |
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `columns` | `DataTableColumn[]` | — | Column definitions (required) |
+| `data` | `T[]` | — | Row data (required) |
+| `pageSize` | `number` | `10` | Rows per page |
+| `searchable` | `boolean` | `true` | Enable search |
+| `onSelect` | `(row, index) => void` | — | Called on row selection |
+| `selectable` | `boolean` | `true` | Enable row highlighting |
+| `showFooter` | `boolean` | `true` | Show pagination footer |
+| `emptyMessage` | `string` | `'No data'` | Empty state message |
+| `focus` | `boolean` | `true` | Accept keyboard input |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

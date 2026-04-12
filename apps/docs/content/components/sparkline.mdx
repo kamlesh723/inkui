@@ -1,0 +1,44 @@
+---
+title: Sparkline
+description: Inline mini chart using block characters for trend data.
+---
+
+Visualize time-series data inline using Unicode block characters (▁▂▃▄▅▆▇█).
+
+## Installation
+
+```bash
+npx inkui add sparkline
+```
+
+## Usage
+
+```tsx
+import { Sparkline } from './components/ui/sparkline';
+
+const cpuData = [12, 18, 25, 40, 65, 80, 72, 55, 38, 22, 15, 20];
+
+export default function App() {
+  return (
+    <Sparkline
+      data={cpuData}
+      label="CPU  "
+      showRange
+      showLatest
+    />
+  );
+}
+```
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `number[]` | — | Data points (required) |
+| `width` | `number` | `20` | Width in columns |
+| `height` | `number` | `1` | Height in rows (1 or 2) |
+| `label` | `string` | — | Label before sparkline |
+| `showRange` | `boolean` | `false` | Show min/max values |
+| `showLatest` | `boolean` | `true` | Show latest value |
+| `color` | `string` | — | Color override |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |

@@ -1,0 +1,65 @@
+---
+title: Markdown
+description: Terminal Markdown renderer — headings, lists, code blocks, and blockquotes.
+---
+
+Render a subset of Markdown in the terminal with proper formatting, colors, and code blocks.
+
+## Installation
+
+```bash
+npx inkui add markdown
+```
+
+## Usage
+
+```tsx
+import { Markdown } from './components/ui/markdown';
+
+const content = `
+# Getting Started
+
+Install the package:
+
+\`\`\`bash
+npx inkui add markdown
+\`\`\`
+
+## Features
+
+- **Bold** and *italic* text
+- \`inline code\`
+- Lists and blockquotes
+- [Links](https://github.com/kamlesh723/inkui)
+`;
+
+export default function App() {
+  return <Markdown content={content} />;
+}
+```
+
+## Supported Syntax
+
+| Element | Syntax |
+|---------|--------|
+| H1, H2, H3 | `# ` `## ` `### ` |
+| Bold | `**text**` |
+| Italic | `*text*` |
+| Inline code | `` `code` `` |
+| Strikethrough | `~~text~~` |
+| Link | `[text](url)` |
+| Unordered list | `- item` |
+| Ordered list | `1. item` |
+| Code block | ` ```lang ``` ` |
+| Blockquote | `> text` |
+| Horizontal rule | `---` |
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `content` | `string` | — | Markdown source (required) |
+| `width` | `number` | — | Max width for wrapping |
+| `highlightCode` | `boolean` | `false` | Syntax highlight code blocks |
+| `maxHeight` | `number` | — | Max visible rows (enables scroll) |
+| `theme` | `InkUITheme` | `darkTheme` | Color theme |
