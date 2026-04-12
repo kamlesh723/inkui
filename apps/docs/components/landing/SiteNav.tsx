@@ -54,7 +54,7 @@ export default function SiteNav() {
 
           {/* Version badge — desktop only */}
           <span className="desktop-nav version-badge">
-            v0.3.0
+            v0.4.0
           </span>
 
           {/* GitHub — icon always visible, text desktop-only */}
@@ -137,7 +137,7 @@ export default function SiteNav() {
             <Github size={14} /> GitHub
           </a>
           <div style={{ paddingTop: 4 }}>
-            <span className="version-badge">v0.3.0</span>
+            <span className="version-badge">v0.4.0</span>
           </div>
         </div>
       )}

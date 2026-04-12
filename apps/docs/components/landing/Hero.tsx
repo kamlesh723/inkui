@@ -70,7 +70,7 @@ export default function Hero() {
           }}
         >
           <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#22C55E', display: 'inline-block', boxShadow: '0 0 6px #22C55E' }} />
-          v0.3.0 · shadcn/ui for terminal UIs
+          v0.4.0 · shadcn/ui for terminal UIs
         </motion.div>
 
         {/* Line 1 */}
