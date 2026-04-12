@@ -1,5 +1,12 @@
 # @inkui-cli/cli
 
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies [954f467]
+  - @inkui-cli/panel@0.2.0
+
 ## 0.3.0
 
 ### Minor Changes
