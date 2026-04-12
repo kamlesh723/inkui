@@ -519,7 +519,7 @@ export default function ComponentShowcase() {
               transition: 'opacity 0.15s',
             }}
           >
-            Browse all 15 components →
+            Browse all 32 components →
           </a>
         </div>
       </div>

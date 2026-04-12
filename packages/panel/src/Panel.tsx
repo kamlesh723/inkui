@@ -4,6 +4,42 @@ import stringWidth from 'string-width';
 import { borderStyles, darkTheme } from '@inkui-cli/core';
 import type { BorderStyle, InkUITheme } from '@inkui-cli/core';
 
+export interface SplitPaneProps {
+  /** Split direction */
+  direction?: 'horizontal' | 'vertical';
+  /** Sizes as flex ratios, e.g. [1, 2] for 33%/67% */
+  sizes?: number[];
+  /** Gap between panes (columns/rows) */
+  gap?: number;
+  theme?: InkUITheme;
+  children: React.ReactNode;
+}
+
+export function SplitPane({
+  direction = 'horizontal',
+  sizes,
+  gap = 1,
+  children,
+}: SplitPaneProps) {
+  const childArray = React.Children.toArray(children);
+
+  return (
+    <Box
+      flexDirection={direction === 'horizontal' ? 'row' : 'column'}
+      gap={gap}
+    >
+      {childArray.map((child, i) => {
+        const flex = sizes ? sizes[i] ?? 1 : 1;
+        return (
+          <Box key={i} flexGrow={flex} flexShrink={1} flexBasis={0}>
+            {child}
+          </Box>
+        );
+      })}
+    </Box>
+  );
+}
+
 // Map our BorderStyle names → Ink/cli-boxes names
 // ('rounded' → 'round', 'ascii' → 'classic', others match directly)
 const INK_BORDER_MAP: Record<BorderStyle, string> = {

@@ -25,6 +25,21 @@ interface Release {
 
 const releases: Release[] = [
   {
+    version: 'v0.4.0',
+    date: 'April 12, 2026',
+    entries: [
+      { category: 'Added', highlight: 'ScrollArea, Tabs, Accordion, Panel/SplitPane', text: '— Phase 3A layout & navigation components' },
+      { category: 'Added', highlight: 'StreamingText, TokenCounter, CodeBlock, DiffView, Typewriter', text: '— Phase 3B AI-era components for LLM-powered CLIs' },
+      { category: 'Added', highlight: 'TreeView, Autocomplete, Stepper, DataTable, Gauge, Sparkline, Markdown, JSONViewer', text: '— Phase 3C data & power components' },
+      { category: 'Added', highlight: 'useFocusManager, useKeyBindings, useTerminalSize, useAsync', text: '— Phase 3D hooks package for common CLI patterns' },
+      { category: 'Added', text: 'Live animated previews for all 17 new components in the docs' },
+      { category: 'Added', text: 'SplitPane added to the Panel package — flex-ratio based split layout' },
+      { category: 'Changed', text: 'Component count updated to 32 across docs landing page, stats bar, and component grid' },
+      { category: 'Changed', text: 'README updated to list all 32 components with install commands' },
+      { category: 'Changed', text: 'Changelog and docs now reflect Phase 3 additions' },
+    ],
+  },
+  {
     version: 'v0.3.0',
     date: 'April 9, 2026',
     entries: [

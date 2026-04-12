@@ -420,6 +420,381 @@ export default function App() {
   },
 ];
 
+  // ─── Phase 3A — Layout & Navigation ────────────────────────────────────────
+
+  {
+    slug: 'scroll-area',
+    name: 'ScrollArea',
+    description: 'Scrollable content region with a visible scrollbar track, keyboard navigation, and configurable height.',
+    props: [
+      { name: 'height',        type: 'number',    required: true,       description: 'Visible height in rows' },
+      { name: 'scrollbar',     type: 'boolean',   default: 'true',      description: 'Show/hide the scrollbar' },
+      { name: 'scrollbarChar', type: 'string',    default: "'█'",       description: 'Scrollbar thumb character' },
+      { name: 'trackChar',     type: 'string',    default: "'░'",       description: 'Scrollbar track character' },
+      { name: 'onScroll',      type: '(offset: number, total: number) => void', default: 'undefined', description: 'Called on scroll' },
+      { name: 'focus',         type: 'boolean',   default: 'true',      description: 'Accept keyboard input' },
+      { name: 'theme',         type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { ScrollArea } from './components/ui/scroll-area';
+
+const items = Array.from({ length: 50 }, (_, i) => <Text key={i}>Line {i + 1}</Text>);
+
+<ScrollArea height={10}>{items}</ScrollArea>`,
+    preview: 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5  █',
+  },
+
+  {
+    slug: 'tabs',
+    name: 'Tabs',
+    description: 'Keyboard-navigable tab panels with underline, boxed, and pills variants. Supports disabled tabs and badge counts.',
+    props: [
+      { name: 'tabs',      type: 'TabItem[]',  required: true,       description: 'Array of { key, label, content, disabled?, badge? }' },
+      { name: 'activeKey', type: 'string',     default: 'first tab', description: 'Controlled active tab key' },
+      { name: 'onChange',  type: '(key: string) => void', default: 'undefined', description: 'Called when active tab changes' },
+      { name: 'variant',   type: "'underline' | 'boxed' | 'pills'", default: "'underline'", description: 'Visual style' },
+      { name: 'position',  type: "'top' | 'bottom'", default: "'top'", description: 'Tab bar position' },
+      { name: 'focus',     type: 'boolean',    default: 'true',      description: 'Accept keyboard input' },
+      { name: 'theme',     type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { Tabs } from './components/ui/tabs';
+
+<Tabs
+  tabs={[
+    { key: 'files',   label: 'Files',   content: <FileTree /> },
+    { key: 'logs',    label: 'Logs',    content: <LogView />, badge: 3 },
+    { key: 'config',  label: 'Config',  content: <Config />, disabled: true },
+  ]}
+  activeKey={activeTab}
+  onChange={setActiveTab}
+/>`,
+    preview: 'Files  Logs(3)  Config\n──────────────────\ncontent area',
+  },
+
+  {
+    slug: 'accordion',
+    name: 'Accordion',
+    description: 'Expandable/collapsible sections with keyboard navigation. Supports single or multiple open sections.',
+    props: [
+      { name: 'items',       type: 'AccordionItem[]', required: true,  description: 'Array of { key, title, content, disabled?, defaultOpen? }' },
+      { name: 'multiple',    type: 'boolean',   default: 'false',      description: 'Allow multiple sections open at once' },
+      { name: 'borderStyle', type: "'single' | 'rounded' | 'none'", default: "'single'", description: 'Border around sections' },
+      { name: 'focus',       type: 'boolean',   default: 'true',       description: 'Accept keyboard input' },
+      { name: 'theme',       type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { Accordion } from './components/ui/accordion';
+
+<Accordion
+  items={[
+    { key: 'db',  title: 'Database Config', content: <DBForm /> },
+    { key: 'api', title: 'API Settings',    content: <APIForm />, defaultOpen: true },
+  ]}
+/>`,
+    preview: '▾ API Settings\n│ base: https://api.example.com\n▸ Database Config',
+  },
+
+  // ─── Phase 3B — AI-Era Components ────────────────────────────────────────────
+
+  {
+    slug: 'streaming-text',
+    name: 'StreamingText',
+    description: 'Renders text token-by-token as it streams in from an LLM, with a blinking cursor at the insertion point.',
+    props: [
+      { name: 'text',       type: 'string',    required: true,        description: 'Current text content (grows as tokens arrive)' },
+      { name: 'streaming',  type: 'boolean',   default: 'true',       description: 'Show cursor while true, hide on false' },
+      { name: 'cursorChar', type: 'string',    default: "'█'",        description: 'Cursor character' },
+      { name: 'cursorInterval', type: 'number', default: '500',       description: 'Cursor blink interval in ms' },
+      { name: 'onComplete', type: '() => void', default: 'undefined', description: 'Fired when streaming transitions false→true' },
+      { name: 'theme',      type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { StreamingText } from './components/ui/streaming-text';
+
+const [text, setText] = useState('');
+const [streaming, setStreaming] = useState(true);
+
+// Push tokens as they arrive from the LLM
+onToken((token) => setText((t) => t + token));
+onDone(() => setStreaming(false));
+
+<StreamingText text={text} streaming={streaming} onComplete={() => setStep('done')} />`,
+    preview: '◆ Analyzing your codebase..._',
+  },
+
+  {
+    slug: 'token-counter',
+    name: 'TokenCounter',
+    description: 'Visual token usage display with a budget bar that shifts from green → yellow → red as usage grows.',
+    props: [
+      { name: 'used',      type: 'number',    required: true,        description: 'Tokens used' },
+      { name: 'limit',     type: 'number',    required: true,        description: 'Token budget limit' },
+      { name: 'model',     type: 'string',    default: 'undefined',  description: 'Model name label' },
+      { name: 'variant',   type: "'compact' | 'detailed' | 'minimal'", default: "'compact'", description: 'Display style' },
+      { name: 'warnAt',    type: 'number',    default: '0.6',        description: 'Warning threshold (0–1)' },
+      { name: 'errorAt',   type: 'number',    default: '0.8',        description: 'Error threshold (0–1)' },
+      { name: 'showCost',  type: 'boolean',   default: 'false',      description: 'Show estimated cost' },
+      { name: 'theme',     type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { TokenCounter } from './components/ui/token-counter';
+
+<TokenCounter used={2048} limit={4096} model="gpt-4o" variant="detailed" />`,
+    preview: 'gpt-4o  ████████░░░░ 2048/4096\n50% used · ~2,048 remaining',
+  },
+
+  {
+    slug: 'code-block',
+    name: 'CodeBlock',
+    description: 'Syntax-highlighted code with line numbers, a title bar, and a built-in regex tokenizer. No external deps.',
+    props: [
+      { name: 'code',             type: 'string',   required: true,       description: 'Source code to display' },
+      { name: 'language',         type: 'string',   default: "'text'",    description: 'Language for syntax highlighting' },
+      { name: 'title',            type: 'string',   default: 'undefined', description: 'Title shown in the top border' },
+      { name: 'showLineNumbers',  type: 'boolean',  default: 'true',      description: 'Show line number gutter' },
+      { name: 'showBorder',       type: 'boolean',  default: 'true',      description: 'Show outer border' },
+      { name: 'highlightLines',   type: 'number[]', default: '[]',        description: 'Lines to highlight' },
+      { name: 'theme',            type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { CodeBlock } from './components/ui/code-block';
+
+<CodeBlock
+  code={src}
+  language="typescript"
+  title="server.ts"
+  highlightLines={[3, 4]}
+/>`,
+    preview: '╭─ server.ts ────────────╮\n│ 1 │ import express      │\n│ 2 │ const app = express │\n╰────────────────────────╯',
+  },
+
+  {
+    slug: 'diff-view',
+    name: 'DiffView',
+    description: 'Unified diff viewer using a built-in LCS algorithm. Highlights added/removed lines with context.',
+    props: [
+      { name: 'before',        type: 'string',  required: true,       description: 'Original text' },
+      { name: 'after',         type: 'string',  required: true,       description: 'Modified text' },
+      { name: 'contextLines',  type: 'number',  default: '2',         description: 'Lines of context around changes' },
+      { name: 'showLineNumbers', type: 'boolean', default: 'true',    description: 'Show line numbers' },
+      { name: 'showBorder',    type: 'boolean', default: 'true',      description: 'Show outer border' },
+      { name: 'theme',         type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { DiffView } from './components/ui/diff-view';
+
+<DiffView before={oldContent} after={newContent} contextLines={3} />`,
+    preview: '@@ -1,3 +1,4 @@\n  import express\n- const PORT = 3000\n+ const PORT = process.env.PORT',
+  },
+
+  {
+    slug: 'typewriter',
+    name: 'Typewriter',
+    description: 'Character-by-character text animation with configurable speed, start delay, and optional loop.',
+    props: [
+      { name: 'text',       type: 'string',    required: true,        description: 'Text to animate' },
+      { name: 'speed',      type: 'number',    default: '50',         description: 'ms per character' },
+      { name: 'delay',      type: 'number',    default: '0',          description: 'ms before starting' },
+      { name: 'loop',       type: 'boolean',   default: 'false',      description: 'Restart after completion' },
+      { name: 'playing',    type: 'boolean',   default: 'true',       description: 'false = show full text immediately' },
+      { name: 'onComplete', type: '() => void', default: 'undefined', description: 'Fired when animation finishes' },
+      { name: 'theme',      type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { Typewriter } from './components/ui/typewriter';
+
+<Typewriter text="Welcome to InkUI." speed={60} loop onComplete={() => {}} />`,
+    preview: 'Welcome to InkUI._',
+  },
+
+  // ─── Phase 3C — Data & Power Components ──────────────────────────────────────
+
+  {
+    slug: 'tree-view',
+    name: 'TreeView',
+    description: 'Hierarchical collapsible tree with keyboard navigation, guide lines, and icon support.',
+    props: [
+      { name: 'nodes',      type: 'TreeNode[]', required: true,       description: 'Array of { id, label, children?, icon?, disabled? }' },
+      { name: 'expanded',   type: 'Set<string>', default: 'new Set()', description: 'Controlled set of expanded node IDs' },
+      { name: 'onExpand',   type: '(id: string) => void', default: 'undefined', description: 'Called on expand' },
+      { name: 'onCollapse', type: '(id: string) => void', default: 'undefined', description: 'Called on collapse' },
+      { name: 'onSelect',   type: '(id: string) => void', default: 'undefined', description: 'Called when leaf is selected' },
+      { name: 'focus',      type: 'boolean',   default: 'true',       description: 'Accept keyboard input' },
+      { name: 'theme',      type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { TreeView } from './components/ui/tree-view';
+
+<TreeView
+  nodes={[
+    { id: 'src', label: 'src/', children: [
+      { id: 'index', label: 'index.ts' },
+      { id: 'utils', label: 'utils.ts' },
+    ]},
+  ]}
+  onSelect={(id) => openFile(id)}
+/>`,
+    preview: '▾ src/\n  ├ index.ts\n  └ utils.ts',
+  },
+
+  {
+    slug: 'autocomplete',
+    name: 'Autocomplete',
+    description: 'Text input with a live-filtered dropdown. Tab-to-complete, arrow keys to navigate, Esc to clear.',
+    props: [
+      { name: 'options',    type: 'string[]',  required: true,        description: 'Full option list to filter' },
+      { name: 'value',      type: 'string',    required: true,        description: 'Controlled input value' },
+      { name: 'onChange',   type: '(v: string) => void', required: true, description: 'Called on each keystroke' },
+      { name: 'onSelect',   type: '(v: string) => void', default: 'undefined', description: 'Called when option is chosen' },
+      { name: 'label',      type: 'string',    default: 'undefined',  description: 'Input label' },
+      { name: 'maxSuggestions', type: 'number', default: '5',         description: 'Max visible suggestions' },
+      { name: 'focus',      type: 'boolean',   default: 'true',       description: 'Accept keyboard input' },
+      { name: 'theme',      type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { Autocomplete } from './components/ui/autocomplete';
+
+<Autocomplete
+  label="Package"
+  options={['react', 'react-dom', 'react-query', 'react-router']}
+  value={pkg}
+  onChange={setPkg}
+  onSelect={(v) => install(v)}
+/>`,
+    preview: '? Package: rea█\n❯ react\n  react-dom\n  react-query',
+  },
+
+  {
+    slug: 'stepper',
+    name: 'Stepper',
+    description: 'Multi-step wizard progress indicator. Purely presentational — the parent controls the active step.',
+    props: [
+      { name: 'steps',       type: 'StepItem[]',  required: true,      description: 'Array of { key, label, description? }' },
+      { name: 'activeStep',  type: 'string',      required: true,      description: 'Key of the current step' },
+      { name: 'completed',   type: 'string[]',    default: '[]',       description: 'Keys of completed steps' },
+      { name: 'errors',      type: 'string[]',    default: '[]',       description: 'Keys of error steps' },
+      { name: 'orientation', type: "'horizontal' | 'vertical'", default: "'horizontal'", description: 'Layout direction' },
+      { name: 'theme',       type: 'InkUITheme',  default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { Stepper } from './components/ui/stepper';
+
+<Stepper
+  steps={[
+    { key: 'install',   label: 'Install'   },
+    { key: 'configure', label: 'Configure' },
+    { key: 'deploy',    label: 'Deploy'    },
+  ]}
+  activeStep="configure"
+  completed={['install']}
+/>`,
+    preview: '✓ ── ● ── ○\nInstall Configure Deploy',
+  },
+
+  {
+    slug: 'data-table',
+    name: 'DataTable',
+    description: 'Interactive data table with row selection, column sorting, text search filtering, and pagination.',
+    props: [
+      { name: 'columns',     type: 'DataColumn<T>[]', required: true,   description: 'Array of { key, header, sortable?, width? }' },
+      { name: 'data',        type: 'T[]',             required: true,   description: 'Row data array' },
+      { name: 'pageSize',    type: 'number',          default: '10',    description: 'Rows per page' },
+      { name: 'selectable',  type: 'boolean',         default: 'false', description: 'Enable row selection' },
+      { name: 'onSelect',    type: '(row: T) => void', default: 'undefined', description: 'Called when row is selected' },
+      { name: 'focus',       type: 'boolean',         default: 'true',  description: 'Accept keyboard input' },
+      { name: 'theme',       type: 'InkUITheme',      default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { DataTable } from './components/ui/data-table';
+
+<DataTable
+  columns={[
+    { key: 'name',   header: 'Process', sortable: true },
+    { key: 'cpu',    header: 'CPU',     sortable: true },
+    { key: 'status', header: 'Status' },
+  ]}
+  data={processes}
+  pageSize={5}
+  selectable
+  onSelect={(row) => inspect(row)}
+/>`,
+    preview: '┌──────────┬───────┐\n│ nginx    │ 2.1%  │\n│ node     │ 8.4%  │\n└──────────┴───────┘',
+  },
+
+  {
+    slug: 'gauge',
+    name: 'Gauge',
+    description: 'Metric gauge with automatic color thresholds. Switches from success → warning → error as value rises.',
+    props: [
+      { name: 'value',      type: 'number',    required: true,        description: 'Current value (0–max)' },
+      { name: 'max',        type: 'number',    default: '100',        description: 'Maximum value' },
+      { name: 'label',      type: 'string',    default: 'undefined',  description: 'Metric label' },
+      { name: 'variant',    type: "'bar' | 'arc' | 'ring'", default: "'bar'", description: 'Visual style' },
+      { name: 'thresholds', type: '{ warn: number; error: number }', default: '{ warn: 0.6, error: 0.8 }', description: 'Color change points (0–1)' },
+      { name: 'theme',      type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { Gauge } from './components/ui/gauge';
+
+<Gauge value={cpuUsage} max={100} label="CPU" thresholds={{ warn: 0.6, error: 0.8 }} />`,
+    preview: 'CPU  ████████████░░░░ 72%\n     ⚡ Warning',
+  },
+
+  {
+    slug: 'sparkline',
+    name: 'Sparkline',
+    description: 'Inline mini chart using Unicode block characters ▁▂▃▄▅▆▇█. Downsamples automatically for wide data.',
+    props: [
+      { name: 'data',    type: 'number[]',  required: true,        description: 'Array of numeric values' },
+      { name: 'width',   type: 'number',    default: 'auto',       description: 'Chart width in columns' },
+      { name: 'label',   type: 'string',    default: 'undefined',  description: 'Label shown before the chart' },
+      { name: 'color',   type: 'string',    default: 'theme success', description: 'Bar color' },
+      { name: 'theme',   type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { Sparkline } from './components/ui/sparkline';
+
+<Sparkline data={[3, 6, 4, 8, 5, 7, 2, 9, 4, 6]} label="req/s" />`,
+    preview: 'req/s  ▁▃▅▇█▆▄▂▃▅▇▆',
+  },
+
+  {
+    slug: 'markdown',
+    name: 'Markdown',
+    description: 'Terminal Markdown renderer. Handles headings, lists, bold/italic, inline code, code blocks, and blockquotes.',
+    props: [
+      { name: 'children', type: 'string',    required: true,        description: 'Markdown source text' },
+      { name: 'theme',    type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { Markdown } from './components/ui/markdown';
+
+const md = \`
+# Getting Started
+
+Install with \\\`npx inkui add spinner\\\`.
+
+> Copy once, own forever.
+
+- Run the command
+- **Import** the component
+\`;
+
+<Markdown>{md}</Markdown>`,
+    preview: '# Getting Started\n> blockquote here\n- **bold** and `code`',
+  },
+
+  {
+    slug: 'json-viewer',
+    name: 'JSONViewer',
+    description: 'Interactive JSON explorer with collapsible nodes, syntax coloring, and vim-style keyboard navigation.',
+    props: [
+      { name: 'data',         type: 'any',       required: true,        description: 'JSON data to display (required)' },
+      { name: 'initialDepth', type: 'number',    default: '1',          description: 'Auto-expand depth' },
+      { name: 'maxHeight',    type: 'number',    default: 'undefined',  description: 'Max visible rows' },
+      { name: 'showTypes',    type: 'boolean',   default: 'false',      description: 'Show type annotations' },
+      { name: 'showIndices',  type: 'boolean',   default: 'true',       description: 'Show array indices' },
+      { name: 'rootLabel',    type: 'string',    default: "'root'",     description: 'Root node label' },
+      { name: 'focus',        type: 'boolean',   default: 'true',       description: 'Accept keyboard input' },
+      { name: 'theme',        type: 'InkUITheme', default: 'darkTheme', description: 'Color theme' },
+    ],
+    usage: `import { JSONViewer } from './components/ui/json-viewer';
+
+<JSONViewer
+  data={{ name: 'InkUI', version: '0.4.0', config: { debug: false, port: 3000 } }}
+  initialDepth={2}
+  rootLabel="config"
+/>`,
+    preview: '▾ root\n  "name": "InkUI"\n  ▾ "config": {...}\n    "port": 3000',
+  },
+];
+
 export const COMPONENT_MAP = Object.fromEntries(
   COMPONENTS.map((c) => [c.slug, c]),
 );

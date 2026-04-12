@@ -4,21 +4,42 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const components = [
-  { slug: 'spinner',          name: 'Spinner',         desc: 'Loading states',     preview: '⠹ Loading data...',                                              previewColor: '#06B6D4', pkg: 'spinner'          },
-  { slug: 'badge',            name: 'Badge',            desc: 'Status labels',      preview: ' success   warning   error ',                                    previewColor: '#22C55E', pkg: 'badge'            },
-  { slug: 'progress-bar',     name: 'ProgressBar',      desc: 'Progress tracking',  preview: '████████████░░░░ 67%',                                           previewColor: '#06B6D4', pkg: 'progress-bar'     },
-  { slug: 'text-input',       name: 'TextInput',        desc: 'Interactive input',  preview: '❯ Enter name: Kamlesh_',                                         previewColor: '#A1A1AA', pkg: 'text-input'       },
-  { slug: 'select',           name: 'Select',           desc: 'Single selection',   preview: '❯ Option 1\n  Option 2\n  Option 3',                             previewColor: '#A1A1AA', pkg: 'select'           },
-  { slug: 'multi-select',     name: 'MultiSelect',      desc: 'Multiple selection', preview: '◉ Item 1\n◯ Item 2\n◉ Item 3',                                   previewColor: '#A1A1AA', pkg: 'multi-select'     },
-  { slug: 'table',            name: 'Table',            desc: 'Data display',       preview: '╭──────────╮\n│ Name  ID │\n│ Ink   1  │\n╰──────────╯',          previewColor: '#A1A1AA', pkg: 'table'            },
-  { slug: 'dialog',           name: 'Dialog',           desc: 'Confirmations',      preview: '╭─ Confirm ─╮\n│ Delete?   │\n╰──── OK ───╯',                   previewColor: '#A1A1AA', pkg: 'dialog'           },
-  { slug: 'toast',            name: 'Toast',            desc: 'Notifications',      preview: '✓ Deployed!\n⚠ Deprecated pkgs\n✕ Error',                       previewColor: '#22C55E', pkg: 'toast'            },
-  { slug: 'status-indicator', name: 'StatusIndicator',  desc: 'Service health',     preview: '● API       online\n◌ DB        syncing\n○ CDN       offline',   previewColor: '#22C55E', pkg: 'status-indicator' },
-  { slug: 'loading-bar',      name: 'LoadingBar',       desc: 'Indeterminate bar',  preview: '▓▓▓▓▓▓░░░░░░ 52%',                                              previewColor: '#06B6D4', pkg: 'loading-bar'      },
-  { slug: 'confirm',          name: 'Confirm',          desc: 'Yes/no prompts',     preview: '? Deploy to prod? (y/N)',                                        previewColor: '#A1A1AA', pkg: 'confirm'          },
-  { slug: 'key-hint',         name: 'KeyHint',          desc: 'Keyboard hints',     preview: '[↑↓] Navigate\n[Enter] Select\n[Esc] Cancel',                   previewColor: '#71717A', pkg: 'key-hint'         },
-  { slug: 'divider',          name: 'Divider',          desc: 'Section separator',  preview: '── Config ──────────\n════════════════════',                    previewColor: '#71717A', pkg: 'divider'          },
-  { slug: 'header',           name: 'Header',           desc: 'App header bar',     preview: '┌─── MyApp v1.0 ───┐\n│                  │\n└──────────────────┘', previewColor: '#A1A1AA', pkg: 'header'         },
+  // Phase 1 & 2
+  { slug: 'spinner',          name: 'Spinner',         desc: 'Loading states',          preview: '⠹ Loading data...',                                              previewColor: '#06B6D4', pkg: 'spinner'          },
+  { slug: 'badge',            name: 'Badge',            desc: 'Status labels',           preview: ' success   warning   error ',                                    previewColor: '#22C55E', pkg: 'badge'            },
+  { slug: 'progress-bar',     name: 'ProgressBar',      desc: 'Progress tracking',       preview: '████████████░░░░ 67%',                                           previewColor: '#06B6D4', pkg: 'progress-bar'     },
+  { slug: 'text-input',       name: 'TextInput',        desc: 'Interactive input',       preview: '❯ Enter name: Kamlesh_',                                         previewColor: '#A1A1AA', pkg: 'text-input'       },
+  { slug: 'select',           name: 'Select',           desc: 'Single selection',        preview: '❯ Option 1\n  Option 2\n  Option 3',                             previewColor: '#A1A1AA', pkg: 'select'           },
+  { slug: 'multi-select',     name: 'MultiSelect',      desc: 'Multiple selection',      preview: '◉ Item 1\n◯ Item 2\n◉ Item 3',                                   previewColor: '#A1A1AA', pkg: 'multi-select'     },
+  { slug: 'table',            name: 'Table',            desc: 'Data display',            preview: '╭──────────╮\n│ Name  ID │\n│ Ink   1  │\n╰──────────╯',          previewColor: '#A1A1AA', pkg: 'table'            },
+  { slug: 'dialog',           name: 'Dialog',           desc: 'Confirmations',           preview: '╭─ Confirm ─╮\n│ Delete?   │\n╰──── OK ───╯',                   previewColor: '#A1A1AA', pkg: 'dialog'           },
+  { slug: 'toast',            name: 'Toast',            desc: 'Notifications',           preview: '✓ Deployed!\n⚠ Deprecated pkgs\n✕ Error',                       previewColor: '#22C55E', pkg: 'toast'            },
+  { slug: 'status-indicator', name: 'StatusIndicator',  desc: 'Service health',          preview: '● API       online\n◌ DB        syncing\n○ CDN       offline',   previewColor: '#22C55E', pkg: 'status-indicator' },
+  { slug: 'loading-bar',      name: 'LoadingBar',       desc: 'Indeterminate bar',       preview: '▓▓▓▓▓▓░░░░░░ 52%',                                              previewColor: '#06B6D4', pkg: 'loading-bar'      },
+  { slug: 'confirm',          name: 'Confirm',          desc: 'Yes/no prompts',          preview: '? Deploy to prod? (y/N)',                                        previewColor: '#A1A1AA', pkg: 'confirm'          },
+  { slug: 'key-hint',         name: 'KeyHint',          desc: 'Keyboard hints',          preview: '[↑↓] Navigate\n[Enter] Select\n[Esc] Cancel',                   previewColor: '#71717A', pkg: 'key-hint'         },
+  { slug: 'divider',          name: 'Divider',          desc: 'Section separator',       preview: '── Config ──────────\n════════════════════',                    previewColor: '#71717A', pkg: 'divider'          },
+  { slug: 'header',           name: 'Header',           desc: 'App header bar',          preview: '┌─── MyApp v1.0 ───┐\n│                  │\n└──────────────────┘', previewColor: '#A1A1AA', pkg: 'header'         },
+  { slug: 'panel',            name: 'Panel',            desc: 'Bordered layout',         preview: '╭─ Panel ──╮\n│ content  │\n╰──────────╯',                      previewColor: '#A1A1AA', pkg: 'panel'            },
+  // Phase 3A — Layout & Navigation
+  { slug: 'scroll-area',      name: 'ScrollArea',       desc: 'Scrollable region',       preview: 'Line 1\nLine 2\n▌Line 3\nLine 4\nLine 5  █',                    previewColor: '#06B6D4', pkg: 'scroll-area'      },
+  { slug: 'tabs',             name: 'Tabs',             desc: 'Tab panels',              preview: 'Files  Logs  Config\n──────\ncontent here',                      previewColor: '#A855F7', pkg: 'tabs'             },
+  { slug: 'accordion',        name: 'Accordion',        desc: 'Expand/collapse',         preview: '▾ API Settings\n│ base: localhost\n▸ Deployment',                previewColor: '#A855F7', pkg: 'accordion'        },
+  // Phase 3B — AI-Era
+  { slug: 'streaming-text',   name: 'StreamingText',    desc: 'LLM token streaming',     preview: '◆ Analyzing your code..._',                                      previewColor: '#06B6D4', pkg: 'streaming-text'   },
+  { slug: 'token-counter',    name: 'TokenCounter',     desc: 'Token budget display',    preview: '████████░░░░ 2048/4096\n50% used',                               previewColor: '#22C55E', pkg: 'token-counter'    },
+  { slug: 'code-block',       name: 'CodeBlock',        desc: 'Syntax highlighting',     preview: '1 │ import express\n2 │ const app = express()\n3 │ app.listen(3000)', previewColor: '#EAB308', pkg: 'code-block'  },
+  { slug: 'diff-view',        name: 'DiffView',         desc: 'Unified diffs',           preview: '+ const PORT = process.env.PORT\n- const PORT = 3000',           previewColor: '#22C55E', pkg: 'diff-view'        },
+  { slug: 'typewriter',       name: 'Typewriter',       desc: 'Typing animation',        preview: 'Welcome to InkUI._',                                             previewColor: '#E2E8F0', pkg: 'typewriter'       },
+  // Phase 3C — Data & Power
+  { slug: 'tree-view',        name: 'TreeView',         desc: 'Hierarchical data',       preview: '▾ src/\n  ▾ components/\n    Button.tsx\n  index.ts',             previewColor: '#06B6D4', pkg: 'tree-view'        },
+  { slug: 'autocomplete',     name: 'Autocomplete',     desc: 'Filtered suggestions',    preview: '? Package: rea█\n❯ react\n  react-dom\n  react-query',            previewColor: '#A855F7', pkg: 'autocomplete'     },
+  { slug: 'stepper',          name: 'Stepper',          desc: 'Multi-step wizard',       preview: '① ── ② ── ③ ── ④\nInstall  Config  Deploy',                     previewColor: '#22C55E', pkg: 'stepper'          },
+  { slug: 'data-table',       name: 'DataTable',        desc: 'Sort, filter, paginate',  preview: '┌────────┬──────┐\n│ nginx  │ run  │\n│ node   │ run  │\n└────────┴──────┘', previewColor: '#06B6D4', pkg: 'data-table' },
+  { slug: 'gauge',            name: 'Gauge',            desc: 'Metric with thresholds',  preview: 'CPU ████████░░░░ 72%\n⚡ Warning',                               previewColor: '#EAB308', pkg: 'gauge'            },
+  { slug: 'sparkline',        name: 'Sparkline',        desc: 'Inline mini chart',       preview: '▁▃▅▇█▆▄▂▃▅▇█▆▃▁',                                              previewColor: '#22C55E', pkg: 'sparkline'        },
+  { slug: 'markdown',         name: 'Markdown',         desc: 'Terminal Markdown',       preview: '# Heading\n> blockquote\n- **bold** and `code`',                  previewColor: '#E2E8F0', pkg: 'markdown'         },
+  { slug: 'json-viewer',      name: 'JSONViewer',       desc: 'JSON explorer',           preview: '▾ root\n  "name": "InkUI"\n  ▸ "config": {...}',                  previewColor: '#A855F7', pkg: 'json-viewer'      },
 ];
 
 // Map color to a subtle glow rgba
@@ -139,7 +160,7 @@ export default function ComponentGrid() {
               color: 'var(--text)',
             }}
           >
-            All 15 components
+            All 32 components
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 480, margin: '0 auto' }}>
             Copy any component into your project. You own the code — no black-box dependencies.

@@ -92,6 +92,10 @@ See [inkui-lib.vercel.app](https://inkui-lib.vercel.app) for live animated demos
 
 ## Components
 
+**32 components across 4 phases.**
+
+### Phase 1 & 2 — Foundations
+
 | Component | What it does | Install |
 |---|---|---|
 | **Spinner** | Animated spinner — `dots` `line` `arc` `bounce` | `npx inkui add spinner` |
@@ -109,10 +113,57 @@ See [inkui-lib.vercel.app](https://inkui-lib.vercel.app) for live animated demos
 | **KeyHint** | Row of `[key] label` keyboard shortcut hints | `npx inkui add key-hint` |
 | **Divider** | Full-width separator — `single` `double` `dashed` `bold`, optional title | `npx inkui add divider` |
 | **Header** | App header bar — `box` `line` `filled` styles, title + subtitle | `npx inkui add header` |
+| **Panel** | Bordered panel with optional title + `SplitPane` for split layouts | `npx inkui add panel` |
+
+### Phase 3A — Layout & Navigation
+
+| Component | What it does | Install |
+|---|---|---|
+| **ScrollArea** | Scrollable region with visible scrollbar, keyboard nav (`↑↓ g G`) | `npx inkui add scroll-area` |
+| **Tabs** | Tab panels — `underline` `boxed` `pills`, badge counts, disabled tabs | `npx inkui add tabs` |
+| **Accordion** | Expand/collapse sections, single or multiple open, keyboard nav | `npx inkui add accordion` |
+
+### Phase 3B — AI-Era Components
+
+| Component | What it does | Install |
+|---|---|---|
+| **StreamingText** | Token-by-token LLM output with blinking cursor and `onComplete` | `npx inkui add streaming-text` |
+| **TokenCounter** | Token budget bar — green→yellow→red as usage climbs | `npx inkui add token-counter` |
+| **CodeBlock** | Syntax highlighting, line numbers, title, 13 languages — no external deps | `npx inkui add code-block` |
+| **DiffView** | Unified diff with LCS algorithm — add/remove highlighting, context lines | `npx inkui add diff-view` |
+| **Typewriter** | Character-by-character animation — speed, delay, loop | `npx inkui add typewriter` |
+
+### Phase 3C — Data & Power
+
+| Component | What it does | Install |
+|---|---|---|
+| **TreeView** | Collapsible tree — vim keys, guide lines, expand/collapse state | `npx inkui add tree-view` |
+| **Autocomplete** | Live-filter input with dropdown, Tab-to-complete, Esc to clear | `npx inkui add autocomplete` |
+| **Stepper** | Multi-step wizard progress — horizontal/vertical, completed/error states | `npx inkui add stepper` |
+| **DataTable** | Sort, filter, paginate, select rows — keyboard driven | `npx inkui add data-table` |
+| **Gauge** | Metric bar with color thresholds — bar/arc/ring variants | `npx inkui add gauge` |
+| **Sparkline** | Inline `▁▂▃▄▅▆▇█` mini chart — live time-series, auto-downsampling | `npx inkui add sparkline` |
+| **Markdown** | Terminal Markdown — headings, lists, bold/italic, code, blockquotes | `npx inkui add markdown` |
+| **JSONViewer** | Interactive JSON explorer — expand/collapse, syntax colors, vim nav | `npx inkui add json-viewer` |
+
+### Phase 3D — Hooks
+
+| Hook | What it does | Install |
+|---|---|---|
+| **useFocusManager** | Register/unregister focus regions, cycle with Tab | `npx inkui add hooks` |
+| **useKeyBindings** | Declarative key binding map with priority and context | `npx inkui add hooks` |
+| **useTerminalSize** | Live terminal `columns`/`rows` with resize tracking | `npx inkui add hooks` |
+| **useAsync** | Async data fetching with `loading`/`data`/`error` state | `npx inkui add hooks` |
 
 ---
 
 ## API reference
+
+Full prop tables for all 32 components are at **[inkui-lib.vercel.app/docs/components](https://inkui-lib.vercel.app/docs/components)**.
+
+Quick reference for the original 16 components is below. For Phase 3 components, see the docs site.
+
+---
 
 ### Spinner
 
